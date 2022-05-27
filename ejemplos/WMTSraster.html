@@ -18,7 +18,7 @@
 
 
 
-    <title>Galería ejemplos API-CNIG</title>
+    <title>Ejemplo WMTS Ráster</title>
   </head>
   <body>
     <!-- Optional JavaScript; choose one of the two! -->
@@ -44,7 +44,7 @@
       <div class="row">
         <div class="col">
             <!-- Aquí va el título del ejemplo -->
-            <a class="navbar-brand">Ejemplo de carga de una capa vectorial procedente de servicio WMS</a>
+            <a class="navbar-brand">Ejemplo de servicio WMTS</a>
         </div>
       </div>
       <div class="row">
@@ -70,6 +70,7 @@
           <!-- Poner el código sin tabuladores iniciales -->
           <!-- Poner espacios en blanco al final de la línea más larga -->
           <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false" >
+		  
 <!DOCTYPE html>         
 <html>
   <head>
@@ -80,17 +81,17 @@
     <title>Visor base</title>
     <!-- Estilo de la API -->
     <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
-     <!-- Estilos de los plugins añadidos -->
-     <link href="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.css" rel="stylesheet" />
-     <style type="text/css">
-      html,
-      body {
-          margin: 0;
-          padding: 0;
-          height: 100%;
-          overflow: hidden;
-      }
-  </style>
+    <!-- Estilos de los plugins añadidos -->
+    <link href="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.css" rel="stylesheet" />
+    <style type="text/css">
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
   </head>
 
   <body>
@@ -102,39 +103,54 @@
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
       <!-- Ficheros  javascript de los plugins añadidos-->
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.js"></script>
+
       <script type="text/javascript">
-          // Configuración del mapa
+	  
+          // Configuración del mapa (Ana)
           const mapjs = M.map({
               container: 'mapjs', //id del contenedor del mapa
               controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
-              zoom: 6,
+              zoom: 5,
               maxZoom: 20,
-              minZoom: 4,
+              minZoom: 6,
               center: [-467062.8225, 4683459.6216],
           });
-          // Configuración de la capa WMS
+		  
+          // Configuración de las capas raster WMTS (Ana)
+
+          const suelo = new M.layer.WMTS({
+              url: 'https://servicios.idee.es/wmts/ocupacion-suelo?',
+              name: 'LU.ExistingLandUse',
+              legend: 'Ocupación del suelo WMTS',
+              matrixSet: 'GoogleMapsCompatible',
+			  maxZoom: 20,
+              minZoom: 6,
+              visibility: true,
+          }, {});
+
+		  const planos = new M.layer.WMTS({
+              url: 'https://www.ign.es/wmts/planos?',
+              name: 'MancelliMadrid',
+              legend: 'Planos de Madrid (1622-1960)',
+              matrixSet: 'GoogleMapsCompatible',
+			  maxZoom: 20,
+              minZoom: 9,
+              visibility: true,
+          }, {});
+		  
+          mapjs.addLayers([suelo,planos]);
           
-          const hidrografia = new M.layer.WMS({
-              url: 'https://servicios.idee.es/wms-inspire/hidrografia',
-              name: 'HY.Network',
-              legend: 'Red hidrográfica',								
-              tiled: false,
-          });
-        mapjs.addLayers(hidrografia);
-        
-          
-// Configuración de los plugins
+          // Configuración de los plugins
           const mp8 = new M.plugin.TOC({
             collapsed: true,
             collapsible: true,
           });
-
-          
           mapjs.addPlugin(mp8);
       </script>
   </body>
 </html>
-  </textarea>
+
+          </textarea>
           <!-- Fin del textarea -->
 
         </div>
