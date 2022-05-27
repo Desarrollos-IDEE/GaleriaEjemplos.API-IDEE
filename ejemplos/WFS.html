@@ -44,7 +44,7 @@
       <div class="row">
         <div class="col">
             <!-- Aquí va el título del ejemplo -->
-            <a class="navbar-brand">Ejemplo</a>
+            <a class="navbar-brand">Ejemplo de carga de una capa vectorial procedente de servicio WFS</a>
         </div>
       </div>
       <div class="row">
@@ -81,12 +81,6 @@
     <!-- Estilo de la API -->
     <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
     <!-- Estilos de los plugins añadidos -->
-    <link href="https://componentes.cnig.es/api-core/plugins/ignsearch/ignsearch.ol.min.css" rel="stylesheet" />
-    <link href="https://componentes.cnig.es/api-core/plugins/attributions/attributions.ol.min.css" rel="stylesheet" />
-    <link href="https://componentes.cnig.es/api-core/plugins/xylocator/xylocator.ol.min.css" rel="stylesheet" />
-    <link href="https://componentes.cnig.es/api-core/plugins/sharemap/sharemap.ol.min.css" rel="stylesheet" />
-    <link href="https://componentes.cnig.es/api-core/plugins/mousesrs/mousesrs.ol.min.css" rel="stylesheet" />
-    <link href="https://componentes.cnig.es/api-core/plugins/zoomextent/zoomextent.ol.min.css" rel="stylesheet" />
     <link href="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.css" rel="stylesheet" />
     <style type="text/css">
         html,
@@ -107,12 +101,6 @@
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
       <!-- Ficheros  javascript de los plugins añadidos-->
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/ignsearch/ignsearch.ol.min.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/attributions/attributions.ol.min.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/xylocator/xylocator.ol.min.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/sharemap/sharemap.ol.min.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/zoomextent/zoomextent.ol.min.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/mousesrs/mousesrs.ol.min.js"></script>
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.js"></script>
 
       <script type="text/javascript">
@@ -122,7 +110,7 @@
               controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
               zoom: 5,
               maxZoom: 20,
-              minZoom: 4,
+              minZoom: 6,
               center: [-467062.8225, 4683459.6216],
           });
           // Configuración de las capas
@@ -132,14 +120,14 @@
 		  legend: 'Red Geodésica Nacional por Técnicas Espaciales (REGENTE)',
 		  name: 'RED_REGENTE',
 		  geometry: 'POINT'
-		});//estilo2
+		});
         
        
           mapjs.addLayers(geodesia);
           
           
         // Configuracion de estilos
-		let estilo2 = new M.style.Point({
+		let estilo = new M.style.Point({
           radius: 1, 
 		   fill: {  
 		     color: 'black',
@@ -148,51 +136,19 @@
 		});
         
         // Asignamos el estilo a la capa
-        geodesia.setStyle(estilo2);
+        geodesia.setStyle(estilo);
        
         
         
           // Configuración de los plugins
-          const mp = new M.plugin.IGNSearch({
-              servicesToSearch: 'gn',
-              maxResults: 10,
-              isCollapsed: false,
-              noProcess: 'municipio,poblacion',
-              countryCode: 'es',
-              reverse: true,
-          });
-          const mp2 = new M.plugin.Attributions({
-              mode: 1,
-              scale: 10000,
-          });
-
-          const mp3 = new M.plugin.ShareMap({
-              baseUrl: 'https://componentes.cnig.es/api-core/',
-              position: 'BR',
-          });
-          const mp4 = new M.plugin.XYLocator({
-              position: 'TL',
-          });
-          const mp6 = new M.plugin.ZoomExtent();
-          const mp7 = new M.plugin.MouseSRS({
-              srs: 'EPSG:4326',
-              label: 'WGS84',
-              precision: 6,
-              geoDecimalDigits: 4,
-              utmDecimalDigits: 2,
-          });
+          
 
           const mp8 = new M.plugin.TOC({
             collapsed: true,
             collapsible: true,
           });
 
-          mapjs.addPlugin(mp);
-          mapjs.addPlugin(mp2);
-          mapjs.addPlugin(mp3);
-          mapjs.addPlugin(mp4);
-          mapjs.addPlugin(mp6);
-          mapjs.addPlugin(mp7);
+          
           mapjs.addPlugin(mp8);
       </script>
   </body>
