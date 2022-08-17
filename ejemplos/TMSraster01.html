@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Líbrerías para poner el código bonito: -->
+    <!-- Líbrerías para poner el código bonito -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.css" integrity="sha512-7vaQ4LLdaXd2IuMd4MUQ6LRFIGbEwJI1aq6KYqL3RjbdQyUkRFhwZKmqmkBXurTFdGlx687lTN8FSJfX6Df8Gw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://codemirror.net/addon/hint/show-hint.css">
 
@@ -18,7 +18,7 @@
 
 
 
-    <title>Galería ejemplos API-CNIG</title>
+    <title>Ejemplo TMS</title>
   </head>
   <body>
     <!-- Optional JavaScript; choose one of the two! -->
@@ -44,7 +44,7 @@
       <div class="row">
         <div class="col">
             <!-- Aquí va el título del ejemplo -->
-            <a class="navbar-brand">Ejemplo de carga de una capa vectorial procedente de servicio WMS</a>
+            <a class="navbar-brand">Ejemplo de servicio de teselas ráster (TMS)</a>
         </div>
       </div>
       <div class="row">
@@ -70,6 +70,7 @@
           <!-- Poner el código sin tabuladores iniciales -->
           <!-- Poner espacios en blanco al final de la línea más larga -->
           <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false" >
+		  
 <!DOCTYPE html>         
 <html>
   <head>
@@ -80,17 +81,17 @@
     <title>Visor base</title>
     <!-- Estilo de la API -->
     <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
-     <!-- Estilos de los plugins añadidos -->
-     <link href="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.css" rel="stylesheet" />
-     <style type="text/css">
-      html,
-      body {
-          margin: 0;
-          padding: 0;
-          height: 100%;
-          overflow: hidden;
-      }
-  </style>
+    <!-- Estilos de los plugins añadidos -->
+    <link href="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.css" rel="stylesheet" />
+    <style type="text/css">
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
   </head>
 
   <body>
@@ -102,39 +103,42 @@
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
       <!-- Ficheros  javascript de los plugins añadidos-->
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.js"></script>
+
       <script type="text/javascript">
+	  
           // Configuración del mapa
           const mapjs = M.map({
               container: 'mapjs', //id del contenedor del mapa
               controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
-              zoom: 6,
               maxZoom: 20,
-              minZoom: 4,
+              minZoom: 5,
               center: [-467062.8225, 4683459.6216],
           });
-          // Configuración de la capa WMS
+		  
+          // Configuración de la capa TMS 'Mapa raster'
+          const tms = new M.layer.TMS({
+            url: 'https://tms-mapa-raster.ign.es/1.0.0/mapa-raster/{z}/{x}/{-y}.jpeg',
+            name: 'Mapa ráster',
+            projection: 'EPSG:3857',
+            minZoom: 4,
+            maxZoom: 20,
+            visibility: true,
+          }, {});
+
+          mapjs.addLayers([tms]);
           
-          const hidrografia = new M.layer.WMS({
-              url: 'https://servicios.idee.es/wms-inspire/hidrografia',
-              name: 'HY.Network',
-              legend: 'Red hidrográfica',								
-              tiled: false,
-          });
-        mapjs.addLayers(hidrografia);
-        
-          
-// Configuración de los plugins
+          // Configuración de los plugins
           const mp8 = new M.plugin.TOC({
             collapsed: true,
             collapsible: true,
           });
-
-          
           mapjs.addPlugin(mp8);
+          
       </script>
   </body>
 </html>
-  </textarea>
+
+          </textarea>
           <!-- Fin del textarea -->
 
         </div>
