@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Líbrerías para poner el código bonito: -->
@@ -35,6 +35,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.js"></script>
 
   
+  
+ 
+
 
     <!-- js propio -->
     <script src="../js/paginaEjemplos.js"></script>
@@ -44,7 +47,7 @@
       <div class="row">
         <div class="col">
             <!-- Aquí va el título del ejemplo -->
-            <a class="navbar-brand">Ejemplo de carga de fichero GeoJSon</a>
+            <a class="navbar-brand">Ejemplo popup personalizado</a>
         </div>
       </div>
       <div class="row">
@@ -68,93 +71,83 @@
 
         <div id="textareawrapper" class="col CodeMirror cm-s-default CodeMirror-wrap" >
           <!-- Poner el código sin tabuladores iniciales -->
-          <!-- Poner espacios en blanco al final de la línea más larga -->
           <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false" >
+
 <!DOCTYPE html>         
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="cnig" content="yes">
-    <title>Visor base</title>
-    <!-- Estilo de la API -->
-    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
-    <!-- Estilos de los plugins añadidos -->
-    <link href="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.css" rel="stylesheet" />
-    <style type="text/css">
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-        }
-    </style>
-  </head>
+  <html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="cnig" content="yes">
+      <title>Visor base</title>
+      <!-- Estilo de la API -->
+      <link type="text/css" rel="stylesheet" href="https://mapea-lite.desarrollo.guadaltel.es/api-core/assets/css/apiign.ol.min.css">
+  
+      <style type="text/css">
+          html,
+          body {
+              margin: 0;
+              padding: 0;
+              height: 100%;
+              overflow: hidden;
+          }
+          .m-popup{
+            background: #837d7e;
+          }
+          .m-geojson-content{
+            background: gainsboro;
+          }
+          .m-header{
+            text-align: right;
+          }
+          .m-title{
+            display: flex!important;
+            color: rgb(255, 255, 255);
+            font-size: large;
+          }
+          .m-popup-closer {
+              color: #ff9191;
+              font-size: large;
+          }
+      </style>
+    </head>
+  
+    <body>
+        <!-- Contenedor principal del mapa -->
+        <div id="mapjs" class="m-container"></div>
+        <!-- Ficheros javascript de la API -->
+        <script type="text/javascript" src="https://mapea-lite.desarrollo.guadaltel.es/api-core/vendor/browser-polyfill.js"></script>
+        <script type="text/javascript" src="https://mapea-lite.desarrollo.guadaltel.es/api-core/js/apiign.ol.min.js"></script>
+        <script type="text/javascript" src="https://mapea-lite.desarrollo.guadaltel.es/api-core/js/configuration.js"></script>
+  
+  
+        <script type="text/javascript">
+            // Configuración del mapa
+            M.proxy(false)
+            const mapjs = M.map({
+                container: 'mapjs', //id del contenedor del mapa
+                controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
+                zoom: 5,
+                maxZoom: 20,
+                minZoom: 4,
+                center: [-467062.8225, 4683459.6216],
+            });
+            var mapaOL = mapjs.getMapImpl();
+  
+            // Configuración de las capas
+            const geodesia = new M.layer.GeoJSON({
+                  name: "vértices", 
+                  url: "https://www.ign.es/wfs/redes-geodesicas?service=WFS&version=1.0.0&request=GetFeature&typename=RED_REGENTE&outputFormat=application%2Fjson&srsname=EPSG%3A3857&",        
+                  extract: true,
+            });
+            mapjs.addLayers(geodesia);
+            
+        </script>
+    </body>
+  </html>
 
-  <body>
-      <!-- Contenedor principal del mapa -->
-      <div id="mapjs" class="m-container"></div>
-      <!-- Ficheros javascript de la API -->
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
-      <!-- Ficheros  javascript de los plugins añadidos-->
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.js"></script>
-
-      <script type="text/javascript">
-          // Configuración del mapa
-          const mapjs = M.map({
-              container: 'mapjs', //id del contenedor del mapa
-              controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
-              zoom: 5,
-              maxZoom: 20,
-              minZoom: 4,
-              center: [-467062.8225, 4683459.6216],
-          });
-          // Configuración de las capas
-          
-        var provincias = new M.layer.GeoJSON(
-         {name: "Provincias", 
-           url: "http://geostematicos-sigc.juntadeandalucia.es/geoserver/tematicos/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=tematicos:Provincias&maxFeatures=50&outputFormat=application/json"});
-        
-
-          mapjs.addLayers(provincias);
-          
-          
-        // Configuracion de estilos
-		
-        let estilo = new M.style.Polygon({
-		   fill: {
-		     color: 'pink',
-		     opacity: 0.5,
-		   },
-		   stroke: {
-		     color: '#FF0000',
-		     width: 0.5
-		   }
-		});	
-        
-        
-        // Asignamos el estilo a la capa
-		  
-        provincias.setStyle(estilo);
-        
-        
-          // Configuración de los plugins
-          
-          const mp8 = new M.plugin.TOC({
-            collapsed: true,
-            collapsible: true,
-          });
-
-          
-          mapjs.addPlugin(mp8);
-      </script>
-  </body>
-</html>
-  </textarea>
+          </textarea>
           <!-- Fin del textarea -->
 
         </div>

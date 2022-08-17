@@ -44,7 +44,7 @@
       <div class="row">
         <div class="col">
             <!-- Aquí va el título del ejemplo -->
-            <a class="navbar-brand">Ejemplo de carga de una capa vectorial procedente de servicio WFS</a>
+            <a class="navbar-brand">Ejemplo de carga de fichero GeoJSON</a>
         </div>
       </div>
       <div class="row">
@@ -104,69 +104,61 @@
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.js"></script>
 
       <script type="text/javascript">
+
           // Configuración del mapa
           const mapjs = M.map({
               container: 'mapjs', //id del contenedor del mapa
               controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
               zoom: 5,
               maxZoom: 20,
-              minZoom: 6,
+              minZoom: 4,
               center: [-467062.8225, 4683459.6216],
           });
           // Configuración de las capas
           
-        const geodesia = new M.layer.WFS({
-		  url: 'https://www.ign.es/wfs/redes-geodesicas?',
-		  legend: 'Red Geodésica Nacional por Técnicas Espaciales (REGENTE)',
-		  name: 'RED_REGENTE',
-		  geometry: 'POINT'
-		});
-        
-       
-          mapjs.addLayers(geodesia);
+          var provincias = new M.layer.GeoJSON({
+              name: "Provincias", 
+              url: "http://geostematicos-sigc.juntadeandalucia.es/geoserver/tematicos/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=tematicos:Provincias&maxFeatures=50&outputFormat=application/json",
+              extract:false
+          });
+          mapjs.addLayers(provincias);
           
           
-        // Configuracion de estilos
-		let estilo = new M.style.Point({
-          radius: 1, 
-		   fill: {  
-		     color: 'black',
-             opacity: 0.5
-		   }
-		});
+          // Configuracion de estilos
+          let estilo = new M.style.Polygon({
+            fill: {
+              color: 'pink',
+              opacity: 0.5,
+            },
+            stroke: {
+              color: '#FF0000',
+              width: 0.5
+            }
+          });	
         
-        // Asignamos el estilo a la capa
-        geodesia.setStyle(estilo);
-       
-        
+          // Asignamos el estilo a la capa
+          provincias.setStyle(estilo);
         
           // Configuración de los plugins
-          
-
           const mp8 = new M.plugin.TOC({
             collapsed: true,
             collapsible: true,
           });
-
-          
           mapjs.addPlugin(mp8);
+
       </script>
   </body>
 </html>
   </textarea>
           <!-- Fin del textarea -->
 
-        </div>
+      </div>
 
         <div id="iframe" class="col text-center">
           <div id="iframewrapper"> </div>
         </div>
 
       </div>
-
-
     </div>
-
-
   </body>
 </html>

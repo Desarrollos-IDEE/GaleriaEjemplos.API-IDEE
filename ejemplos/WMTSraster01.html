@@ -123,18 +123,18 @@
               name: 'LU.ExistingLandUse',
               legend: 'Ocupación del suelo WMTS',
               matrixSet: 'GoogleMapsCompatible',
-			  maxZoom: 20,
-              minZoom: 6,
+			        maxZoom: 20,
+              minZoom: 5,
               visibility: true,
           }, {});
 
-		  const planos = new M.layer.WMTS({
+		      const planos = new M.layer.WMTS({
               url: 'https://www.ign.es/wmts/planos?',
               name: 'MancelliMadrid',
               legend: 'Planos de Madrid (1622-1960)',
               matrixSet: 'GoogleMapsCompatible',
-			  maxZoom: 20,
-              minZoom: 9,
+			        maxZoom: 20,
+              minZoom: 12,
               visibility: true,
           }, {});
 		  
@@ -146,6 +146,7 @@
             collapsible: true,
           });
           mapjs.addPlugin(mp8);
+
       </script>
   </body>
 </html>
