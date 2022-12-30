@@ -18,7 +18,7 @@
 
 
 
-    <title>Galería ejemplos API-CNIG</title>
+    <title>Ejemplo WMTS Ráster</title>
   </head>
   <body>
     <!-- Optional JavaScript; choose one of the two! -->
@@ -44,7 +44,7 @@
       <div class="row">
         <div class="col">
             <!-- Aquí va el título del ejemplo -->
-            <a class="navbar-brand">Ejemplo de carga de fichero GeoJSon</a>
+            <a class="navbar-brand">Utilización de servicio ráster WMTS</a>
         </div>
       </div>
       <div class="row">
@@ -70,6 +70,7 @@
           <!-- Poner el código sin tabuladores iniciales -->
           <!-- Poner espacios en blanco al final de la línea más larga -->
           <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false" >
+		  
 <!DOCTYPE html>         
 <html>
   <head>
@@ -77,7 +78,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="cnig" content="yes">
-    <title>Visor base</title>
+    <title>visualizador base</title>
     <!-- Estilo de la API -->
     <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
     <!-- Estilos de los plugins añadidos -->
@@ -104,7 +105,8 @@
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.js"></script>
 
       <script type="text/javascript">
-          // Configuración del mapa
+	  
+          // Configuración del mapa (Ana)
           const mapjs = M.map({
               container: 'mapjs', //id del contenedor del mapa
               controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
@@ -113,48 +115,43 @@
               minZoom: 4,
               center: [-467062.8225, 4683459.6216],
           });
-          // Configuración de las capas
-          
-        var provincias = new M.layer.GeoJSON(
-         {name: "Provincias", 
-           url: "http://geostematicos-sigc.juntadeandalucia.es/geoserver/tematicos/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=tematicos:Provincias&maxFeatures=50&outputFormat=application/json"});
-        
-
-          mapjs.addLayers(provincias);
-          
-          
-        // Configuracion de estilos
-		
-        let estilo = new M.style.Polygon({
-		   fill: {
-		     color: 'pink',
-		     opacity: 0.5,
-		   },
-		   stroke: {
-		     color: '#FF0000',
-		     width: 0.5
-		   }
-		});	
-        
-        
-        // Asignamos el estilo a la capa
 		  
-        provincias.setStyle(estilo);
-        
-        
-          // Configuración de los plugins
+          // Configuración de las capas raster WMTS (Ana)
+
+          const suelo = new M.layer.WMTS({
+              url: 'https://servicios.idee.es/wmts/ocupacion-suelo?',
+              name: 'LU.ExistingLandUse',
+              legend: 'Ocupación del suelo WMTS',
+              matrixSet: 'GoogleMapsCompatible',
+              maxZoom: 20,
+              minZoom: 4,
+              visibility: true,
+          }, {});
+
+		      const planos = new M.layer.WMTS({
+              url: 'https://www.ign.es/wmts/planos?',
+              name: 'MancelliMadrid',
+              legend: 'Planos de Madrid (1622-1960)',
+              matrixSet: 'GoogleMapsCompatible',
+              maxZoom: 20,
+              minZoom: 12,
+              visibility: true,
+          }, {});
+		  
+          mapjs.addLayers([suelo,planos]);
           
+          // Configuración de los plugins
           const mp8 = new M.plugin.TOC({
             collapsed: true,
             collapsible: true,
           });
-
-          
           mapjs.addPlugin(mp8);
+
       </script>
   </body>
 </html>
-  </textarea>
+
+          </textarea>
           <!-- Fin del textarea -->
 
         </div>

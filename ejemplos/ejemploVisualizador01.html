@@ -28,11 +28,11 @@
 
 
     <!-- Líbrerías para poner el código bonito: -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/xml/xml.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.js"></script>             
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.js"></script>            
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/xml/xml.js"></script>            
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.js"></script>            
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.js"></script>          
 
   
 
@@ -44,7 +44,7 @@
       <div class="row">
         <div class="col">
             <!-- Aquí va el título del ejemplo -->
-            <a class="navbar-brand">Ejemplo 1 estandard de visualizador</a>
+            <a class="navbar-brand">Ejemplo de visualizador</a>
         </div>
       </div>
       <div class="row">
@@ -77,17 +77,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="cnig" content="yes">
-    <title>Visor base</title>
+    <title>visualizador base</title>
     <!-- Estilo de la API -->
-    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">            
     <!-- Estilos de los plugins añadidos -->
-    <link href="https://componentes.cnig.es/api-core/plugins/ignsearch/ignsearch.ol.min.css" rel="stylesheet" />
-    <link href="https://componentes.cnig.es/api-core/plugins/attributions/attributions.ol.min.css" rel="stylesheet" />
-    <link href="https://componentes.cnig.es/api-core/plugins/xylocator/xylocator.ol.min.css" rel="stylesheet" />
-    <link href="https://componentes.cnig.es/api-core/plugins/sharemap/sharemap.ol.min.css" rel="stylesheet" />
-    <link href="https://componentes.cnig.es/api-core/plugins/mousesrs/mousesrs.ol.min.css" rel="stylesheet" />
-    <link href="https://componentes.cnig.es/api-core/plugins/zoomextent/zoomextent.ol.min.css" rel="stylesheet" />
-    <link href="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.css" rel="stylesheet" />
+    <link href="https://componentes.cnig.es/api-core/plugins/ignsearch/ignsearch.ol.min.css" rel="stylesheet" />           
+    <link href="https://componentes.cnig.es/api-core/plugins/attributions/attributions.ol.min.css" rel="stylesheet" />            
+    <link href="https://componentes.cnig.es/api-core/plugins/xylocator/xylocator.ol.min.css" rel="stylesheet" />               
+    <link href="https://componentes.cnig.es/api-core/plugins/sharemap/sharemap.ol.min.css" rel="stylesheet" />            
+    <link href="https://componentes.cnig.es/api-core/plugins/mousesrs/mousesrs.ol.min.css" rel="stylesheet" />              
+    <link href="https://componentes.cnig.es/api-core/plugins/zoomextent/zoomextent.ol.min.css" rel="stylesheet" />             
+    <link href="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.css" rel="stylesheet" />              
     <style type="text/css">
         html,
         body {
@@ -103,17 +103,17 @@
       <!-- Contenedor principal del mapa -->
       <div id="mapjs" class="m-container"></div>
       <!-- Ficheros javascript de la API -->
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>         
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
       <!-- Ficheros  javascript de los plugins añadidos-->
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/ignsearch/ignsearch.ol.min.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/attributions/attributions.ol.min.js"></script>  
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/xylocator/xylocator.ol.min.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/sharemap/sharemap.ol.min.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/zoomextent/zoomextent.ol.min.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/mousesrs/mousesrs.ol.min.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.js"></script>
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/ignsearch/ignsearch.ol.min.js"></script>        
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/attributions/attributions.ol.min.js"></script>         
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/xylocator/xylocator.ol.min.js"></script>         
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/sharemap/sharemap.ol.min.js"></script>         
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/zoomextent/zoomextent.ol.min.js"></script>         
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/mousesrs/mousesrs.ol.min.js"></script>            
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.js"></script>            
 
       <script type="text/javascript">
           // Configuración del mapa

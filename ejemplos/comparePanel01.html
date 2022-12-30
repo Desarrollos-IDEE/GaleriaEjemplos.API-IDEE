@@ -44,7 +44,7 @@
       <div class="row">
         <div class="col">
             <!-- Aquí va el título del ejemplo -->
-            <a class="navbar-brand">Ejemplo de carga de una capa vectorial procedente de servicio WFS</a>
+            <a class="navbar-brand">Extensión comparador de mapas y capas</a>
         </div>
       </div>
       <div class="row">
@@ -77,11 +77,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="cnig" content="yes">
-    <title>Visor base</title>
+    <title>visualizador base</title>
     <!-- Estilo de la API -->
     <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
-    <!-- Estilos de los plugins añadidos -->
-    <link href="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.css" rel="stylesheet" />
+
+    <!-- Estilo de las extensiones-->
+    <link href="https://mapea-lite.desarrollo.guadaltel.es/api-core/plugins/comparepanel/comparepanel.ol.min.css" rel="stylesheet" />
+    
+
     <style type="text/css">
         html,
         body {
@@ -100,8 +103,10 @@
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
-      <!-- Ficheros  javascript de los plugins añadidos-->
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.js"></script>
+
+      <!-- Ficheros javascript de las extensiones-->
+      <script type="text/javascript" src="https://mapea-lite.desarrollo.guadaltel.es/api-core/plugins/comparepanel/comparepanel.ol.min.js"></script>            
+
 
       <script type="text/javascript">
           // Configuración del mapa
@@ -110,50 +115,53 @@
               controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
               zoom: 5,
               maxZoom: 20,
-              minZoom: 6,
+              minZoom: 4,
               center: [-467062.8225, 4683459.6216],
           });
-          // Configuración de las capas
-          
-        const geodesia = new M.layer.WFS({
-		  url: 'https://www.ign.es/wfs/redes-geodesicas?',
-		  legend: 'Red Geodésica Nacional por Técnicas Espaciales (REGENTE)',
-		  name: 'RED_REGENTE',
-		  geometry: 'POINT'
-		});
-        
-       
-          mapjs.addLayers(geodesia);
-          
-          
-        // Configuracion de estilos
-		let estilo = new M.style.Point({
-          radius: 1, 
-		   fill: {  
-		     color: 'black',
-             opacity: 0.5
-		   }
-		});
-        
-        // Asignamos el estilo a la capa
-        geodesia.setStyle(estilo);
-       
-        
-        
-          // Configuración de los plugins
-          
 
-          const mp8 = new M.plugin.TOC({
-            collapsed: true,
-            collapsible: true,
+          /* Se crea el objeto comparador*/
+          // info sobre la extensión: https://github.com/IGN-CNIG/API-CNIG/tree/master/api-ign-js/src/plugins/comparepanel
+          const mp_Comparador = new M.plugin.Comparepanel({
+              position: 'TR',
+              vertical: true,
+              collapsed: true,
+              collapsible: true,
+              defaultCompareMode: 'none', // none - mirror - curtain -  spyeye
+              defaultCompareViz: 0,
+              baseLayers: [
+                ["NACIONAL 1981-1986", "1986", "WMS*NACIONAL_1981-1986*https://www.ign.es/wms/pnoa-historico*NACIONAL_1981-1986"],
+                ["OLISTAT", "1998", "WMS*OLISTAT*https://www.ign.es/wms/pnoa-historico*OLISTAT"],
+                ["SIGPAC", "2003", "WMS*SIGPAC*https://www.ign.es/wms/pnoa-historico*SIGPAC"],
+                ["PNOA 2004", "2004", "WMS*pnoa2004*https://www.ign.es/wms/pnoa-historico*pnoa2004"],
+                ["PNOA 2005", "2005", "WMS*pnoa2005*https://www.ign.es/wms/pnoa-historico*pnoa2005"],
+                ["PNOA 2006", "2006", "WMS*pnoa2006*https://www.ign.es/wms/pnoa-historico*pnoa2006"],
+                ["PNOA 2010", "2010", "WMS*pnoa2010*https://www.ign.es/wms/pnoa-historico*pnoa2010"]
+              ],
+              urlcoberturas: 'https://projects.develmap.com/apicnig/pnoahisto/coberturas.geojson',
+              timelineParams: { 
+                animation: true, 
+              },
+              transparencyParams: { 
+                radius: 100, 
+              },
+              lyrcompareParams: { 
+                  staticDivision: 1,
+              },
+              mirrorpanelParams: { 
+                  showCursors: true,
+                  reverseLayout:true,
+				          enabledPlugins:true,
+              }
           });
 
-          
-          mapjs.addPlugin(mp8);
+          /* Se añade al mapa*/
+          mapjs.addPlugin(mp_Comparador);
+         
       </script>
   </body>
 </html>
-  </textarea>
+
+          </textarea>
           <!-- Fin del textarea -->
 
         </div>

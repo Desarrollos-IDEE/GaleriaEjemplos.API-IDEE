@@ -2,10 +2,10 @@
 <html lang="en">
   <head>
     <!-- Required meta tags -->
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Líbrerías para poner el código bonito: -->
+    <!-- Líbrerías para poner el código bonito -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.css" integrity="sha512-7vaQ4LLdaXd2IuMd4MUQ6LRFIGbEwJI1aq6KYqL3RjbdQyUkRFhwZKmqmkBXurTFdGlx687lTN8FSJfX6Df8Gw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://codemirror.net/addon/hint/show-hint.css">
 
@@ -18,7 +18,7 @@
 
 
 
-    <title>Galería ejemplos API-CNIG</title>
+    <title>Ejemplo TMS</title>
   </head>
   <body>
     <!-- Optional JavaScript; choose one of the two! -->
@@ -35,9 +35,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.js"></script>
 
   
-  
- 
-
 
     <!-- js propio -->
     <script src="../js/paginaEjemplos.js"></script>
@@ -47,7 +44,7 @@
       <div class="row">
         <div class="col">
             <!-- Aquí va el título del ejemplo -->
-            <a class="navbar-brand">Uso de la extensión escala gráfica de las extensiones de la comunidad de OpenLayers</a>
+            <a class="navbar-brand">Carga de servicios TMS y XYZ</a>
         </div>
       </div>
       <div class="row">
@@ -71,11 +68,13 @@
 
         <div id="textareawrapper" class="col CodeMirror cm-s-default CodeMirror-wrap" >
           <!-- Poner el código sin tabuladores iniciales -->
+          <!-- Poner espacios en blanco al final de la línea más larga -->
           <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false" >
+		  
 <!DOCTYPE html>         
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="cnig" content="yes">
@@ -83,11 +82,7 @@
     <!-- Estilo de la API -->
     <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
     <!-- Estilos de los plugins añadidos -->
-    <link href="https://componentes.cnig.es/api-core/plugins/attributions/attributions.ol.min.css" rel="stylesheet" />
-
-    <!-- ol-ext - css -->
-    <link rel="stylesheet" href="https://cdn.rawgit.com/Viglino/ol-ext/master/dist/ol-ext.min.css" />
-
+    <link href="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.css" rel="stylesheet" />
     <style type="text/css">
         html,
         body {
@@ -106,34 +101,71 @@
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
-
-      <!-- ol-ext - js -->
-      <script type="text/javascript" src="https://cdn.rawgit.com/Viglino/ol-ext/master/dist/ol-ext.min.js"></script>
+      <!-- Ficheros  javascript de los plugins añadidos-->
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.js"></script>
 
       <script type="text/javascript">
-          // Configuración del mapa
-          M.config.attributions.defaultAttribution = 'Instituto Geográfico Nacional';
-          M.config.attributions.defaultUrl = 'https://www.ign.es/' 
+	  
+        // Configuración del mapa
+	   
           const mapjs = M.map({
               container: 'mapjs', //id del contenedor del mapa
-              controls: ['panzoom', 'scale*true', 'rotate', 'location'],
-              zoom: 13,
-              maxZoom: 18,
-              minZoom: 4,
-              center: ol.proj.fromLonLat([2.541450, 42.141769]),
+              controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
+              maxZoom: 20,
+              minZoom: 0,
+              center: [-467062.8225, 4683459.6216],
           });
-          // acceso a librería base
-          var mapaOL = mapjs.getMapImpl();
-          var scaleLineControl = new ol.control.CanvasScaleLine();
-          mapaOL.addControl(scaleLineControl);
+		  
+       // Configuración de la capa TMS 'Mapa raster'
 
-          // Configuración de las capas
-          TMS_PNOA = new M.layer.TMS({
-              url: 'https://tms-pnoa-ma.idee.es/1.0.0/pnoa-ma/{z}/{x}/{-y}.jpeg',
-              name: 'PNOA_MA_IGN',
+       const xyz = new M.layer.XYZ({
+          url: 'https://api.maptiler.com/maps/outdoor/256/{z}/{x}/{y}@2x.png?key=7oapAXDXQ3uctBopr1Wx',
+          name: 'pruebaXYZ',
+          projection: 'EPSG:3857',
+          displayInLayerSwitcher: true
+        });
+
+        const xyz2 = new M.layer.XYZ({
+          url: 'https://rts.larioja.org/mapa-base/rioja/{z}/{x}/{y}.png',
+          name: 'XYZLaRioja',
+          projection: 'EPSG:3857',
+          visible: false,
+	      displayInLayerSwitcher: true
+        });
+
+
+        const tms2 = new M.layer.TMS({
+            url: 'https://www.ign.es/web/catalogo-cartoteca/resources/webmaps/data/cresques/{z}/{x}/{y}.jpg',
+            name: 'Cresques',
+            projection: 'EPSG:3857',
+	      displayInLayerSwitcher: true
+        });
+
+
+        const tms4 = new M.layer.TMS({
+            url: 'https://www.ign.es/web/catalogo-cartoteca/resources/webmaps/data/mapmosaic/{z}/{x}/{y}.jpg',
+            name: 'Mapmosaic',
+            projection: 'EPSG:3857',
+	      displayInLayerSwitcher: true
+        });
+
+        const tms5 = new M.layer.TMS({
+            url: 'https://www.ign.es/web/resources/expo/virtual/2018/data/visual01/{z}/{x}/{y}.jpg',
+            name: 'Visual01',
+            projection: 'EPSG:3857',
+	      displayInLayerSwitcher: true
+        });
+
+        mapjs.addLayers([xyz, xyz2, tms2, tms4, tms5]);
+          
+          // Configuración de los plugins
+
+          const mp8 = new M.plugin.TOC({
+            collapsed: true,
+            collapsible: true,
           });
-          mapjs.addTMS(TMS_PNOA);
-
+		  
+          mapjs.addPlugin(mp8);
       </script>
   </body>
 </html>

@@ -44,7 +44,7 @@
       <div class="row">
         <div class="col">
             <!-- Aquí va el título del ejemplo -->
-            <a class="navbar-brand">Ejemplo de carga de una capa vectorial procedente de servicio WMS</a>
+            <a class="navbar-brand">Configuración inicial de visualizador</a>
         </div>
       </div>
       <div class="row">
@@ -77,20 +77,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="cnig" content="yes">
-    <title>Visor base</title>
+    <title>visualizador base</title>
     <!-- Estilo de la API -->
     <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
-     <!-- Estilos de los plugins añadidos -->
-     <link href="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.css" rel="stylesheet" />
-     <style type="text/css">
-      html,
-      body {
-          margin: 0;
-          padding: 0;
-          height: 100%;
-          overflow: hidden;
-      }
-  </style>
+    <!-- Estilos de los plugins añadidos -->
+    <link href="https://componentes.cnig.es/api-core/plugins/ignsearch/ignsearch.ol.min.css" rel="stylesheet" />
+    <link href="https://componentes.cnig.es/api-core/plugins/attributions/attributions.ol.min.css" rel="stylesheet" />
+    <link href="https://componentes.cnig.es/api-core/plugins/xylocator/xylocator.ol.min.css" rel="stylesheet" />
+    <link href="https://componentes.cnig.es/api-core/plugins/sharemap/sharemap.ol.min.css" rel="stylesheet" />
+    <link href="https://componentes.cnig.es/api-core/plugins/mousesrs/mousesrs.ol.min.css" rel="stylesheet" />
+    <link href="https://componentes.cnig.es/api-core/plugins/zoomextent/zoomextent.ol.min.css" rel="stylesheet" />
+    <link href="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.css" rel="stylesheet" />
+    <style type="text/css">
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
   </head>
 
   <body>
@@ -101,40 +107,57 @@
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
       <!-- Ficheros  javascript de los plugins añadidos-->
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/ignsearch/ignsearch.ol.min.js"></script>
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/attributions/attributions.ol.min.js"></script>  
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/xylocator/xylocator.ol.min.js"></script>
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/sharemap/sharemap.ol.min.js"></script>
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/zoomextent/zoomextent.ol.min.js"></script>
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/mousesrs/mousesrs.ol.min.js"></script>
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.js"></script>
+
       <script type="text/javascript">
           // Configuración del mapa
+          M.config("backgroundlayers",
+                        [
+                          {
+                              "id": "1erMTN",
+                              "title": "1erMTN",
+                              "layers": [
+                                  "WMTS*https://www.ign.es/wmts/primera-edicion-mtn?*catastrones*GoogleMapsCompatible*imagen*false*image/jpeg*false*false*true"
+                              ]
+                          },
+                          {
+                              "id": "imagen",
+                              "title": "Imagen",
+                              "layers": [
+                                  "WMTS*https://www.ign.es/wmts/pnoa-ma?*OI.OrthoimageCoverage*GoogleMapsCompatible*imagen*false*image/jpeg*false*false*true"
+                              ]
+                          },
+                          {
+                              "id": "hibrido",
+                              "title": "Híbrido",
+                              "layers": [
+                                  "WMTS*https://www.ign.es/wmts/pnoa-ma?*OI.OrthoimageCoverage*GoogleMapsCompatible*imagen*true*image/jpeg*false*false*true",
+                                  "WMTS*https://www.ign.es/wmts/ign-base?*IGNBaseOrto*GoogleMapsCompatible*Callejero*true*image/png*false*false*true"
+                              ]
+                          }
+                        ]
+          );
           const mapjs = M.map({
               container: 'mapjs', //id del contenedor del mapa
               controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
-              zoom: 6,
+              zoom: 5,
               maxZoom: 20,
               minZoom: 4,
               center: [-467062.8225, 4683459.6216],
           });
-          // Configuración de la capa WMS
-          
-          const hidrografia = new M.layer.WMS({
-              url: 'https://servicios.idee.es/wms-inspire/hidrografia',
-              name: 'HY.Network',
-              legend: 'Red hidrográfica',								
-              tiled: false,
-          });
-        mapjs.addLayers(hidrografia);
-        
-          
-// Configuración de los plugins
-          const mp8 = new M.plugin.TOC({
-            collapsed: true,
-            collapsible: true,
-          });
 
           
-          mapjs.addPlugin(mp8);
       </script>
   </body>
 </html>
-  </textarea>
+
+          </textarea>
           <!-- Fin del textarea -->
 
         </div>

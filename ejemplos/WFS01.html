@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Líbrerías para poner el código bonito -->
+    <!-- Líbrerías para poner el código bonito: -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.css" integrity="sha512-7vaQ4LLdaXd2IuMd4MUQ6LRFIGbEwJI1aq6KYqL3RjbdQyUkRFhwZKmqmkBXurTFdGlx687lTN8FSJfX6Df8Gw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://codemirror.net/addon/hint/show-hint.css">
 
@@ -18,7 +18,7 @@
 
 
 
-    <title>Ejemplo MVT</title>
+    <title>Galería ejemplos API-CNIG</title>
   </head>
   <body>
     <!-- Optional JavaScript; choose one of the two! -->
@@ -44,7 +44,7 @@
       <div class="row">
         <div class="col">
             <!-- Aquí va el título del ejemplo -->
-            <a class="navbar-brand">Ejemplo de servicio de vectorial teselado (MVT)</a>
+            <a class="navbar-brand">Carga de una capa vectorial procedente de servicio WFS</a>
         </div>
       </div>
       <div class="row">
@@ -70,8 +70,6 @@
           <!-- Poner el código sin tabuladores iniciales -->
           <!-- Poner espacios en blanco al final de la línea más larga -->
           <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false" >
-
-
 <!DOCTYPE html>         
 <html>
   <head>
@@ -79,11 +77,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="cnig" content="yes">
-    <title>Visor base</title>
+    <title>visualizador base</title>
     <!-- Estilo de la API -->
     <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
     <!-- Estilos de los plugins añadidos -->
-    
     <link href="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.css" rel="stylesheet" />
     <style type="text/css">
         html,
@@ -104,62 +101,66 @@
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
       <!-- Ficheros  javascript de los plugins añadidos-->
-      
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.js"></script>
 
       <script type="text/javascript">
+
           // Configuración del mapa
           const mapjs = M.map({
               container: 'mapjs', //id del contenedor del mapa
               controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
-              zoom: 15,
+              zoom: 5,
               maxZoom: 20,
-              minZoom: 4,
-              center: [-272335.06,5230871.70,386.63],
+              minZoom: 6,
+              center: [-467062.8225, 4683459.6216],
           });
           // Configuración de las capas
-         
-        const senderos = new M.layer.MVT({
-              url: 'https://vts.larioja.org/rioja/{z}/{x}/{y}.pbf',
-          	  legend: 'MVT La Rioja',
-			  name: 'La Rioja',
-			  visibility: true,
-          	  
-          }); 
-
-          mapjs.addLayers(senderos);
           
+          const geodesia = new M.layer.WFS({
+              url: 'https://www.ign.es/wfs/redes-geodesicas?',
+              legend: 'Red Geodésica Nacional por Técnicas Espaciales (REGENTE)',
+              name: 'RED_REGENTE',
+              geometry: 'POINT',
+              extract: true
+          });
+          mapjs.addLayers(geodesia);
           
+          // Configuracion de estilos
+          let estilo = new M.style.Point({
+              radius: 2, 
+              fill: {  
+                color: 'black',
+                opacity: 0.5
+              }
+          });
         
-        
+          // Asignamos el estilo a la capa
+          geodesia.setStyle(estilo);
+       
           // Configuración de los plugins
-          
-
           const mp8 = new M.plugin.TOC({
             collapsed: true,
             collapsible: true,
           });
-
-          
           mapjs.addPlugin(mp8);
+
       </script>
   </body>
 </html>
+  </textarea>
+          <!-- Fin del textarea -->
 
-</textarea>
-<!-- Fin del textarea -->
+        </div>
 
-</div>
+        <div id="iframe" class="col text-center">
+          <div id="iframewrapper"> </div>
+        </div>
 
-<div id="iframe" class="col text-center">
-<div id="iframewrapper"> </div>
-</div>
-
-</div>
-
-
-</div>
+      </div>
 
 
-</body>
+    </div>
+
+
+  </body>
 </html>

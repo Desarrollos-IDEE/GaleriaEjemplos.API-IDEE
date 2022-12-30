@@ -78,7 +78,16 @@ function reCodigo(){
         }
         noWrapScroll.className += " CodeMirror-wrap";
     }
-    window.editor.save()
+    let textArea = document.getElementsByTagName('TEXTAREA')[1]
+    textArea.focus()
+    textArea.value = " "
+    setTimeout(
+      function(){ 
+        textArea.value = ""
+      }, 
+      100
+    );
+
 
 }
 
