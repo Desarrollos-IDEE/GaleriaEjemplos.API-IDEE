@@ -9,7 +9,7 @@ html, body {
   width: 48vw;
 } 
 .CodeMirror {
-  height: 89vh;
+  height: 88vh;
   font-size: smaller;
 }
 .container{
@@ -17,9 +17,9 @@ html, body {
   margin-right: 0px;
   margin-left: 0px;
   max-width: 100vw;
+  height: 12vh;
 }
 .row{    
-  padding-top: 10px;
   --bs-gutter-x: 0rem;
 }
 .navbar-brand{
@@ -32,6 +32,10 @@ html, body {
   width: 50%;
 }
 
+
+.CodeMirror-scroll {
+    width: 100%;
+}
 
 .CodeMirror-hscrollbar.CodeMirror-wrap{
   overflow-x: hidden;

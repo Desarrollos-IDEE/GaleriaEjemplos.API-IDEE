@@ -1,75 +1,82 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Líbrerías para poner el código bonito -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.css" integrity="sha512-7vaQ4LLdaXd2IuMd4MUQ6LRFIGbEwJI1aq6KYqL3RjbdQyUkRFhwZKmqmkBXurTFdGlx687lTN8FSJfX6Df8Gw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://codemirror.net/addon/hint/show-hint.css">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!-- CSS propio -->
-    <link rel="stylesheet" type="text/css" href="../css/paginaEjemplos.css" crossorigin="anonymous"/>
+  <!-- Líbrerías para poner el código bonito -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.css"
+    integrity="sha512-7vaQ4LLdaXd2IuMd4MUQ6LRFIGbEwJI1aq6KYqL3RjbdQyUkRFhwZKmqmkBXurTFdGlx687lTN8FSJfX6Df8Gw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://codemirror.net/addon/hint/show-hint.css">
 
 
-
-    <title>Ejemplo MVT</title>
-  </head>
-  <body>
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <!-- CSS propio -->
+  <link rel="stylesheet" type="text/css" href="../css/paginaEjemplos.css" crossorigin="anonymous" />
 
 
-    <!-- Líbrerías para poner el código bonito: -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/xml/xml.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.js"></script>
 
-  
+  <title>Ejemplo MVT</title>
+</head>
 
-    <!-- js propio -->
-    <script src="../js/paginaEjemplos.js"></script>
+<body>
+  <!-- Optional JavaScript; choose one of the two! -->
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
 
 
-    <div class="container">
-      <div class="row">
-        <div class="col">
-            <!-- Aquí va el título del ejemplo -->
-            <a class="navbar-brand">Ejemplo de servicio vectorial teselado (MVT)</a>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <button type="button" onclick="reCodigo()" title="Change code line"  class="btn btn-info">
-            <i class="bi bi-code-slash"></i>
-          </button>
-          <button type="button" onclick="retheme()" title="Change Theme"  class="btn btn-secondary">
-            <i class="bi bi-circle-half"></i>
-        </button>
-          <button type="button" class="btn btn-success" onclick="submitTryit()">
-            <i class="bi bi-play"></i>
-          </button>        
-        </div>
+  <!-- Líbrerías para poner el código bonito: -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/xml/xml.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.js"></script>
+
+
+
+  <!-- js propio -->
+  <script src="../js/paginaEjemplos.js"></script>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <!-- Aquí va el título del ejemplo -->
+        <a class="navbar-brand">Utilización de servicio vectorial teselado (MVT)</a>
       </div>
     </div>
+    <div class="row">
+      <div class="col">
+        <button type="button" onclick="reCodigo()" title="Change code line" class="btn btn-info">
+          <i class="bi bi-code-slash"></i>
+        </button>
+        <button type="button" onclick="retheme()" title="Change Theme" class="btn btn-secondary">
+          <i class="bi bi-circle-half"></i>
+        </button>
+        <button type="button" class="btn btn-success" onclick="submitTryit()">
+          <i class="bi bi-play"></i>
+        </button>
+      </div>
+    </div>
+  </div>
 
 
-    <div id="container">
-      <div class="row row-cols-2">
+  <div id="container">
+    <div class="row row-cols-2">
 
-        <div id="textareawrapper" class="col CodeMirror cm-s-default CodeMirror-wrap" >
-          <!-- Poner el código sin tabuladores iniciales -->
-          <!-- Poner espacios en blanco al final de la línea más larga -->
-          <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false" >
+      <div id="textareawrapper" class="col CodeMirror cm-s-default CodeMirror-wrap">
+        <!-- Poner el código sin tabuladores iniciales -->
+        <!-- Poner espacios en blanco al final de la línea más larga -->
+        <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false">
 
 
 <!DOCTYPE html>         
@@ -79,7 +86,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="cnig" content="yes">
-    <title>Visor base</title>
+    <title>visualizador base</title>
     <!-- Estilo de la API -->
     <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
     <!-- Estilos de los plugins añadidos -->
@@ -108,50 +115,108 @@
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.js"></script>
 
       <script type="text/javascript">
-          // Configuración del mapa
-          const mapjs = M.map({
-              container: 'mapjs', //id del contenedor del mapa
-              controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
-              zoom: 15,
-              maxZoom: 20,
-              minZoom: 4,
-              center: [-272335.06,5230871.70,386.63],
-          });
-          // Configuración de las capas
-         
-          const LaRiojaMVT = new M.layer.MVT({
-                url: 'https://vts.larioja.org/rioja/{z}/{x}/{y}.pbf',
-                legend: 'MVT La Rioja',
-                name: 'La Rioja',
-                visibility: true,
-          }); 
-          mapjs.addLayers(LaRiojaMVT);
-          
-          // Configuración de los plugins
-          const mp8 = new M.plugin.TOC({
-            collapsed: true,
-            collapsible: true,
-          });
-          mapjs.addPlugin(mp8);
-          
+        // Configuración del mapa
+        const mapjs = M.map({
+          container: 'mapjs', //id del contenedor del mapa
+          controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
+          zoom: 5,
+          maxZoom: 20,
+          minZoom: 2,
+          center: [-467062.8225, 4683459.6216],
+        });
+        // Configuración de las capas
+
+        const LaRiojaMVT = new M.layer.MVT({
+          url: 'https://vts.larioja.org/rioja/{z}/{x}/{y}.pbf',
+          legend: 'MVT La Rioja',
+          name: 'La Rioja',
+          visibility: true,
+        });
+        mapjs.addLayers(LaRiojaMVT);
+
+        let estilo_gr = new M.style.Line({
+          fill: {
+            color: 'white',
+            width: 1
+          },
+          stroke: {
+            color: 'red',
+            width: 2,
+          },
+        });
+
+        let estilo_pr = new M.style.Line({
+          fill: {
+            color: 'white',
+            width: 1
+          },
+          stroke: {
+            color: 'blue',
+            width: 2,
+          },
+        });
+
+        let estilo_sl = new M.style.Line({
+          fill: {
+            color: 'white',
+            width: 1
+          },
+          stroke: {
+            color: 'orange',
+            width: 2,
+          },
+        });
+
+        const capaMVT_sendero_gr = new M.layer.MVT({
+          url: "https://vt-fedme.idee.es/vt.senderogr/{z}/{x}/{y}.pbf",
+          name: 'sendero_gr',
+          visibility: true,
+          extract: true,
+        });
+        const capaMVT_sendero_pr = new M.layer.MVT({
+          url: "https://vt-fedme.idee.es/vt.senderopr/{z}/{x}/{y}.pbf",
+          name: 'sendero_pr',
+          visibility: true,
+          extract: true,
+        });
+        const capaMVT_sendero_sl = new M.layer.MVT({
+          url: "https://vt-fedme.idee.es/vt.senderosl/{z}/{x}/{y}.pbf",
+          name: 'sendero_sl',
+          visibility: true,
+          extract: true,
+        });
+
+        capaMVT_sendero_gr.setStyle(estilo_gr);
+        capaMVT_sendero_pr.setStyle(estilo_pr);
+        capaMVT_sendero_sl.setStyle(estilo_sl);
+		    mapjs.addLayers([capaMVT_sendero_gr,capaMVT_sendero_pr,capaMVT_sendero_sl]);
+
+        // Configuración de los plugins
+        const mp8 = new M.plugin.TOC({
+          collapsed: true,
+          collapsible: true,
+        });
+        mapjs.addPlugin(mp8);
+
       </script>
   </body>
 </html>
 
 </textarea>
-<!-- Fin del textarea -->
+        <!-- Fin del textarea -->
 
-</div>
+      </div>
 
-<div id="iframe" class="col text-center">
-<div id="iframewrapper"> </div>
-</div>
+      <div id="iframe" class="col text-center">
+        <div id="iframewrapper"> </div>
+      </div>
 
-</div>
+    </div>
 
 
-</div>
+  </div>
 
 
 </body>
+
 </html>

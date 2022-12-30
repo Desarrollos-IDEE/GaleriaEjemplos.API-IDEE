@@ -44,7 +44,7 @@
       <div class="row">
         <div class="col">
             <!-- Aquí va el título del ejemplo -->
-            <a class="navbar-brand">Ejemplo de servicio de teselas ráster (TMS)</a>
+            <a class="navbar-brand">Utilización de servicio de teselas ráster (TMS)</a>
         </div>
       </div>
       <div class="row">
@@ -78,7 +78,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="cnig" content="yes">
-    <title>Visor base</title>
+    <title>visualizador base</title>
     <!-- Estilo de la API -->
     <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
     <!-- Estilos de los plugins añadidos -->
@@ -109,9 +109,10 @@
           // Configuración del mapa
           const mapjs = M.map({
               container: 'mapjs', //id del contenedor del mapa
-              controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
+              controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location'],
               maxZoom: 20,
-              minZoom: 5,
+              minZoom: 2,
+              zoom: 5,
               center: [-467062.8225, 4683459.6216],
           });
 		  
@@ -120,8 +121,9 @@
             url: 'https://tms-mapa-raster.ign.es/1.0.0/mapa-raster/{z}/{x}/{-y}.jpeg',
             name: 'Mapa ráster',
             projection: 'EPSG:3857',
-            minZoom: 4,
+            minZoom: 3,
             maxZoom: 20,
+            tileGridMaxZoom:17, // especifica el nivel máximo creado en el servicio para permitir hacer "overzoom"
             visibility: true,
           }, {});
 

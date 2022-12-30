@@ -44,7 +44,7 @@
       <div class="row">
         <div class="col">
             <!-- Aquí va el título del ejemplo -->
-            <a class="navbar-brand">Ejemplo de servicio WMTS</a>
+            <a class="navbar-brand">Utilización de servicio ráster WMTS</a>
         </div>
       </div>
       <div class="row">
@@ -78,7 +78,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="cnig" content="yes">
-    <title>Visor base</title>
+    <title>visualizador base</title>
     <!-- Estilo de la API -->
     <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
     <!-- Estilos de los plugins añadidos -->
@@ -112,7 +112,7 @@
               controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
               zoom: 5,
               maxZoom: 20,
-              minZoom: 6,
+              minZoom: 4,
               center: [-467062.8225, 4683459.6216],
           });
 		  
@@ -123,8 +123,8 @@
               name: 'LU.ExistingLandUse',
               legend: 'Ocupación del suelo WMTS',
               matrixSet: 'GoogleMapsCompatible',
-			        maxZoom: 20,
-              minZoom: 5,
+              maxZoom: 20,
+              minZoom: 4,
               visibility: true,
           }, {});
 
@@ -133,7 +133,7 @@
               name: 'MancelliMadrid',
               legend: 'Planos de Madrid (1622-1960)',
               matrixSet: 'GoogleMapsCompatible',
-			        maxZoom: 20,
+              maxZoom: 20,
               minZoom: 12,
               visibility: true,
           }, {});

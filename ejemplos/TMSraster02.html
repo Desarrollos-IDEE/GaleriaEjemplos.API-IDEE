@@ -78,7 +78,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="cnig" content="yes">
-    <title>Visor base</title>
+    <title>visualizador base</title>
     <!-- Estilo de la API -->
     <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
     <!-- Estilos de los plugins añadidos -->
@@ -133,13 +133,6 @@
 	      displayInLayerSwitcher: true
         });
 
-        const tms = new M.layer.TMS({
-            url: 'https://www.ign.es/resources/sismologia/tproximos/rsn_tiles/{z}/{x}/{-y}.png',
-            name: 'sismología',
-            projection: 'EPSG:3857',
-            visible: false,
-	      displayInLayerSwitcher: true
-        });
 
         const tms2 = new M.layer.TMS({
             url: 'https://www.ign.es/web/catalogo-cartoteca/resources/webmaps/data/cresques/{z}/{x}/{y}.jpg',
@@ -163,7 +156,7 @@
 	      displayInLayerSwitcher: true
         });
 
-        mapjs.addLayers([xyz, xyz2, tms, tms2, tms4, tms5]);
+        mapjs.addLayers([xyz, xyz2, tms2, tms4, tms5]);
           
           // Configuración de los plugins
 

@@ -44,7 +44,7 @@
       <div class="row">
         <div class="col">
             <!-- Aquí va el título del ejemplo -->
-            <a class="navbar-brand">Ejemplo de carga de una capa vectorial procedente de servicio WFS</a>
+            <a class="navbar-brand">Carga de una capa vectorial procedente de servicio WFS</a>
         </div>
       </div>
       <div class="row">
@@ -77,7 +77,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="cnig" content="yes">
-    <title>Visor base</title>
+    <title>visualizador base</title>
     <!-- Estilo de la API -->
     <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
     <!-- Estilos de los plugins añadidos -->
@@ -121,7 +121,7 @@
               legend: 'Red Geodésica Nacional por Técnicas Espaciales (REGENTE)',
               name: 'RED_REGENTE',
               geometry: 'POINT',
-              extract: false
+              extract: true
           });
           mapjs.addLayers(geodesia);
           
