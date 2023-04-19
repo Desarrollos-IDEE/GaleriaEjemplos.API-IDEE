@@ -105,7 +105,6 @@
     <script type="text/javascript">
 
         // Configuración del mapa
-
         M.proxy(false)
         const mapjs = M.map({
             container: 'mapjs', //id del contenedor del mapa
@@ -128,16 +127,17 @@
         let estilo_base = new M.style.Generic({
             point: {
                 label: {
-                    text: '🏠', // Texto a escribir
+                    text: '🏠',
                     color: 'red',
-                    scale: 2, // Factor de escala de la fuente
-                    align: M.style.align.CENTER, // Alineación. RIGHT|LEFT|CENTER
-                    baseline: M.style.baseline.MIDDLE, // Altura de la etiqueta. TOP|BOTTOM|MIDDLE|
+                    scale: 2, 
+                    align: M.style.align.CENTER, 
+                    baseline: M.style.baseline.MIDDLE, 
                 }
             }
         });
-
+        // Se parametriza las opciones de la agrupación
         let clusterOptions = {
+                  // Se añaden los rangos y los estilos a cada rango
                   ranges: [{
                     min: 2,
                     max: 5,
@@ -169,7 +169,7 @@
 
                 }, {
                     min: 15,
-                    max: 9999999999,
+                    max: Infinity,
                     style: new M.style.Generic({point:{
                       
                       radius: 30, 
@@ -185,6 +185,7 @@
 
                 }
             ],
+            // Se añade la parametrización para los cluster o agrupaciones
             animated: true,
             hoverInteraction: true,
             displayAmount: true,
@@ -195,16 +196,17 @@
               color: '#FFFFFF'
             }
         };
-
+        
+        // Se parametrizan las opciones propias de OpenLayers
         let vendorParameters = {
             distanceSelectFeatures: 25,
             convexHullStyle: {
                 fill: {
-                    color: '#000000',
+                    color: 'black',
                     opacity: 0.5
                 },
                 stroke: {
-                    color: '#000000',
+                    color: 'red',
                     width: 1
                 }
             }
