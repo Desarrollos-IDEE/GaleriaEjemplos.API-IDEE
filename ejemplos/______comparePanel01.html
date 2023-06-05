@@ -18,7 +18,7 @@
 
 
 
-    <title> KML </title>
+    <title>Galería ejemplos API-CNIG</title>
   </head>
   <body>
     <!-- Optional JavaScript; choose one of the two! -->
@@ -44,7 +44,7 @@
       <div class="row">
         <div class="col">
             <!-- Aquí va el título del ejemplo -->
-            <a class="navbar-brand">Carga de formato espacial KML a capa vectorial</a>
+            <a class="navbar-brand">Extensión de comparación de mapas y capas</a>
         </div>
       </div>
       <div class="row">
@@ -70,7 +70,6 @@
           <!-- Poner el código sin tabuladores iniciales -->
           <!-- Poner espacios en blanco al final de la línea más larga -->
           <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false" >
-		  
 <!DOCTYPE html>         
 <html>
   <head>
@@ -82,6 +81,10 @@
     <!-- Estilo de la API -->
     <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
 
+    <!-- Estilo de las extensiones-->
+    <link href="https://componentes.cnig.es/api-core/plugins/comparepanel/comparepanel.ol.min.css" rel="stylesheet" />
+    
+
     <style type="text/css">
         html,
         body {
@@ -89,24 +92,6 @@
             padding: 0;
             height: 100%;
             overflow: hidden;
-        }
-        .m-popup{
-          background: #837d7e;
-        }
-        .m-geojson-content{
-          background: gainsboro;
-        }
-        .m-header{
-          text-align: right;
-        }
-        .m-title{
-          display: flex!important;
-          color: rgb(255, 255, 255);
-          font-size: large;
-        }
-        .m-popup-closer {
-            color: #ff9191;
-            font-size: large;
         }
     </style>
   </head>
@@ -119,10 +104,12 @@
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
 
+      <!-- Ficheros javascript de las extensiones-->
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/comparepanel/comparepanel.ol.min.js"></script>            
+
 
       <script type="text/javascript">
           // Configuración del mapa
-          M.proxy(false)
           const mapjs = M.map({
               container: 'mapjs', //id del contenedor del mapa
               controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
@@ -131,23 +118,52 @@
               minZoom: 4,
               center: [-467062.8225, 4683459.6216],
           });
-          var mapaOL = mapjs.getMapImpl();
 
-          // Configuración de las capas
-          const delegaciones = new M.layer.KML({
-              url: 'https://www.ign.es/web/resources/delegaciones/DelegacionesIGN-APICNIG.kml',
-              name: "capaKML",
-              extract: true
-    }); 
-    mapjs.addKML(delegaciones)
+          /* Se crea el objeto comparador*/
+          // info sobre la extensión: https://github.com/IGN-CNIG/API-CNIG/tree/master/api-ign-js/src/plugins/comparepanel
+          const mp_Comparador = new M.plugin.Comparepanel({
+              position: 'TR',
+              vertical: true,
+              collapsed: true,
+              collapsible: true,
+              defaultCompareMode: 'none', // none - mirror - curtain -  spyeye
+              defaultCompareViz: 0,
+              baseLayers: [
+                ["NACIONAL 1981-1986", "1986", "WMS*NACIONAL_1981-1986*https://www.ign.es/wms/pnoa-historico*NACIONAL_1981-1986"],
+                ["OLISTAT", "1998", "WMS*OLISTAT*https://www.ign.es/wms/pnoa-historico*OLISTAT"],
+                ["SIGPAC", "2003", "WMS*SIGPAC*https://www.ign.es/wms/pnoa-historico*SIGPAC"],
+                ["PNOA 2004", "2004", "WMS*pnoa2004*https://www.ign.es/wms/pnoa-historico*pnoa2004"],
+                ["PNOA 2005", "2005", "WMS*pnoa2005*https://www.ign.es/wms/pnoa-historico*pnoa2005"],
+                ["PNOA 2006", "2006", "WMS*pnoa2006*https://www.ign.es/wms/pnoa-historico*pnoa2006"],
+                ["PNOA 2010", "2010", "WMS*pnoa2010*https://www.ign.es/wms/pnoa-historico*pnoa2010"]
+              ],
+              urlcoberturas: 'https://projects.develmap.com/apicnig/pnoahisto/coberturas.geojson',
+              timelineParams: { 
+                animation: true, 
+              },
+              transparencyParams: { 
+                radius: 100, 
+              },
+              lyrcompareParams: { 
+                  staticDivision: 1,
+              },
+              mirrorpanelParams: { 
+                  showCursors: true,
+                  reverseLayout:true,
+				          enabledPlugins:true,
+              }
+          });
 
-          
+          /* Se añade al mapa*/
+          mapjs.addPlugin(mp_Comparador);
+         
       </script>
   </body>
 </html>
 
           </textarea>
           <!-- Fin del textarea -->
+
         </div>
 
         <div id="iframe" class="col text-center">
