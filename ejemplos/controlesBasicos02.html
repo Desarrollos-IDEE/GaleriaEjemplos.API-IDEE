@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Líbrerías para poner el código bonito -->
+  <!-- Líbrerías para poner el código bonito: -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.css"
     integrity="sha512-7vaQ4LLdaXd2IuMd4MUQ6LRFIGbEwJI1aq6KYqL3RjbdQyUkRFhwZKmqmkBXurTFdGlx687lTN8FSJfX6Df8Gw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -22,7 +22,7 @@
 
 
 
-  <title>Ejemplo MVT</title>
+  <title> controles básicos </title>
 </head>
 
 <body>
@@ -51,7 +51,7 @@
     <div class="row">
       <div class="col">
         <!-- Aquí va el título del ejemplo -->
-        <a class="navbar-brand">Utilización de servicio vectorial teselado (MVT)</a>
+        <a class="navbar-brand">Añadir controles básicos al mapa y su activación por código</a>
       </div>
     </div>
     <div class="row">
@@ -78,7 +78,6 @@
         <!-- Poner espacios en blanco al final de la línea más larga -->
         <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false">
 
-
 <!DOCTYPE html>         
 <html>
   <head>
@@ -88,10 +87,8 @@
     <meta name="cnig" content="yes">
     <title>visualizador base</title>
     <!-- Estilo de la API -->
-    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
-    <!-- Estilos de los plugins añadidos -->
-    
-    <link href="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">          
+
     <style type="text/css">
         html,
         body {
@@ -107,108 +104,47 @@
       <!-- Contenedor principal del mapa -->
       <div id="mapjs" class="m-container"></div>
       <!-- Ficheros javascript de la API -->
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
-      <!-- Ficheros  javascript de los plugins añadidos-->
-      
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.js"></script>
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>          
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>        
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>         
+
 
       <script type="text/javascript">
         // Configuración del mapa
         const mapjs = M.map({
           container: 'mapjs', //id del contenedor del mapa
-          controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
+
+          // controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],  
           zoom: 5,
           maxZoom: 20,
-          minZoom: 2,
+          minZoom: 4,
           center: [-467062.8225, 4683459.6216],
         });
 
-        // Configuración de las capas
-        let estilo_gr = new M.style.Line({
-          fill: {
-            color: 'white',
-            width: 1
-          },
-          stroke: {
-            color: 'red',
-            width: 2,
-          },
-        });
 
-        let estilo_pr = new M.style.Line({
-          fill: {
-            color: 'white',
-            width: 1
-          },
-          stroke: {
-            color: 'blue',
-            width: 2,
-          },
-        });
+        // Otras formas de añadir controles
+        mapjs.addControls(['scale', 'location', 'backgroundlayers']);
 
-        let estilo_sl = new M.style.Line({
-          fill: {
-            color: 'white',
-            width: 1
-          },
-          stroke: {
-            color: 'orange',
-            width: 2,
-          },
-        });
+        mapjs.addControls([
+          new M.control.Rotate(),
+          new M.control.Panzoombar()]);
 
-        const capaMVT_sendero_gr = new M.layer.MVT({
-          url: "https://vt-fedme.idee.es/vt.senderogr/{z}/{x}/{y}.pbf",
-          name: 'sendero_gr',
-          visibility: true,
-          extract: true,
-        });
-        const capaMVT_sendero_pr = new M.layer.MVT({
-          url: "https://vt-fedme.idee.es/vt.senderopr/{z}/{x}/{y}.pbf",
-          name: 'sendero_pr',
-          visibility: true,
-          extract: true,
-        });
-        const capaMVT_sendero_sl = new M.layer.MVT({
-          url: "https://vt-fedme.idee.es/vt.senderosl/{z}/{x}/{y}.pbf",
-          name: 'sendero_sl',
-          visibility: true,
-          extract: true,
-        });
 
-        capaMVT_sendero_gr.setStyle(estilo_gr);
-        capaMVT_sendero_pr.setStyle(estilo_pr);
-        capaMVT_sendero_sl.setStyle(estilo_sl);
-		    mapjs.addLayers([capaMVT_sendero_gr,capaMVT_sendero_pr,capaMVT_sendero_sl]);
+        // Obtener array de controles del mapa
+        const controles = mapjs.getControls();
 
-        // En el caso de querer mostrar sólo una capa del servicio MVT, se añade el parámetro "layers", seguido con el nombre de las capas
-        // que se quiere mostrar separado por comas. Si no se pone ninguna se cargarían todas las capas del servicio.
-        const LaRiojaMVT = new M.layer.MVT({
-          url: 'https://vts.larioja.org/rioja/{z}/{x}/{y}.pbf',
-          legend: 'MVT La Rioja (A partir del nivel 10)',
-          name: 'La Rioja',
-          layers:'municipio_pol,edificio_pol',
-          visibility: true,
-          extract:true
-        });
-        mapjs.addLayers(LaRiojaMVT);
 
-        // Configuración de los plugins
-        const mp8 = new M.plugin.TOC({
-          collapsed: true,
-          collapsible: true,
-        });
-        mapjs.addPlugin(mp8);
+        // Acceso y activación de un control por código:
+        const ctrlLocation = mapjs.getControls({ name: 'location' })[0];
+        ctrlLocation.activate(); //para activarlo
+        ctrlLocation.deactivate(); //para desactivarlo
 
       </script>
   </body>
 </html>
 
-</textarea>
+          </textarea>
         <!-- Fin del textarea -->
-
       </div>
 
       <div id="iframe" class="col text-center">

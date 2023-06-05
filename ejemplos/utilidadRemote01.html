@@ -18,7 +18,7 @@
 
 
 
-    <title>Galería ejemplos API-CNIG</title>
+    <title> Utilidad popup </title>
   </head>
   <body>
     <!-- Optional JavaScript; choose one of the two! -->
@@ -44,7 +44,7 @@
       <div class="row">
         <div class="col">
             <!-- Aquí va el título del ejemplo -->
-            <a class="navbar-brand">Plugin OL - Botón pantalla completa</a>
+            <a class="navbar-brand">Añadir un popup al visualizador</a>
         </div>
       </div>
       <div class="row">
@@ -70,6 +70,8 @@
           <!-- Poner el código sin tabuladores iniciales -->
           <!-- Poner espacios en blanco al final de la línea más larga -->
           <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false" >
+		  
+
 <!DOCTYPE html>         
 <html>
   <head>
@@ -79,9 +81,8 @@
     <meta name="cnig" content="yes">
     <title>visualizador base</title>
     <!-- Estilo de la API -->
-    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
-    <!-- Estilos de los plugins añadidos -->
-    <link href="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">          
+
     <style type="text/css">
         html,
         body {
@@ -94,51 +95,42 @@
   </head>
 
   <body>
-      <!-- Contenedor principal del mapa -->
-      <div id="mapjs" class="m-container"></div>
-      <!-- Ficheros javascript de la API -->
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+    <!-- Contenedor principal del mapa -->
+    <div id="mapjs" class="m-container"></div>
+    <!-- Ficheros javascript de la API -->
+    <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>          
+    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>        
+    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>         
+
 
       <script type="text/javascript">
-          // Configuración del mapa
-          M.config.attributions.defaultAttribution = 'Instituto Geográfico Nacional';
-          M.config.attributions.defaultUrl = 'https://www.ign.es/'
-          const mapjs = M.map({
-              container: 'mapjs', //id del contenedor del mapa
-              controls: ['panzoom', 'scale*true', 'scaleline', 'location'],
-              zoom: 6,
-              maxZoom: 20,
-              minZoom: 4,
-              center: [-467062.8225, 4683459.6216],
+        // Configuración del mapa
+        const mapjs = M.map({
+            container: 'mapjs', //id del contenedor del mapa
+            controls: ['panzoom'],
+            zoom: 6,
+            maxZoom: 20,
+            minZoom: 4,
+            center: [-467062.8225, 4683459.6216]
+        });
+
+        mapjs.on(M.evt.CLICK, (e) => {   
+          //Hacemos una peticón get con M.remote
+          M.remote.get("http://ovc.catastro.meh.es/ovcservweb/OVCSWLocalizacionRC/OVCCoordenadas.asmx/Consulta_RCCOOR",
+            {'SRS':mapjs.getProjection().code,
+              'Coordenada_X':e.coord[0],
+              'Coordenada_Y':e.coord[1]}
+          ).then(function(res){
+            M.dialog.info(res.text);
           });
-          // acceso a librería base
-          var mapaOL = mapjs.getMapImpl();
-          var pantallagrande =new ol.control.FullScreen();
-          mapaOL.addControl(pantallagrande);
-          
-
-          //Configuración de las capas
-          const WMS_MDT = new M.layer.WMS({
-              url: 'https://servicios.idee.es/wms-inspire/mdt',
-              name: 'EL.ElevationGridCoverage',
-              tiled: true,
-          });
-          mapjs.addLayers(WMS_MDT);
-
-          
-
-        
-          
-        
-          
-      </script>
+        });
+    </script>
   </body>
 </html>
-  </textarea>
-          <!-- Fin del textarea -->
+            
 
+          </textarea>
+          <!-- Fin del textarea -->
         </div>
 
         <div id="iframe" class="col text-center">

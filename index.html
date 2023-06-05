@@ -1,358 +1,630 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
-    <!-- CSS propio -->
-    <link rel="stylesheet" type="text/css" href="./css/paginaPrincipal.css" crossorigin="anonymous"/>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    
-	<!-- Google tag (gtag.js) --> 
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-VT4958DGW9"></script> 
-	<script> 
-		window.dataLayer = window.dataLayer || []; 
-		function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-VT4958DGW9'); 
-	</script>
-	
-    <title>Galería de ejemplos API-CNIG</title>
-  </head>
-  <body>   
-    <!-- Optional JavaScript; choose one of the two! -->
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <!-- CSS propio -->
+  <link rel="stylesheet" type="text/css" href="./css/paginaPrincipal.css" crossorigin="anonymous" />
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VT4958DGW9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-VT4958DGW9'); 
+  </script>
+
+  <title>Galería de ejemplos API-CNIG</title>
+</head>
+
+<body>
+  <!-- Optional JavaScript; choose one of the two! -->
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
 
-    <!-- jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <!-- js propio -->
-    <script src="./js/paginaPrincipal.js"></script>
-    
+  <!-- js propio -->
+  <script src="./js/paginaPrincipal.js"></script>
 
-    <nav class="navbar navbar-light bg-light">
-      <a class="navbar-brand">
-        <img src="http://componentes.cnig.es/api-core/img/logo-apicnig.png" width="25" height="25">
-         Galería de ejemplos API-CNIG
+
+  <nav class="navbar navbar-light bg-light">
+      <a id="idImgAPICNIG" href="https://plataforma.idee.es/cnig-api" target="_blank">
+        <img src="http://componentes.cnig.es/api-core/img/logo-apicnig.png" width="50" height="50">
       </a>
-      <form class="form-inline" role="search">
-        <div class="input-group">
-        <input name="q" type="text" id="keywords" class="form-control search-query" 
-               placeholder="Buscar..." aria-label="Examples" aria-describedby="count" autocomplete="off" 
-               autofocus="">
-        </div>
-      </form>
-    </nav>
-
-  
-    <div class="container-fluid">
-      <div id="examples" class="row mt-3">
-
-<!--  -->
-<!-- Ejemplos visualizadores -->
-<!--  -->
-           
-          <!-- inicio tarjeta,  desarrollado por: A^2 -->
-          <div class="col-md-4 col-sm-6">
-              <a class="example  bg-light border rounded" href="./ejemplos/ejemploVisualizador01.html" target="_blank">
-                <span class="mainlink">
-                  <strong>Visualizador de ejemplo</strong><br>
-                  <small>(ejemploVisualizador01.html)</small>
-                </span>
-                <p class="description">Ejemplo de un visualizador estandar</p>
-              </a>
-          </div>
-          <!-- fin tarjeta -->
-
-           <!-- inicio tarjeta,  desarrollado por: A^2 -->
-           <div class="col-md-4 col-sm-6">
-            <a class="example  bg-light border rounded" href="./ejemplos/visualizadorBase01.html" target="_blank">
-              <span class="mainlink">
-                <strong>Visualizador base</strong><br>
-                <small>(visualizadorBase01.html)</small>
-              </span>
-              <p class="description">Base de un visualizador</p>
-            </a>
-          </div>
-          <!-- fin tarjeta -->
-
-          <!-- inicio tarjeta,  desarrollado por: A^2 -->
-          <div class="col-md-4 col-sm-6">
-            <a class="example  bg-light border rounded" href="./ejemplos/configuracionVisualizador01.html" target="_blank">
-              <span class="mainlink">
-                <strong>Configuración de visualizador</strong><br>
-                <small>(configuracionVisualizador01.html)</small>
-              </span>
-              <p class="description">Editar la configuración inicial (capas base) de un visualizador</p>
-            </a>
-          </div>
-          <!-- fin tarjeta -->
-
-          <!-- inicio tarjeta,  desarrollado por: A^2 -->
-          <div class="col-md-4 col-sm-6">
-            <a class="example  bg-light border rounded" href="./ejemplos/cambioIdioma01.html" target="_blank">
-              <span class="mainlink">
-                <strong>Configuración de idioma a través de una extensión personalizada</strong><br>
-                <small>(cambioIdioma01.html)</small>
-              </span>
-              <p class="description">Cambiar el idioma de un visualizador a partir de la creación de un plugin</p>
-            </a>
-          </div>
-          <!-- fin tarjeta -->
-
-          <!-- inicio tarjeta,  desarrollado por: A^2 -->
-          <div class="col-md-4 col-sm-6">
-            <a class="example  bg-light border rounded" href="./ejemplos/popupPersonalizado01.html" target="_blank">
-              <span class="mainlink">
-                <strong>Personalizar popup</strong><br>
-                <small>(popupPersonalizado01.html)</small>
-              </span>
-              <p class="description">Cambiar el CSS de un div emergente por defecto a uno personalizado</p>
-            </a>
-          </div>
-          <!-- fin tarjeta -->
-
-<!--  -->
-<!-- Ejemplos ráster -->
-<!--  -->
-
-          <!-- inicio tarjeta,  desarrollado por: Ana -->
-            <div class="col-md-4 col-sm-6">
-              <a class="example  bg-light border rounded" href="./ejemplos/TMSraster01.html" target="_blank">
-                <span class="mainlink">
-                  <strong>Servicio de teselas ráster</strong><br>
-                <small>(TMSraster01.html)</small>
-                <p class="description">Representación de una capa TMS (Tile Map Service)</p>
-				  
-                </span>
-              </a>
-          </div>
-          <!-- fin tarjeta -->
-
-          <!-- inicio tarjeta,  desarrollado por: Ana -->
-          <div class="col-md-4 col-sm-6">
-            <a class="example  bg-light border rounded" href="./ejemplos/WMTSraster01.html" target="_blank">
-              <span class="mainlink">
-                <strong>Servicio WMTS ráster</strong><br>
-              <small>(WMTSraster01.html)</small>
-              <p class="description">Representación de una capa ráster WMTS (Web Map Tile Service)</p>
-              </span>
-            </a>
-          </div>
-          <!-- fin tarjeta -->
-
-          <!-- inicio tarjeta,  desarrollado por: Ana -->
-          <div class="col-md-4 col-sm-6">
-            <a class="example  bg-light border rounded" href="./ejemplos/WMSraster01.html" target="_blank">
-              <span class="mainlink">
-                <strong>Servicio WMS ráster</strong><br>
-                <small>(WMSraster01.html)</small>
-                <p class="description">Representación de una capa ráster WMS (Web Map Service)</p>
-              </span>
-            </a>
-          </div>
-          <!-- fin tarjeta -->
-
-            <!-- inicio tarjeta,  desarrollado por: Yaiza -->
-            <div class="col-md-4 col-sm-6">
-              <a class="example  bg-light border rounded" href="./ejemplos/WMSvector01.html" target="_blank">
-                <span class="mainlink">
-                  <strong>servicio WMS de capa vectorial</strong><br>
-                  <small>(WMSvector01.html)</small>
-                </span>
-                <p class="description">Ejemplo de carga de una capa ráster WMS procedente de una capa vectorial origen (Web Map Service)</p>
-              </a>
-          </div>
-          <!-- fin tarjeta -->
+      <h3>Galería de ejemplos API-CNIG</h3>
+    <form class="form-inline" role="search">
+      <div class="input-group">
+        <input name="q" type="text" id="keywords" class="form-control search-query" placeholder="Buscar..."
+          aria-label="Examples" aria-describedby="count" autocomplete="off" autofocus="">
+      </div>
+    </form>
+  </nav>
 
 
-          <!-- inicio tarjeta,  desarrollado por: Ana -->
-          <div class="col-md-4 col-sm-6">
-            <a class="example  bg-light border rounded" href="./ejemplos/TMSraster02.html" target="_blank">
-              <span class="mainlink">
-                <strong>Servicios ráster TMS y XYZ</strong><br>
-              <small>(TMSraster02.html)</small>
-              <p class="description">Visualización de capas ráster TMS y XYZ</p>
-        
-              </span>
-            </a>
-        </div>
-        <!-- fin tarjeta -->
+  <div class="container-fluid">
+    <div id="examples" class="row mt-3">
 
-<!--  -->
-<!-- Ejemplos vector-->
-<!--  -->
+      <!--  -->
+      <!-- Ejemplos visualizadores -->
+      <!--  -->
 
-          <!-- inicio tarjeta,  desarrollado por: Yaiza -->
-                <div class="col-md-4 col-sm-6">
-                  <a class="example  bg-light border rounded" href="./ejemplos/MVT01.html" target="_blank">
-                    <span class="mainlink">
-                      <strong>Servicio teselado vectorial MVT</strong><br>
-                      <small>(MVT01.html)</small>
-                    </span>
-                    <p class="description">Ejemplo de carga de un servicio teselado vectorial MVT (Mapbox Vector Tiles)</p>
-                  </a>
-              </div>
-          <!-- fin tarjeta -->
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/ejemploVisualizador01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Visualizador de ejemplo</strong><br>
+            <small>(ejemploVisualizador01.html)</small>
+          </span>
+          <p class="description">Ejemplo de un visualizador estandar</p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
 
-          <!-- inicio tarjeta,  desarrollado por: Yaiza -->
-              <div class="col-md-4 col-sm-6">
-                  <a class="example  bg-light border rounded" href="./ejemplos/WFS01.html" target="_blank">
-                    <span class="mainlink">
-                      <strong>Servicio vectorial WFS</strong><br>
-                      <small>(WFS01.html)</small>
-                    </span>
-                    <p class="description">Ejemplo de carga de una capa vectorial WFS (Web Feature Service)</p>
-                  </a>
-              </div>
-          <!-- fin tarjeta -->
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/visualizadorBase01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Visualizador base</strong><br>
+            <small>(visualizadorBase01.html)</small>
+          </span>
+          <p class="description">Base de un visualizador</p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
 
-          <!-- inicio tarjeta,  desarrollado por: Yaiza -->
-              <div class="col-md-4 col-sm-6">
-                  <a class="example  bg-light border rounded" href="./ejemplos/GeoJSON01.html" target="_blank">
-                    <span class="mainlink">
-                      <strong>Fichero vectorial GeoJSon</strong><br>
-                      <small>(GeoJSON01.html)</small>
-                    </span>
-                    <p class="description">Ejemplo de carga de fichero vectorial GeoJSON mediante URL</p>
-                  </a>
-              </div>
-          <!-- fin tarjeta -->
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/controlesBasicos01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Controles básicos</strong><br>
+            <small>(controlesBasicos01.html)</small>
+          </span>
+          <p class="description">Añadir y activar controles básicos a un visualizador</p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
 
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/etiquetaMapa01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Etiqueta en mapa</strong><br>
+            <small>(etiquetaMapa01.html)</small>
+          </span>
+          <p class="description">Añadir una etiqueta al mapa</p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
 
-<!--  -->
-<!-- Ejemplos estilos -->
-<!--  -->
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/configuracionVisualizador01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Configuración de visualizador</strong><br>
+            <small>(configuracionVisualizador01.html)</small>
+          </span>
+          <p class="description">Editar la configuración inicial (capas base) de un visualizador</p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
 
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/cambioIdioma01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Configuración de idioma a través de una extensión personalizada</strong><br>
+            <small>(cambioIdioma01.html)</small>
+          </span>
+          <p class="description">Cambiar el idioma de un visualizador a partir de la creación de un plugin</p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
 
-          <!-- inicio tarjeta,  desarrollado por: A^2 -->
-                <div class="col-md-4 col-sm-6">
-                  <a class="example  bg-light border rounded" href="./ejemplos/estiloAleatorio01.html" target="_blank">
-                    <span class="mainlink">
-                      <strong>Estilo aleatorio a capa vectorial WFS</strong><br>
-                      <small>(estiloAleatorio01.html)</small>
-                    </span>
-                    <p class="description">Aplicación de un estilo aleatorio a una capa vectorial WFS</p>
-                  </a>
-              </div>
-          <!-- fin tarjeta -->
-
-          <!-- inicio tarjeta,  desarrollado por: A^2 -->
-          <div class="col-md-4 col-sm-6">
-            <a class="example  bg-light border rounded" href="./ejemplos/estiloAvanzado01.html" target="_blank">
-              <span class="mainlink">
-                <strong>Estilo cartográfico cluster</strong><br>
-                <small>(estiloAvanzado01.html)</small>
-              </span>
-              <p class="description">Aplicación de un estilo de agrupación de elementos a una capa vectorial, en formato KML</p>
-            </a>
-        </div>
-    <!-- fin tarjeta -->
-
-
-<!--  -->
-<!-- Ejemplos extensiones -->
-<!--  -->
-
-          <!-- inicio tarjeta,  desarrollado por: A^2 -->
-          <div class="col-md-4 col-sm-6">
-            <a class="example  bg-light border rounded" href="./ejemplos/attributions01.html" target="_blank">
-              <span class="mainlink">
-                <strong>Extensión Fuente de datos</strong><br>
-                <small>(attributions01.html)</small>
-              </span>
-              <p class="description">Plugin para mostrar la atribución de fuentes de datos multipropietario</p>
-            </a>
-          </div>
-          <!-- fin tarjeta -->
-
-<!--  -->
-<!-- Ejemplos acceso a librería base (OL)-->
-<!--  -->
-
-            <!-- inicio tarjeta,  desarrollado por: A^2 -->
-            <div class="col-md-4 col-sm-6">
-              <a class="example  bg-light border rounded" href="./ejemplos/map_OL01.html" target="_blank">
-                <span class="mainlink">
-                  <strong>Acceso a mapa OL</strong><br>
-                  <small>(map_OL01.html)</small>
-                </span>
-                <p class="description">Cómo acceder a la librería base de openlayers </p>
-              </a>
-            </div>
-            <!-- fin tarjeta -->
-
-<!--  -->
-<!-- Ejemplos extensiones librería base (OL)-->
-<!--  -->
-
-        <!-- inicio tarjeta,  desarrollado por: A^2 -->
-            <div class="col-md-4 col-sm-6">
-              <a class="example  bg-light border rounded" href="./ejemplos/escalaGrafica01.html" target="_blank">
-                <span class="mainlink">
-                  <strong>Extensión escala gráfica OL</strong><br>
-                  <small>(escalaGrafica01.html)</small>
-                </span>
-                <p class="description">Plugin de OpenLayers que añade escala gráfica</p>
-              </a>
-            </div>
-        <!-- fin tarjeta -->
-
-        <!-- inicio tarjeta,  desarrollado por: Yaiza -->
-              <div class="col-md-4 col-sm-6">
-                  <a class="example  bg-light border rounded" href="./ejemplos/PantallaCompleta01.html" target="_blank">
-                    <span class="mainlink">
-                      <strong>Extensión pantalla completa OL</strong><br>
-                      <small>(PantallaCompleta01.html)</small>
-                    </span>
-                    <p class="description">Plugin de OpenLayers que añade un botón que expande el mapa a pantalla completa</p>
-                  </a>
-              </div>
-        <!-- fin tarjeta -->
-
-        <!-- inicio tarjeta,  desarrollado por: A^2 -->
-        <div class="col-md-4 col-sm-6">
-          <a class="example  bg-light border rounded" href="./ejemplos/popupPersonalizadoOL01.html" target="_blank">
-            <span class="mainlink">
-              <strong>Popup personalizado desde OL</strong><br>
-              <small>(popupPersonalizadoOL01.html)</small>
-            </span>
-            <p class="description">Creación de un popup personalizado desde OpenLayers</p>
-          </a>
-        </div>
-    <!-- fin tarjeta -->
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/iframe01.html" target="_blank">
+          <span class="mainlink">
+            <strong>APIREST en Iframe</strong><br>
+            <small>(iframe01.html)</small>
+          </span>
+          <p class="description">Insertar un visualizador realizado con la APIREST en un Iframe</p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
 
 
-<!--  -->
-<!-- Ejemplos librerías externas -->
-<!--  -->
+      <!--  -->
+      <!-- Ejemplos utilidades -->
+      <!--  -->
 
-        <!-- inicio tarjeta,  desarrollado por: A^2 -->
-            <div class="col-md-4 col-sm-6">
-              <a class="example  bg-light border rounded" href="./ejemplos/turfjs01.html" target="_blank">
-                <span class="mainlink">
-                  <strong>Poligonización Voronoi con TURFJS</strong><br>
-                  <small>(turfjs01.html)</small>
-                </span>
-                <p class="description">Análisis espacial de capa vectorial, partiendo de un geojson y 
-                  obteniendo una poligonización de voronoi</p>
-              </a>
-            </div>
-        <!-- fin tarjeta -->
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/popupPersonalizado01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Personalizar popup</strong><br>
+            <small>(popupPersonalizado01.html)</small>
+          </span>
+          <p class="description">Cambiar el CSS de un div emergente por defecto a uno personalizado</p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/utilidadModal01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Utilidad diálogo mediante ventana modal</strong><br>
+            <small>(utilidadModal01.html)</small>
+          </span>
+          <p class="description">Añadir una ventana modal al visualizador para interactuar con el usuario</p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/utilidadPopup01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Utilidad popup</strong><br>
+            <small>(utilidadPopup01.html)</small>
+          </span>
+          <p class="description">Añadir una ventana popup al mapa</p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/utilidadRemote01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Utilidad remote</strong><br>
+            <small>(utilidadRemote01.html)</small>
+          </span>
+          <p class="description">Realizar una petición get/post a través del proxy</p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
 
 
-     </div>
+      <!--  -->
+      <!-- Ejemplos ráster -->
+      <!--  -->
+
+      <!-- inicio tarjeta,  desarrollado por: Ana -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/TMSraster01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Servicio de teselas ráster</strong><br>
+            <small>(TMSraster01.html)</small>
+            <p class="description">Representación de una capa TMS (Tile Map Service)</p>
+
+          </span>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+      <!-- inicio tarjeta,  desarrollado por: Ana -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/WMTSraster01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Servicio WMTS ráster</strong><br>
+            <small>(WMTSraster01.html)</small>
+            <p class="description">Representación de una capa ráster WMTS (Web Map Tile Service)</p>
+          </span>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+      <!-- inicio tarjeta,  desarrollado por: Ana -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/WMSraster01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Servicio WMS ráster</strong><br>
+            <small>(WMSraster01.html)</small>
+            <p class="description">Representación de una capa ráster WMS (Web Map Service)</p>
+          </span>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+      <!-- inicio tarjeta,  desarrollado por: Yaiza -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/WMSvector01.html" target="_blank">
+          <span class="mainlink">
+            <strong>servicio WMS de capa vectorial</strong><br>
+            <small>(WMSvector01.html)</small>
+          </span>
+          <p class="description">Ejemplo de carga de una capa ráster WMS procedente de una capa vectorial origen (Web
+            Map Service)</p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+
+      <!-- inicio tarjeta,  desarrollado por: Ana -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/TMSraster02.html" target="_blank">
+          <span class="mainlink">
+            <strong>Servicios ráster TMS y XYZ</strong><br>
+            <small>(TMSraster02.html)</small>
+            <p class="description">Visualización de capas ráster TMS y XYZ</p>
+          </span>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+      <!-- inicio tarjeta,  desarrollado por: Ana -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/XYZ_OSM01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Servicios ráster XYZ de OSM</strong><br>
+            <small>(XYZ_OSM01.html)</small>
+            <p class="description">Visualización de capas ráster XYZ provenientes de OSM</p>
+          </span>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+
+      <!--  -->
+      <!-- Ejemplos vector-->
+      <!--  -->
+
+      <!-- inicio tarjeta,  desarrollado por: Yaiza -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/MVT01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Servicio teselado vectorial MVT</strong><br>
+            <small>(MVT01.html)</small>
+          </span>
+          <p class="description">Ejemplo de carga de un servicio teselado vectorial MVT (Mapbox Vector Tiles)</p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+       <!-- inicio tarjeta,  desarrollado por: Ceci -->
+       <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/MVT02.html" target="_blank">
+          <span class="mainlink">
+            <strong>Servicio teselado vectorial MVT de BTN</strong><br>
+            <small>(MVT02.html)</small>
+          </span>
+          <p class="description">Ejemplo de carga de un servicio teselado vectorial MVT (Mapbox Vector Tiles) de BTN</p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+      <!-- inicio tarjeta,  desarrollado por: Yaiza -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/WFS01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Servicio vectorial WFS</strong><br>
+            <small>(WFS01.html)</small>
+          </span>
+          <p class="description">Ejemplo de carga de una capa vectorial WFS (Web Feature Service)</p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+      <!-- inicio tarjeta,  desarrollado por: Yaiza -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/GeoJSON01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Fichero vectorial GeoJSon</strong><br>
+            <small>(GeoJSON01.html)</small>
+          </span>
+          <p class="description">Ejemplo de carga de fichero vectorial GeoJSON mediante URL</p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+
+      <!--  -->
+      <!-- Ejemplos estilos -->
+      <!--  -->
+
+
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/estiloAleatorio01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Estilo aleatorio a capa vectorial WFS</strong><br>
+            <small>(estiloAleatorio01.html)</small>
+          </span>
+          <p class="description">Aplicación de un estilo aleatorio a una capa vectorial WFS</p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/estiloGenerico01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Estilo genético</strong><br>
+            <small>(estiloGenerico01.html)</small>
+          </span>
+          <p class="description">Aplicación de un estilo genérico en una fuente GeoJSON definida en el documento
+          </p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/estiloComposicion01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Estilo composición</strong><br>
+            <small>(estiloComposicion01.html)</small>
+          </span>
+          <p class="description">Aplicación de una composición de estilos en una fuente GeoJSON definida en cliente
+          </p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/estiloAvanzado01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Estilo cartográfico cluster</strong><br>
+            <small>(estiloAvanzado01.html)</small>
+          </span>
+          <p class="description">Aplicación de un estilo de agrupación de elementos a una capa vectorial, en formato KML
+          </p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+      
+
+
+      <!--  -->
+      <!-- Ejemplos filtros -->
+      <!--  -->
+
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/filtroAND_OR01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Filtro sobre los objetos geográficos de una fuente de datos</strong><br>
+            <small>(filtroAND_OR01.html)</small>
+          </span>
+          <p class="description"> Aplicación de filtro en cliente por atributos en un servicio OGCAPI-Features
+          </p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/filtroEspacial01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Filtro espacial sobre fuente de datos</strong><br>
+            <small>(filtroEspacial01.html)</small>
+          </span>
+          <p class="description"> Aplicación de filtro espacial en cliente a un servicio OGCAPI-Features
+          </p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/filtroPersonalizado01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Filtro personalizado</strong><br>
+            <small>(filtroPersonalizado01.html)</small>
+          </span>
+          <p class="description"> Aplicación de filtro personalizado a partir de una función en cliente a un servicio OGCAPI-Features
+          </p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+
+      <!--  -->
+      <!-- Ejemplos eventos -->
+      <!--  -->
+
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/eventoActivar01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Evento de activación de control</strong><br>
+            <small>(eventoActivar01.html)</small>
+          </span>
+          <p class="description"> Añadir evento de activación a un control que se encuentra dentro de un panel (extensión o "pluggin")
+          </p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/eventoAñadiraMapa01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Evento de añadir elemento al mapa</strong><br>
+            <small>(eventoAñadiraMapa01.html)</small>
+          </span>
+          <p class="description"> Añadir evento que se lanza cuando se añade un nuevo objeto al mapa
+          </p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+
+      <!--  -->
+      <!-- Ejemplos extensiones -->
+      <!--  -->
+
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/Panel01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Extensión personalizada a partir de un panel</strong><br>
+            <small>(Panel01.html)</small>
+          </span>
+          <p class="description">Plugin creado en cliente para mostrar cómo se crea una funcionalidad personalizada</p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/Panel02.html" target="_blank">
+          <span class="mainlink">
+            <strong>Cambio de estilo a un panel</strong><br>
+            <small>(Panel02.html)</small>
+          </span>
+          <p class="description">Cómo modificar el estilo CSS de un panel</p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/attributions01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Extensión Fuente de datos</strong><br>
+            <small>(attributions01.html)</small>
+          </span>
+          <p class="description">Plugin para mostrar la atribución de fuentes de datos multipropietario</p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+      <!--  -->
+      <!-- Ejemplos acceso a librería base (OL)-->
+      <!--  -->
+
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/map_OL01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Acceso a mapa OL</strong><br>
+            <small>(map_OL01.html)</small>
+          </span>
+          <p class="description">Cómo acceder a la librería base de openlayers </p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/layer_OL01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Acceder a una capa OL desde una capa APICNIG</strong><br>
+            <small>(layer_OL01.html)</small>
+          </span>
+          <p class="description">Acceder al objeto capa OL desde un objeto APICNIG con el método get </p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/layer_OL02.html" target="_blank">
+          <span class="mainlink">
+            <strong>Añadir capa OL a capa APICNIG</strong><br>
+            <small>(layer_OL02.html)</small>
+          </span>
+          <p class="description">Añadir una capa de OL a una capa de APICNIG con el método set </p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+      <!--  -->
+      <!-- Ejemplos extensiones librería base (OL)-->
+      <!--  -->
+
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/escalaGrafica01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Extensión escala gráfica OL</strong><br>
+            <small>(escalaGrafica01.html)</small>
+          </span>
+          <p class="description">Plugin de OpenLayers que añade escala gráfica</p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+      <!-- inicio tarjeta,  desarrollado por: Yaiza -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/PantallaCompleta01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Extensión pantalla completa OL</strong><br>
+            <small>(PantallaCompleta01.html)</small>
+          </span>
+          <p class="description">Plugin de OpenLayers que añade un botón que expande el mapa a pantalla completa</p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+      <!-- inicio tarjeta,  desarrollado por: Yaiza -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/PantallaCompleta01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Extensión pantalla completa OL</strong><br>
+            <small>(PantallaCompleta01.html)</small>
+          </span>
+          <p class="description">Plugin de OpenLayers que añade un botón que expande el mapa a pantalla completa</p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/popupPersonalizadoOL01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Popup personalizado desde OL</strong><br>
+            <small>(popupPersonalizadoOL01.html)</small>
+          </span>
+          <p class="description">Creación de un popup personalizado desde OpenLayers</p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+
+      <!--  -->
+      <!-- Ejemplos librerías externas -->
+      <!--  -->
+
+      <!-- inicio tarjeta,  desarrollado por: A^2 -->
+      <div class="col-md-4 col-sm-6">
+        <a class="example  bg-light border rounded" href="./ejemplos/turfjs01.html" target="_blank">
+          <span class="mainlink">
+            <strong>Poligonización Voronoi con TURFJS</strong><br>
+            <small>(turfjs01.html)</small>
+          </span>
+          <p class="description">Análisis espacial de capa vectorial, partiendo de un geojson y
+            obteniendo una poligonización de voronoi</p>
+        </a>
+      </div>
+      <!-- fin tarjeta -->
+
+
     </div>
+  </div>
 
 
-  </body>
+</body>
+
 </html>

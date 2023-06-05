@@ -18,7 +18,7 @@
 
 
 
-    <title>Galería ejemplos API-CNIG</title>
+    <title> ejemplo Iframe </title>
   </head>
   <body>
     <!-- Optional JavaScript; choose one of the two! -->
@@ -44,7 +44,7 @@
       <div class="row">
         <div class="col">
             <!-- Aquí va el título del ejemplo -->
-            <a class="navbar-brand">Plugin OL - Botón pantalla completa</a>
+            <a class="navbar-brand">Insertar un visualizador por APIREST en un Iframe</a>
         </div>
       </div>
       <div class="row">
@@ -70,75 +70,42 @@
           <!-- Poner el código sin tabuladores iniciales -->
           <!-- Poner espacios en blanco al final de la línea más larga -->
           <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false" >
-<!DOCTYPE html>         
+		  
+
+<!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="cnig" content="yes">
-    <title>visualizador base</title>
-    <!-- Estilo de la API -->
-    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
-    <!-- Estilos de los plugins añadidos -->
-    <link href="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.css" rel="stylesheet" />
-    <style type="text/css">
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-        }
-    </style>
-  </head>
+    <title>Ejemplo iFrame</title>
+</head>
 
-  <body>
-      <!-- Contenedor principal del mapa -->
-      <div id="mapjs" class="m-container"></div>
-      <!-- Ficheros javascript de la API -->
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
 
-      <script type="text/javascript">
-          // Configuración del mapa
-          M.config.attributions.defaultAttribution = 'Instituto Geográfico Nacional';
-          M.config.attributions.defaultUrl = 'https://www.ign.es/'
-          const mapjs = M.map({
-              container: 'mapjs', //id del contenedor del mapa
-              controls: ['panzoom', 'scale*true', 'scaleline', 'location'],
-              zoom: 6,
-              maxZoom: 20,
-              minZoom: 4,
-              center: [-467062.8225, 4683459.6216],
-          });
-          // acceso a librería base
-          var mapaOL = mapjs.getMapImpl();
-          var pantallagrande =new ol.control.FullScreen();
-          mapaOL.addControl(pantallagrande);
-          
+<body>
 
-          //Configuración de las capas
-          const WMS_MDT = new M.layer.WMS({
-              url: 'https://servicios.idee.es/wms-inspire/mdt',
-              name: 'EL.ElevationGridCoverage',
-              tiled: true,
-          });
-          mapjs.addLayers(WMS_MDT);
+  <h1>Lorem Ipsum</h1>
+    <!-- Uso de iFrame  -->
+    <iframe id="CapaRaster" title="CapaRaster" width="800" height="300"
+        src="https://componentes.cnig.es/api-core/?center=-1264453.9015709583,4323899.840546544&zoom=3&layers=WMTS*http://www.ign.es/wmts/mapa-raster?*MTN*GoogleMapsCompatible*imagen*true*image/jpeg*true*true*true">
+    </iframe>
 
-          
+    <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar 
+      de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y 
+      los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno 
+      en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", 
+      las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones 
+      de Lorem Ipsum.</p>
 
-        
-          
-        
-          
-      </script>
-  </body>
+
+</body>
+
 </html>
-  </textarea>
-          <!-- Fin del textarea -->
 
+          </textarea>
+          <!-- Fin del textarea -->
         </div>
 
         <div id="iframe" class="col text-center">
