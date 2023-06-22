@@ -135,7 +135,7 @@
           limit: 20
 
         }, {
-          
+
           // aplica un estilo a la capa
           style: new M.style.Point({
             fill: {
@@ -166,6 +166,9 @@
         // añade la capa al mapa
         mapjs.addOGCAPIFeatures(layer);
 
+
+
+        // define el constructor para la configuración del selector de capas
         const mpFullTOC = new M.plugin.FullTOC({
           collapsed: true,
           position: 'TR',
