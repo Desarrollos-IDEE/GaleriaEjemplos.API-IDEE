@@ -81,7 +81,7 @@
     <title>Carga de un geojson a partir de una petición POST a OGCAPI-Processes</title>
     <!-- Estilo de la API -->
     <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
-
+    <!-- Estilos del mapa y del pop-up -->
     <style type="text/css">
       html,
       body {
@@ -124,7 +124,9 @@
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
-
+      <!-- Con este script se va a realizar una petición HTTP POST al OGCAPI Processes para en un área definida en la petición obtener información sobre los estadísticos.   -->
+      <!-- Para visualizar esos estadísticos se ha de hacer clic en la área -->
+      <!-- Mientras la petición es resuelta se ha incluido una imagen dinámica que posteriormente será reemplazada por el resultado -->
       <script type="text/javascript">
         //M.proxy(true)
         //M.config.PROXY_URL='https://componentes.cnig.es/api-core/api/proxy'
@@ -148,7 +150,7 @@
         imgLoad.style.transform= 'translate(-50%, -50%)'
         imgLoad.style.height= '200px';
         contenedor.appendChild(imgLoad)
-        
+        // Se realiza la petición al processes mediante el método FETCH de JS haciendo una petición HTTP POST
         fetch('https://api-processes.idee.es/processes/bufferElevation/execution', {
             method: 'POST',
             headers: {
@@ -172,7 +174,7 @@
             response => response.json(), 
             document.getElementById("mapjs").appendChild(imgLoad)
             )
-
+        //  Obtención de la respuesta de la petición
         .then(response => (
                 // Configuración de las capas
                 capaProcesses = new M.layer.GeoJSON({
@@ -188,12 +190,6 @@
                       })
             )
             )
-
-
-        
-        
-
-
 
     </script>
   </body>

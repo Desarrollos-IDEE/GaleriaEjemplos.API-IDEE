@@ -85,7 +85,7 @@
     <!-- Extensión información de coordenadas -->
     <link href="https://componentes.cnig.es/api-core/plugins/infocoordinates/infocoordinates.ol.min.css"
         rel="stylesheet" />
-
+    <!-- Estilos del mapa y del buevo control añadido -->
     <style type="text/css">
         html,
         body {
@@ -220,7 +220,11 @@
       <!-- Extensión información de coordenadas -->
       <script type="text/javascript"
         src="https://componentes.cnig.es/api-core/plugins/infocoordinates/infocoordinates.ol.min.js"></script>
-
+      <!-- Con este script se va a realizar una petición HTTP POST al OGCAPI Processes para obtener la altitud de un punto al hacer clic sobre el mapa   -->
+      <!-- En primer lugar se ha de habilitar el panel de la izquierda que mandará la orden de realizar la petición al processes invocando a la función myFunction() -->
+      <!-- Seguidamente se hace clic sobre el mapa en el lugar donde se quiera conocer la altitud -->
+      <!-- La información devuelta por la petición se incluye en un dialogo de información que se desplegará cuando la petición se haya resulto -->
+      <!-- Se además si habilitamos la Extensión información de coordenadas podremos comprobar que la altitud devuelta por el processes es la correcta -->
       <script type="text/javascript">
 
         // Configuración del mapa
@@ -244,7 +248,7 @@
         mapajs.addLayers(layers_p)
 
 
-        // Extensión información de coordenadas
+        // Extensión información de coordenadas para comprobar las coordenadas
         const infoCoordenadas = new M.plugin.Infocoordinates({
             position: 'TR',
             decimalGEOcoord: 6,
@@ -260,7 +264,7 @@
             "collapsedButtonClass": 'icon-target',
             "position": M.ui.position.TL
         });
-
+        //  Definición del contenido del nuevo panel
         var mcontrolmcontainer = document.createElement('div');
         mcontrolmcontainer.className = 'm-control m-container';
         var tituloContenedor = document.createElement('div');
@@ -282,12 +286,12 @@
                         </label>
                             `
         divToggleSwitch.innerHTML = ToggleSwitch.trim();
-
+        // Se realiza la petición al processes mediante el método FETCH de JS haciendo una petición HTTP POST
         var myFunction = () => {
             var checkBox = document.getElementById("myCheck");
             var text = document.getElementById("text");
             if (checkBox.checked == true) {
-
+                // Se invoca el evento onClick para que el pulsar en el mapa se realize la petición HTTP POST al OGCAPI Processes
                 mapajs.on(M.evt.CLICK, (m) => {
                     Este = m.coord[0];
                     Norte = m.coord[1];
@@ -308,9 +312,10 @@
                         }) // JSON.string
                     })
                         .then(response => response.json())
+                        // respuesta de la petición
                         .then(response => 
                             (
-                            
+                            // Se muestan las coordenadas obtenidad en un dialogo. El valor de la altitud es el obtenido a traves de la peticicón
                             M.dialog.info(
                                 `
                         <p>Se ha hecho click sobre el mapa</p>
@@ -318,10 +323,9 @@
                         <p>E: ${Este}   , N: ${Norte}   </p>
                         <p> Altitud Calculada con el process:  ${response.values[0]}<p>`
                             )
-                        )
-                 //response
-                ) // then
-            }) //mapajs.on
+                        ) // close response
+                ) // close then
+            }) // close mapajs.on
 
         } else {
             var index = 1
@@ -332,7 +336,7 @@
 
         }
 
-
+        // Creación del nuevo panel 
         contenedor.appendChild(divToggleSwitch);
         contenedor.className = 'ol-control ol-control-tool'
         contenedorPadre.appendChild(tituloContenedor);
