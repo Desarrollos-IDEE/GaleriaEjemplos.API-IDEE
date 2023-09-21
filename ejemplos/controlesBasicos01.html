@@ -114,15 +114,25 @@
         const mapjs = M.map({
           container: 'mapjs', //id del contenedor del mapa
 
-          // controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],  
+          // controls: ['panzoombar','panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],  
 
-          // Modificar a gusto la siguiente lista con los valores arriba indicados
-          controls: ['location'],
+          
+          controls: ['location'],// Modificar a gusto la siguiente lista con los valores arriba indicados
           zoom: 5,
           maxZoom: 20,
           minZoom: 4,
           center: [-467062.8225, 4683459.6216],
         });
+
+        // Otras formas de añadir controles
+        //mapjs.addControls(['scale', 'location', 'backgroundlayers']);
+        //mapjs.addControls([
+          //new M.control.Rotate(),
+          //new M.control.Panzoombar()]);
+
+
+        // Obtener array de controles del mapa
+        const controles = mapjs.getControls();
 
         // Acceso y activación de un control por código:
         const ctrlLocation = mapjs.getControls({ name: 'location' })[0];
