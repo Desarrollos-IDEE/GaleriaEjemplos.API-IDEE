@@ -22,7 +22,7 @@
 
 
 
-  <title> controles básicos </title>
+  <title> Aplicar estilo mediante función a MVT </title>
 </head>
 
 <body>
@@ -51,7 +51,7 @@
     <div class="row">
       <div class="col">
         <!-- Aquí va el título del ejemplo -->
-        <a class="navbar-brand">Añadir controles básicos al mapa y su activación por código</a>
+        <a class="navbar-brand">Aplicar estilo categorías a un servicio de descarga WFS</a>
       </div>
     </div>
     <div class="row">
@@ -78,71 +78,67 @@
         <!-- Poner espacios en blanco al final de la línea más larga -->
         <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false">
 
-<!DOCTYPE html>         
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="cnig" content="yes">
-    <title>visualizador base</title>
-    <!-- Estilo de la API -->
-    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">          
-
-    <style type="text/css">
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-        }
-    </style>
-  </head>
-
-  <body>
-      <!-- Contenedor principal del mapa -->
-      <div id="mapjs" class="m-container"></div>
-      <!-- Ficheros javascript de la API -->
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>          
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>        
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>         
-
-
-      <script type="text/javascript">
-        // Configuración del mapa
-        const mapjs = M.map({
-          container: 'mapjs', //id del contenedor del mapa
-
-          // controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],  
-          zoom: 5,
-          maxZoom: 20,
-          minZoom: 4,
-          center: [-467062.8225, 4683459.6216],
-        });
-
-
-        // Otras formas de añadir controles
-        mapjs.addControls(['scale', 'location', 'backgroundlayers']);
-
-        mapjs.addControls([
-          new M.control.Rotate(),
-          new M.control.Panzoombar()]);
-
-
-        // Obtener array de controles del mapa
-        const controles = mapjs.getControls();
-
-
-        // Acceso y activación de un control por código:
-        const ctrlLocation = mapjs.getControls({ name: 'location' })[0];
-        ctrlLocation.activate(); //para activarlo
-        ctrlLocation.deactivate(); //para desactivarlo
-
-      </script>
-  </body>
-</html>
-
+          <DOCTYPE html>
+            <html>
+            
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta name="cnig" content="yes">
+                <title>Ejemplo Categoría sin parámetros</title>
+                <!-- Estilo de la API -->
+                <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+            
+                <style type="text/css">
+                    html,
+                    body {
+                        margin: 0;
+                        padding: 0;
+                        height: 100%;
+                        overflow: hidden;
+                    }
+                </style>
+            </head>
+            
+            <body>
+                <!-- Contenedor principal del mapa -->
+                <div id="mapjs" class="m-container"></div>
+                <!-- Ficheros javascript de la API -->
+                <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
+                <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
+                <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+                <script type="text/javascript">
+            
+                    // Configuración del mapa
+                    const mapjs = M.map({
+                        container: 'mapjs', //id del contenedor del mapa     
+                        zoom: 7,
+                        center: [-413228.4623444635, 4919525.828830231],
+                    });
+                    //Creamos capa
+                   const geodesia = new M.layer.WFS({
+                url: 'https://www.ign.es/wfs/redes-geodesicas?',
+                legend: 'Red Geodésica Nacional por Técnicas Espaciales (REGENTE)',
+                name: 'RED_REGENTE',
+                geometry: 'POINT',
+                extract: true
+            });
+                    mapjs.addLayers(geodesia);
+                  
+                  //Especifica únicamente el 'attributeName' en el constructor del estilo, sin indicar ningún parámetro 'categoryStyles'.
+                    let categoryStyle = new M.style.Category("provincia");
+            
+                    //Añadimos la capa estilo 
+                    //Esta capa mostrará colores aleatoriamente
+                    geodesia.setStyle(categoryStyle);
+            
+                    
+                </script>
+            
+            </body>
+            
+            </html>
           </textarea>
         <!-- Fin del textarea -->
       </div>

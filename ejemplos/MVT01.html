@@ -119,10 +119,10 @@
         const mapjs = M.map({
           container: 'mapjs', //id del contenedor del mapa
           controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
-          zoom: 5,
+          zoom:10,
           maxZoom: 20,
           minZoom: 2,
-          center: [-467062.8225, 4683459.6216],
+          center: [-271901.3,5230296.8],
         });
 
         // Configuración de las capas
@@ -137,27 +137,27 @@
           },
         });
 
-        let estilo_pr = new M.style.Line({
+         let estilo_rios = new M.style.Line({
           fill: {
             color: 'white',
             width: 1
           },
           stroke: {
             color: 'blue',
-            width: 2,
+            width: 3,
           },
         });
 
-        let estilo_sl = new M.style.Line({
-          fill: {
-            color: 'white',
-            width: 1
-          },
-          stroke: {
-            color: 'orange',
-            width: 2,
-          },
+        const capaMVT_BTN = new M.layer.MVT({
+          url: "https://vt-btn.idee.es/1.0.0/btn/tile/{z}/{y}/{x}.pbf",
+          name: 'BTN',
+          visibility: true,
+          extract: true,
+          layers: "btn0302l_rio"
         });
+        capaMVT_BTN.setStyle(estilo_rios);
+
+    
 
         const capaMVT_sendero_gr = new M.layer.MVT({
           url: "https://vt-fedme.idee.es/vt.senderogr/{z}/{x}/{y}.pbf",
@@ -165,26 +165,7 @@
           visibility: true,
           extract: true,
         });
-        const capaMVT_sendero_pr = new M.layer.MVT({
-          url: "https://vt-fedme.idee.es/vt.senderopr/{z}/{x}/{y}.pbf",
-          name: 'sendero_pr',
-          visibility: true,
-          extract: true,
-        });
-        const capaMVT_sendero_sl = new M.layer.MVT({
-          url: "https://vt-fedme.idee.es/vt.senderosl/{z}/{x}/{y}.pbf",
-          name: 'sendero_sl',
-          visibility: true,
-          extract: true,
-        });
 
-        capaMVT_sendero_gr.setStyle(estilo_gr);
-        capaMVT_sendero_pr.setStyle(estilo_pr);
-        capaMVT_sendero_sl.setStyle(estilo_sl);
-		    mapjs.addLayers([capaMVT_sendero_gr,capaMVT_sendero_pr,capaMVT_sendero_sl]);
-
-        // En el caso de querer mostrar sólo una capa del servicio MVT, se añade el parámetro "layers", seguido con el nombre de las capas
-        // que se quiere mostrar separado por comas. Si no se pone ninguna se cargarían todas las capas del servicio.
         const LaRiojaMVT = new M.layer.MVT({
           url: 'https://vts.larioja.org/rioja/{z}/{x}/{y}.pbf',
           legend: 'MVT La Rioja (A partir del nivel 10)',
@@ -193,7 +174,15 @@
           visibility: true,
           extract:true
         });
-        mapjs.addLayers(LaRiojaMVT);
+        
+
+        capaMVT_sendero_gr.setStyle(estilo_gr);
+
+		    mapjs.addLayers([capaMVT_BTN,capaMVT_sendero_gr,LaRiojaMVT]);
+
+        // En el caso de querer mostrar sólo una capa del servicio MVT, se añade el parámetro "layers", seguido con el nombre de las capas
+        // que se quiere mostrar separado por comas. Si no se pone ninguna se cargarían todas las capas del servicio.
+     
 
         // Configuración de los plugins
         const mp8 = new M.plugin.TOC({

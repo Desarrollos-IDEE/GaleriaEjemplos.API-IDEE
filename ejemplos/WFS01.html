@@ -123,10 +123,36 @@
               geometry: 'POINT',
               extract: true
           });
-          mapjs.addLayers(geodesia);
+
+          
+          var provincias = new M.layer.GeoJSON({
+              name: "Provincias", 
+              url: "http://geostematicos-sigc.juntadeandalucia.es/geoserver/tematicos/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=tematicos:Provincias&maxFeatures=50&outputFormat=application/json",
+              extract:false
+          });
+
+          const delegaciones = new M.layer.KML({
+              url: 'https://www.ign.es/web/resources/delegaciones/DelegacionesIGN-APICNIG.kml',
+              name: "capaKML",
+              extract: true
+    }); 
+       
+          
           
           // Configuracion de estilos
-          let estilo = new M.style.Point({
+          let estilo1 = new M.style.Polygon({
+            fill: {
+              color: 'pink',
+              opacity: 0.5,
+            },
+            stroke: {
+              color: '#FF0000',
+              width: 0.5
+            }
+          });	
+        
+
+          let estilo2 = new M.style.Point({
               radius: 2, 
               fill: {  
                 color: 'black',
@@ -135,11 +161,14 @@
           });
         
           // Asignamos el estilo a la capa
-          geodesia.setStyle(estilo);
+          geodesia.setStyle(estilo2);
+          provincias.setStyle(estilo1);
+
+          mapjs.addLayers([geodesia,provincias,delegaciones]);
        
           // Configuración de los plugins
           const mp8 = new M.plugin.TOC({
-            collapsed: true,
+            collapsed: false,
             collapsible: true,
           });
           mapjs.addPlugin(mp8);

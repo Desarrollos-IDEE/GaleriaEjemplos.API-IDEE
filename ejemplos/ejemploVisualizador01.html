@@ -86,7 +86,7 @@
     <link href="https://componentes.cnig.es/api-core/plugins/xylocator/xylocator.ol.min.css" rel="stylesheet" />               
     <link href="https://componentes.cnig.es/api-core/plugins/sharemap/sharemap.ol.min.css" rel="stylesheet" />            
     <link href="https://componentes.cnig.es/api-core/plugins/mousesrs/mousesrs.ol.min.css" rel="stylesheet" />              
-    <link href="https://componentes.cnig.es/api-core/plugins/zoomextent/zoomextent.ol.min.css" rel="stylesheet" />             
+    <link href="https://componentes.cnig.es/api-core/plugins/viewmanagement/viewmanagement.ol.min.css" rel="stylesheet" />             
     <link href="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.css" rel="stylesheet" />              
     <style type="text/css">
         html,
@@ -111,7 +111,7 @@
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/attributions/attributions.ol.min.js"></script>         
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/xylocator/xylocator.ol.min.js"></script>         
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/sharemap/sharemap.ol.min.js"></script>         
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/zoomextent/zoomextent.ol.min.js"></script>         
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/viewmanagement/viewmanagement.ol.min.js"></script>         
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/mousesrs/mousesrs.ol.min.js"></script>            
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.js"></script>            
 
@@ -145,11 +145,11 @@
               name: 'EL.GridCoverageDSM',
               legend: 'Modelo Digital de Superficies LiDAR',
               matrixSet: 'GoogleMapsCompatible',
-              visibility: false,
+              visibility: true,
           }, {});
 
           const kml = new M.layer.KML({
-            url: 'https://www.ign.es/web/resources/delegaciones/delegacionesIGN.kml',
+            url: 'https://www.ign.es/web/resources/delegaciones/DelegacionesIGN-APICNIG.kml',
             name:  'delegacionesIGN',
             extract: false,
             legend: 'Delegaciones IGN',
@@ -179,7 +179,7 @@
           const mp4 = new M.plugin.XYLocator({
               position: 'TL',
           });
-          const mp6 = new M.plugin.ZoomExtent();
+          const mp6 = new M.plugin.ViewManagement();
           const mp7 = new M.plugin.MouseSRS({
               srs: 'EPSG:4326',
               label: 'WGS84',
