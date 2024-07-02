@@ -18,7 +18,7 @@
 
 
 
-    <title>Galería ejemplos API-CNIG</title>
+    <title>Acceso mapa OL</title>
   </head>
   <body>
     <!-- Optional JavaScript; choose one of the two! -->
@@ -79,7 +79,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="cnig" content="yes">
-    <title>visualizador base</title>
+    <title>Acceso al mapa OpenLayers</title>
     <!-- Estilo de la API -->
     <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
     <!-- Estilos de los plugins añadidos -->
@@ -105,8 +105,7 @@
 
       <script type="text/javascript">
           // Configuración del mapa
-          M.config.attributions.defaultAttribution = 'Instituto Geográfico Nacional';
-          M.config.attributions.defaultUrl = 'https://www.ign.es/' 
+         
           const mapjs = M.map({
               container: 'mapjs', //id del contenedor del mapa
               controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location'],

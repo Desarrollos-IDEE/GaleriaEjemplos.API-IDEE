@@ -117,23 +117,24 @@
         center: [-413228.4623444635, 4919525.828830231]
       });
 
-      const RED_ERGNSS = new M.layer.GeoJSON({
-        name: "RED_ERGNSS",
-        url: 'https://api-features.ign.es/collections/redes-geodesicas/RED_ERGNSS/items/?f=json&limit=100&',
+      const RED_REGENTE = new M.layer.GeoJSON({
+        name: "red_regente",
+        url: 'https://api-features.ign.es/collections/red_regente/items?limit=2000&f=json',
         extract: true
       });
-      mapjs.addLayers(RED_ERGNSS);
 
-      RED_ERGNSS.on(M.evt.LOAD, () => {
+      mapjs.addLayers(RED_REGENTE);
+
+      RED_REGENTE.on(M.evt.LOAD, () => {
 
         const filter = new M.filter.Function(feature => {
             return feature.getAttribute('nombre').indexOf('C') >= 0;
           });
           // Aplicar el estilo a los puntos
-          for (let i = 0; i < RED_ERGNSS.length; i++) {
-              RED_ERGNSS[i].setStyle(filter);
+          for (let i = 0; i < RED_REGENTE.length; i++) {
+            RED_REGENTE[i].setStyle(filter);
           }
-          RED_ERGNSS.setFilter(filter);
+          RED_REGENTE.setFilter(filter);
 
       });
 

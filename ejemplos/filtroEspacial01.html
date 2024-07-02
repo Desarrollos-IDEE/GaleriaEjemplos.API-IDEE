@@ -86,7 +86,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="cnig" content="yes">
-    <title>visualizador base</title>
+    <title>Filtro Espacial</title>
     <!-- Estilo de la API -->
     <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
 
@@ -159,22 +159,23 @@
       });
       mapjs.addLayers(Rectangulo);
 
-      const RED_ERGNSS = new M.layer.GeoJSON({
-        name: "RED_ERGNSS",
-        url: 'https://api-features.ign.es/collections/redes-geodesicas/RED_ERGNSS/items/?f=json&limit=100&',
+      const RED_REGENTE = new M.layer.GeoJSON({
+        name: "red_regente",
+        url: 'https://api-features.ign.es/collections/red_regente/items?limit=2000&f=json',
         extract: true
       });
-      mapjs.addLayers(RED_ERGNSS);
 
-      RED_ERGNSS.on(M.evt.LOAD, () => {
+      mapjs.addLayers(RED_REGENTE);
+
+      RED_REGENTE.on(M.evt.LOAD, () => {
 
         //Comprueba que el un elemento A esté dentro de otro B
-        // let filter = M.filter.spatial.CONTAIN(RED_ERGNSS);
+        // let filter = M.filter.spatial.CONTAIN(RED_REGENTE);
         // Rectangulo.setFilter(filter);
 
         // Comprueba que el elemento B esté dentro de A
         let filter = M.filter.spatial.WITHIN(Rectangulo);
-        RED_ERGNSS.setFilter(filter);
+        RED_REGENTE.setFilter(filter);
 
       });
 
