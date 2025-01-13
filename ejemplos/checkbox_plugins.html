@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>checkboxPlugins</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <!-- Bootstrap JS y dependencias -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <!-- fichero estilos -->
+        <link href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css" rel="stylesheet" />
+
+        <!-- ficheros javascript -->
+        <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
+        <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+
+        <style>
+                /* Estilos para la tabla */
+                table {
+                        font-size: 12px;
+                        /* Tamaño de la fuente */
+                        line-height: 0.0;
+                        /* Espaciado entre líneas */
+                }
+
+                #output {
+                        word-wrap: break-word
+                }
+        </style>
+
+
+</head>
+
+<body>
+
+        <div class="container-fluid mt-4">
+                <div class="row">
+                        <!-- Tabla de selección de plugins a la izquierda -->
+                        <div class="col-md-4">
+                                <h4>Select Plugins:</h4>
+                                <div class="row">
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="backimglayer"
+                                                        name="plugin" value="backimglayer" onchange="updateIframe()">
+                                                <label for="backimglayer">backimglayer</label>
+                                        </div>
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="contactlink"
+                                                        name="plugin" value="contactlink" onchange="updateIframe()">
+                                                <label for="contactlink">contactlink</label>
+                                        </div>
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="help" name="plugin"
+                                                        value="help" onchange="updateIframe()">
+                                                <label for="help">help</label>
+                                        </div>
+
+
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="infocoordinates"
+                                                        name="plugin" value="infocoordinates" onchange="updateIframe()">
+                                                <label for="infocoordinates">infocoordinates</label>
+                                        </div>
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="information"
+                                                        name="plugin" value="information" onchange="updateIframe()">
+                                                <label for="information">information</label>
+                                        </div>
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="layerswitcher"
+                                                        name="plugin" value="layerswitcher" onchange="updateIframe()">
+                                                <label for="layerswitcher">layerswitcher</label>
+                                        </div>
+
+
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="incicarto"
+                                                        name="plugin" value="incicarto" onchange="updateIframe()">
+                                                <label for="incicarto">incicarto</label>
+                                        </div>
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="locator" name="plugin"
+                                                        value="locator" onchange="updateIframe()"> <label
+                                                        for="locator">locator</label></div>
+
+
+
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="comparators"
+                                                        name="plugin" value="comparators" onchange="updateIframe()">
+                                                <label for="comparators">comparators</label>
+                                        </div>
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="measurebar"
+                                                        name="plugin" value="measurebar" onchange="updateIframe()">
+                                                <label for="measurebar">measurebar</label>
+                                        </div>
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="mousesrs"
+                                                        name="plugin" value="mousesrs" onchange="updateIframe()"> <label
+                                                        for="mousesrs">mousesrs</label>
+                                        </div>
+
+
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="modal" name="plugin"
+                                                        value="modal" onchange="updateIframe()">
+                                                <label for="modal">modal</label>
+                                        </div>
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="overview"
+                                                        name="plugin" value="overview" onchange="updateIframe()"> <label
+                                                        for="overview">overview</label></div>
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="queryattributes"
+                                                        name="plugin" value="queryattributes" onchange="updateIframe()">
+                                                <label for="queryattributes">queryattributes</label>
+                                        </div>
+
+
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="rescale" name="plugin"
+                                                        value="rescale" onchange="updateIframe()">
+                                                <label for="rescale">rescale</label>
+                                        </div>
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="selectionzoom"
+                                                        name="plugin" value="selectionzoom" onchange="updateIframe()">
+                                                <label for="selectionzoom">selectionzoom</label>
+                                        </div>
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="sharemap"
+                                                        name="plugin" value="sharemap" onchange="updateIframe()"> <label
+                                                        for="sharemap">sharemap</label>
+                                        </div>
+
+
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="stylemanager"
+                                                        name="plugin" value="stylemanager" onchange="updateIframe()">
+                                                <label for="stylemanager">stylemanager</label>
+                                        </div>
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="timeline"
+                                                        name="plugin" value="timeline" onchange="updateIframe()"> <label
+                                                        for="timeline">timeline</label></div>
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="viewmanagement"
+                                                        name="plugin" value="viewmanagement" onchange="updateIframe()">
+                                                <label for="viewmanagement">viewmanagement</label>
+                                        </div>
+
+
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="storymap"
+                                                        name="plugin" value="storymap" onchange="updateIframe()"> <label
+                                                        for="storymap">storymap</label>
+                                        </div>
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="vectorsmanagement"
+                                                        name="plugin" value="vectorsmanagement"
+                                                        onchange="updateIframe()"> <label
+                                                        for="vectorsmanagement">vectorsmanagement</label></div>
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="printviewmanagement"
+                                                        name="plugin" value="printviewmanagement"
+                                                        onchange="updateIframe()"> <label
+                                                        for="printviewmanagement">printviewmanagement</label>
+                                        </div>
+                                </div>
+                                <h4>Select Controls:</h4>
+                                <div class="row">
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="panzoombar"
+                                                        name="control" value="panzoombar" onchange="updateIframe()">
+                                                <label for="panzoombar">panzoombar</label>
+                                        </div>
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="panzoom"
+                                                        name="control" value="panzoom" onchange="updateIframe()"> <label
+                                                        for="panzoom">panzoom</label></div>
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="scale" name="control"
+                                                        value="scale" onchange="updateIframe()">
+                                                <label for="scale">scale</label>
+                                        </div>
+
+
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="scaleline"
+                                                        name="control" value="scaleline" onchange="updateIframe()">
+                                                <label for="scaleline">scaleline</label>
+                                        </div>
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="location"
+                                                        name="control" value="location" onchange="updateIframe()">
+                                                <label for="location">location</label>
+                                        </div>
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="rotate" name="control"
+                                                        value="rotate" onchange="updateIframe()"> <label
+                                                        for="rotate">rotate</label>
+                                        </div>
+
+
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="backgroundlayers"
+                                                        name="control" value="backgroundlayers"
+                                                        onchange="updateIframe()"> <label
+                                                        for="backgroundlayers">backgroundlayers</label></div>
+                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="attributions"
+                                                        name="control" value="attributions" onchange="updateIframe()">
+                                                <label for="attributions">attributions</label>
+                                        </div>
+
+                                </div>
+                                <h4>Select Layers:</h4>
+                                <div class="row" id="quick_options">
+                                
+                                </div>
+                                <h4>URL:</h4>
+                                <div class="row">
+                                        <div class="col-md-12">
+                                                <a href="" target="_blank" class="user-select-all"
+                                                        id="output"></a>
+                                        </div>
+                                </div>
+                                <!-- Mapa a la derecha -->
+                                <div class="col-md-8">
+                                        <h4>Visualizador:</h4>
+                                        <iframe id="cnigIframe" class="w-100" height="800px"></iframe>
+                                </div>
+                        </div>
+                </div>
+                <script>
+
+                        let parent = document.querySelector('#quick_options');
+                        let quickLayers = Object.entries(M.getQuickLayers()).forEach(layer => {
+                                let div = document.createElement('div');
+                                div.setAttribute('class', 'col-sm-4 col-sm-6');
+                                let checkbox = document.createElement('input');
+                                checkbox.setAttribute('type', 'checkbox');
+                                checkbox.addEventListener('change', updateIframe);
+                                checkbox.setAttribute('name', 'layer');
+                                let label = document.createElement('label');
+                                label.innerHTML = layer[0];
+                                checkbox.setAttribute('value', layer[0]);
+                                
+                                div.appendChild(checkbox);
+                                div.appendChild(label);
+                                parent.appendChild(div);
+
+                        })
+                        // Función JavaScript para actualizar el iframe
+                        function updateIframe() {
+                                const checkboxes = document.querySelectorAll('input[name="plugin"]:checked');
+                                const checkboxes2 = document.querySelectorAll('input[name="control"]:checked');
+                                const checkboxes3 = document.querySelectorAll('input[name="layer"]:checked');
+                                const selectedPlugins = Array.from(checkboxes).map(cb => cb.value).join(',');
+                                const selectedControls = Array.from(checkboxes2).map(cb => cb.value).join(',');
+                                const selectedLayers = Array.from(checkboxes3).map(cb => cb.value).join(',QUICK*');
+                                const iframe = document.getElementById('cnigIframe');
+                                const baseUrl = "https://componentes.cnig.es/api-core/?zoom=7" +
+                                        "&center=-530658,4905352*false";
+                                console.log(baseUrl);
+                                if (selectedPlugins !== '') {
+                                        iframe.src = baseUrl + "&plugins=" + selectedPlugins;
+                                } else {
+                                        iframe.src = baseUrl;
+                                };
+                                if (selectedControls !== '') {
+                                        iframe.src = iframe.src + "&controls=" + selectedControls;
+                                } else {
+                                        iframe.src = iframe.src;
+                                };
+                                if (selectedLayers !== '') {
+                                        iframe.src = iframe.src + "&layers=QUICK*" + selectedLayers;
+                                } else {
+                                        iframe.src = iframe.src;
+                                };
+
+                                console.log(iframe.src);
+                                document.getElementById('output').href = iframe.src;
+                                document.getElementById('output').innerText = iframe.src;
+                        }
+                        // Cargar el mapa con la configuración predeterminada cuando la página se carga
+                        window.onload = function () {
+                                updateIframe();
+
+                        };
+
+                </script>
+
+
+
+
+</body>
+
+</html>
