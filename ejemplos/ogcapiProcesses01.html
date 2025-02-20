@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Líbrerías para poner el código bonito: -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.css" integrity="sha512-7vaQ4LLdaXd2IuMd4MUQ6LRFIGbEwJI1aq6KYqL3RjbdQyUkRFhwZKmqmkBXurTFdGlx687lTN8FSJfX6Df8Gw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://codemirror.net/addon/hint/show-hint.css">
+
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- CSS propio -->
+    <link rel="stylesheet" type="text/css" href="../css/paginaEjemplos.css" crossorigin="anonymous"/>
+
+
+
+    <title>Galería ejemplos API-CNIG</title>
+  </head>
+  <body>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+    <!-- Líbrerías para poner el código bonito: -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/xml/xml.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.js"></script>
+
+  
+
+    <!-- js propio -->
+    <script src="../js/paginaEjemplos.js"></script>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+            <!-- Aquí va el título del ejemplo -->
+            <a class="navbar-brand">Carga de un geojson a partir de una petición POST a OGCAPI-Processes</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button type="button" onclick="reCodigo()" title="Change code line"  class="btn btn-info">
+            <i class="bi bi-code-slash"></i>
+          </button>
+          <button type="button" onclick="retheme()" title="Change Theme"  class="btn btn-secondary">
+            <i class="bi bi-circle-half"></i>
+        </button>
+          <button type="button" class="btn btn-success" onclick="submitTryit()">
+            <i class="bi bi-play"></i>
+          </button>        
+        </div>
+      </div>
+    </div>
+
+
+    <div id="container">
+      <div class="row row-cols-2">
+
+        <div id="textareawrapper" class="col CodeMirror cm-s-default CodeMirror-wrap" >
+          <!-- Poner el código sin tabuladores iniciales -->
+          <!-- Poner espacios en blanco al final de la línea más larga -->
+          <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false" >
+
+<!DOCTYPE html>         
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="cnig" content="yes">
+    <title>Carga de un geojson a partir de una petición POST a OGCAPI-Processes</title>
+    <!-- Estilo de la API -->
+    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+    <!-- Estilos del mapa y del pop-up -->
+    <style type="text/css">
+      html,
+      body {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          overflow: hidden;
+      }
+
+      .m-popup {
+          background: #837d7e;
+      }
+
+      .m-geojson-content {
+          background: gainsboro;
+      }
+
+      .m-header {
+          text-align: right;
+      }
+
+      .m-title {
+          display: flex !important;
+          color: rgb(255, 255, 255);
+          font-size: large;
+      }
+
+      .m-popup-closer {
+          color: #ff9191;
+          font-size: large;
+      }
+  </style>
+    </style>
+  </head>
+
+  <body>
+      <!-- Contenedor principal del mapa -->
+      <div id="mapjs" class="m-container"></div>
+      <!-- Ficheros javascript de la API -->
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+      <!-- Con este script se va a realizar una petición HTTP POST al OGCAPI Processes para en un área definida en la petición obtener información sobre los estadísticos.   -->
+      <!-- Para visualizar esos estadísticos se ha de hacer clic en la área -->
+      <!-- Mientras la petición es resuelta se ha incluido una imagen dinámica que posteriormente será reemplazada por el resultado -->
+      <script type="text/javascript">
+        //M.proxy(true)
+        //M.config.PROXY_URL='https://componentes.cnig.es/api-core/api/proxy'
+        const mapjs = M.map({
+            container: 'mapjs', //id del contenedor del mapa
+            controls: ['panzoombar', 'scale*true', 'backgroundlayers'],
+            zoom: 15,
+            maxZoom: 20,
+            minZoom: 8,
+            center: ol.proj.fromLonLat([-3.496742, 37.0784]),
+        });
+
+        //Se crea un div para añadir una imagen de carga
+        var contenedor = document.createElement('div');
+        let imgLoad = document.createElement('img');
+        imgLoad.id = 'imagenDeCarga';
+        imgLoad.src = 'https://cdn.pixabay.com/animation/2022/07/29/03/42/03-42-11-849_512.gif';
+        imgLoad.style.position= 'absolute'
+        imgLoad.style.top= '50%'
+        imgLoad.style.left= '50%'
+        imgLoad.style.transform= 'translate(-50%, -50%)'
+        imgLoad.style.height= '200px';
+        contenedor.appendChild(imgLoad)
+        // Se realiza la petición al processes mediante el método FETCH de JS haciendo una petición HTTP POST
+        fetch('https://api-processes.idee.es/processes/bufferElevation/execution', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                
+                    "inputs": {
+                        "crs": 4326,
+                        "distancia": 500,
+                        "estadisticas": true,
+                        "formato": "geojson",
+                        "geom": "{\"coordinates\": [-3.496742248535156,37.0784627368126],\"type\": \"Point\"}"
+                    }
+                
+            })
+        })
+
+        .then(
+            response => response.json(), 
+            document.getElementById("mapjs").appendChild(imgLoad)
+            )
+        //  Obtención de la respuesta de la petición
+        .then(response => (
+                // Configuración de las capas
+                capaProcesses = new M.layer.GeoJSON({
+                    name: "area_elevacion",
+                    source: response.values,
+                    extract: true,
+                    }),
+
+                mapjs.addLayers(capaProcesses),
+
+                capaProcesses.on(M.evt.LOAD, (features) => {
+                        document.getElementById("imagenDeCarga").style.display='none';
+                      })
+            )
+            )
+
+    </script>
+  </body>
+</html>
+
+          </textarea>
+          <!-- Fin del textarea -->
+
+        </div>
+
+        <div id="iframe" class="col text-center">
+          <div id="iframewrapper"> </div>
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+  </body>
+</html>

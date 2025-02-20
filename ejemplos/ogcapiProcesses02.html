@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Líbrerías para poner el código bonito: -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.css" integrity="sha512-7vaQ4LLdaXd2IuMd4MUQ6LRFIGbEwJI1aq6KYqL3RjbdQyUkRFhwZKmqmkBXurTFdGlx687lTN8FSJfX6Df8Gw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://codemirror.net/addon/hint/show-hint.css">
+
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- CSS propio -->
+    <link rel="stylesheet" type="text/css" href="../css/paginaEjemplos.css" crossorigin="anonymous"/>
+
+
+
+    <title>Galería ejemplos API-CNIG</title>
+  </head>
+  <body>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+    <!-- Líbrerías para poner el código bonito: -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/xml/xml.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.js"></script>
+
+  
+
+    <!-- js propio -->
+    <script src="../js/paginaEjemplos.js"></script>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+            <!-- Aquí va el título del ejemplo -->
+            <a class="navbar-brand">Visualización de información a partir de petición POST a OGCAPI-Processes</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button type="button" onclick="reCodigo()" title="Change code line"  class="btn btn-info">
+            <i class="bi bi-code-slash"></i>
+          </button>
+          <button type="button" onclick="retheme()" title="Change Theme"  class="btn btn-secondary">
+            <i class="bi bi-circle-half"></i>
+        </button>
+          <button type="button" class="btn btn-success" onclick="submitTryit()">
+            <i class="bi bi-play"></i>
+          </button>        
+        </div>
+      </div>
+    </div>
+
+
+    <div id="container">
+      <div class="row row-cols-2">
+
+        <div id="textareawrapper" class="col CodeMirror cm-s-default CodeMirror-wrap" >
+          <!-- Poner el código sin tabuladores iniciales -->
+          <!-- Poner espacios en blanco al final de la línea más larga -->
+          <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false" >
+
+<!DOCTYPE html>         
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="cnig" content="yes">
+    <title>Visualización de información a partir de petición POST a OGCAPI-Processes</title>
+    <!-- Estilo de la API -->
+    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+
+    <!-- Extensión información de coordenadas -->
+    <link href="https://componentes.cnig.es/api-core/plugins/infocoordinates/infocoordinates.ol.min.css"
+        rel="stylesheet" />
+    <!-- Estilos del mapa y del buevo control añadido -->
+    <style type="text/css">
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .m-areas>div.m-area>div.m-panel.collapsed>div.m-panel-controls {
+            -webkit-transition: max-width .0s ease 0s, opacity .0s ease 0s;
+            transition: max-width .0s ease 0s, opacity .0s ease 0s;
+        }
+
+        .m-panel-controls>div.ol-control-tool {
+            padding: 5px !important;
+        }
+
+        .m-panel.panelExtraCSS.opened>button {
+            color: #71a7d3 !important;
+            background-color: #fff !important;
+        }
+
+        .m-panel.panelExtraCSS.collapsed .m-panel-controls {
+            height: 0px;
+        }
+
+        .panelExtraCSS .icon-target:before {
+            content: " 🪢 ";
+            font-size: 22px;
+            font-family: none
+        }
+
+        .ol-control {
+            position: relative;
+            background-color: hsla(0, 0%, 100%, .4);
+            border-radius: 4px;
+            padding: 2px;
+        }
+
+        .divTitulo {
+            padding: 1px 10px 1px 10px;
+            background-color: #71a7d3;
+        }
+
+        #titleInfo {
+            color: #fff;
+            font-family: Muli, "sans-serif" !important;
+            font-weight: 700;
+        }
+
+        .m-left .m-panel.panelExtraCSS.opened>button {
+            position: absolute;
+            right: -40px;
+        }
+
+        .ol-control button {
+            display: table-row;
+            width: fit-content;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked+.slider {
+            background-color: #2196F3;
+        }
+
+        input:focus+.slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked+.slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    </style>
+  </head>
+
+  <body>
+      <!-- Contenedor principal del mapa -->
+      <div id="mapjs_div" class="m-container"></div>
+      <!-- Ficheros javascript de la API -->
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+
+      <!-- Extensión información de coordenadas -->
+      <script type="text/javascript"
+        src="https://componentes.cnig.es/api-core/plugins/infocoordinates/infocoordinates.ol.min.js"></script>
+      <!-- Con este script se va a realizar una petición HTTP POST al OGCAPI Processes para obtener la altitud de un punto al hacer clic sobre el mapa   -->
+      <!-- En primer lugar se ha de habilitar el panel de la izquierda que mandará la orden de realizar la petición al processes invocando a la función myFunction() -->
+      <!-- Seguidamente se hace clic sobre el mapa en el lugar donde se quiera conocer la altitud -->
+      <!-- La información devuelta por la petición se incluye en un dialogo de información que se desplegará cuando la petición se haya resulto -->
+      <!-- Se además si habilitamos la Extensión información de coordenadas podremos comprobar que la altitud devuelta por el processes es la correcta -->
+      <script type="text/javascript">
+
+        // Configuración del mapa
+
+        const zoom_p = M.config.MAP_VIEWER_ZOOM || 5;
+        const center_p = M.config.MAP_VIEWER_CENTER || ol.proj.fromLonLat([-3, 40]);
+
+        M.proxy(false) // Necesario para ejecutar el visualizador en local.
+        const mapajs = M.map({
+            container: 'mapjs_div',
+            controls: [
+                // 'backgroundlayers'
+            ],
+            zoom: zoom_p,
+            maxZoom: 20,
+            minZoom: 4,
+            center: center_p,
+        });
+
+        const layers_p = M.config.MAP_VIEWER_LAYERS || [];
+        mapajs.addLayers(layers_p)
+
+
+        // Extensión información de coordenadas para comprobar las coordenadas
+        const infoCoordenadas = new M.plugin.Infocoordinates({
+            position: 'TR',
+            decimalGEOcoord: 6,
+            decimalUTMcoord: 3
+        });
+        mapajs.addPlugin(infoCoordenadas);
+        infoCoordenadas.panel_._element.style.order = 4
+
+
+        const panelExtra = new M.ui.Panel('DameLaCoordenada', {
+            "collapsible": true,
+            "className": 'panelExtraCSS',
+            "collapsedButtonClass": 'icon-target',
+            "position": M.ui.position.TL
+        });
+        //  Definición del contenido del nuevo panel
+        var mcontrolmcontainer = document.createElement('div');
+        mcontrolmcontainer.className = 'm-control m-container';
+        var tituloContenedor = document.createElement('div');
+        tituloContenedor.className = 'divTitulo'
+        var titulo = document.createElement('p');
+        titulo.innerHTML = 'Panel Extra Coordenadas';
+        titulo.id = "titleInfo"
+        tituloContenedor.appendChild(titulo);
+        var contenedorPadre = document.createElement('div');
+        contenedorPadre.className = 'controlPadre'
+        var contenedor = document.createElement('div');
+
+        var divToggleSwitch = document.createElement('div');
+
+        var ToggleSwitch = `
+                        <label class="switch">
+                            <input type="checkbox" id="myCheck" onclick="myFunction()">
+                            <span class="slider round"></span>
+                        </label>
+                            `
+        divToggleSwitch.innerHTML = ToggleSwitch.trim();
+        // Se realiza la petición al processes mediante el método FETCH de JS haciendo una petición HTTP POST
+        var myFunction = () => {
+            var checkBox = document.getElementById("myCheck");
+            var text = document.getElementById("text");
+            if (checkBox.checked == true) {
+                // Se invoca el evento onClick para que el pulsar en el mapa se realice la petición HTTP POST al OGCAPI Processes
+                mapajs.on(M.evt.CLICK, (m) => {
+                    Este = m.coord[0];
+                    Norte = m.coord[1];
+                    fetch('https://api-processes.idee.es/processes/getElevation/execution', {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            "inputs": {
+                                "crs": 3857,
+                                "formato": "geojson",
+                                "geom": `{\"type\": \"Feature\",\"geometry\": {\"type\": \"Point\",  \"coordinates\": [${m.coord[0]}, ${m.coord[1]}]}}`,
+                                "outputFormat": "array",
+                                "withCoord": false
+                            }// inputs
+                        }) // JSON.string
+                    })
+                        .then(response => response.json())
+                        // respuesta de la petición
+                        .then(response => 
+                            (
+                            // Se muestan las coordenadas obtenidas en un dialogo. El valor de la altitud es el obtenido a traves de la petición
+                            M.dialog.info(
+                                `
+                        <p>Se ha hecho click sobre el mapa</p>
+                        <p>Coordenadas en WGS84/Pseudo-Mercator (EPSG:3857)</p>
+                        <p>E: ${Este}   , N: ${Norte}   </p>
+                        <p> Altitud Calculada con el process:  ${response.values[0]}<p>`
+                            )
+                        ) // close response
+                ) // close then
+            }) // close mapajs.on
+
+        } else {
+            var index = 1
+            if (index !== -1) {
+            mapajs.eventsManager_.events_.click.splice(index, 1);
+        }
+        }
+
+        }
+
+        // Creación del nuevo panel 
+        contenedor.appendChild(divToggleSwitch);
+        contenedor.className = 'ol-control ol-control-tool'
+        contenedorPadre.appendChild(tituloContenedor);
+        contenedorPadre.appendChild(contenedor);
+        mcontrolmcontainer.appendChild(contenedorPadre);
+
+        mapajs.on(M.evt.COMPLETED, () => {
+            panelExtra.on(M.evt.ADDED_TO_MAP, (e) => {
+                panelExtra.getControlsContainer().append(mcontrolmcontainer);
+                // panelExtra.getTemplatePanel().title = M.language.getValue('cambioIdioma').contenedor;
+            });
+            mapajs.addPanels(panelExtra);
+        });
+
+    </script>
+  </body>
+</html>
+
+          </textarea>
+          <!-- Fin del textarea -->
+
+        </div>
+
+        <div id="iframe" class="col text-center">
+          <div id="iframewrapper"> </div>
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+  </body>
+</html>

@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Líbrerías para poner el código bonito: -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.css" 
+      integrity="sha512-7vaQ4LLdaXd2IuMd4MUQ6LRFIGbEwJI1aq6KYqL3RjbdQyUkRFhwZKmqmkBXurTFdGlx687lTN8FSJfX6Df8Gw==" 
+      crossorigin="anonymous" 
+      referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://codemirror.net/addon/hint/show-hint.css">
+
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+      rel="stylesheet" 
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+      crossorigin="anonymous">
+    <!-- CSS propio -->
+    <link rel="stylesheet" type="text/css" href="../css/paginaEjemplos.css" crossorigin="anonymous"/>
+
+
+
+    <title>Cambio idioma</title>
+  </head>
+  <body>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
+      crossorigin="anonymous"></script>
+
+
+    <!-- Líbrerías para poner el código bonito: -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/xml/xml.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.js"></script>
+
+  
+  
+    <!-- js propio -->
+    <script src="../js/paginaEjemplos.js"></script>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+            <!-- Aquí va el título del ejemplo -->
+            <a class="navbar-brand">Cambio de idioma en visualizador mediante una extensión personalizada</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button type="button" onclick="reCodigo()" title="Change code line"  class="btn btn-info">
+            <i class="bi bi-code-slash"></i>
+          </button>
+          <button type="button" onclick="retheme()" title="Change Theme"  class="btn btn-secondary">
+            <i class="bi bi-circle-half"></i>
+        </button>
+          <button type="button" class="btn btn-success" onclick="submitTryit()">
+            <i class="bi bi-play"></i>
+          </button>        
+        </div>
+      </div>
+    </div>
+
+
+    <div id="container">
+      <div class="row row-cols-2">
+
+        <div id="textareawrapper" class="col CodeMirror cm-s-default CodeMirror-wrap" >
+          <!-- Poner el código sin tabuladores iniciales -->
+          <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false" >
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="cnig" content="yes">
+    <title>Cambio idioma</title>
+    <!-- Estilo de la API -->
+    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">    
+
+    <style type="text/css">
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .m-areas>div.m-area>div.m-panel.collapsed>div.m-panel-controls {
+            -webkit-transition: max-width .0s ease 0s,opacity .0s ease 0s;
+            transition: max-width .0s ease 0s,opacity .0s ease 0s;
+        }
+
+        .m-panel-controls>div.ol-control-tool{
+            padding: 5px!important;
+        }
+
+        .m-panel.g-cartografia-herramienta.opened>button {
+                color: #71a7d3!important;
+                background-color: #fff!important;
+          }
+
+        .m-panel.g-cartografia-herramienta.collapsed .m-panel-controls{
+            height: 0px;
+        }
+        .g-cartografia-herramienta .icon-target:before {
+            content: "\1F3F3";
+            font-size: 22px;
+            font-family: none
+        }
+        #idioma{
+          position: absolute;
+          z-index: 9;
+          top: 0%;
+          left: 50%;
+          transform: translate(-50%, -0%);
+          background-color: #71a7d3;
+          color: #fff;
+          border-radius: 20px;
+          margin-top: 10px;
+        }
+        #idioma>p{
+          margin: 6px;
+        }
+        .ol-control {
+            position: relative;
+            background-color: hsla(0,0%,100%,.4);
+            border-radius: 4px;
+            padding: 2px;
+        }
+        .divTitulo{
+          padding: 1px 10px 1px 10px;
+          background-color: #71a7d3;
+        }
+        #titleInfo{
+          color: #fff;
+          font-family: Muli,"sans-serif"!important;
+          font-weight: 700;
+        }
+        .m-left .m-panel.g-cartografia-herramienta.opened>button { 
+            position: absolute;
+            right: -40px;
+        }
+        .ol-control button {
+            display: table-row;
+            width: fit-content;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <!-- Contenedor principal del mapa -->
+    <div id="idioma">
+      <p id="p_idioma"></p>
+    </div>
+    <!-- Contenedor principal del mapa -->
+    <div id="mapjs" class="m-container"></div>
+    <!-- Ficheros javascript de la API -->
+    <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
+    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
+    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>             
+
+    
+    <!--Se importan los nuevos diccionarios de idioma: diccCatalan -->
+    <script src="../extra/diccIdiomas/catalan.json.js"></script>
+    <script src="../extra/diccIdiomas/gallego.json.js"></script>
+    <script src="../extra/diccIdiomas/euskera.json.js"></script>
+
+    <script type="text/javascript">
+        // Se extrae y se añaden nuevos valores a los diccionarios de idiomas
+        const es = M.language.getTranslation('es');
+        es.cambioIdioma = {}
+        es.cambioIdioma.esp = 'Español';
+        es.cambioIdioma.ing = 'Inglés';
+        es.cambioIdioma.cat =  "Catalán",
+        es.cambioIdioma.gal =  "Gallego",
+        es.cambioIdioma.eus =  "Euskera",
+        es.cambioIdioma.contenedor = 'Cambio de idioma';
+        es.cambioIdioma.divIdioma = 'Idioma del visualizador';
+        M.language.addTranslation('es', es);
+
+        const en = M.language.getTranslation('en');
+        en.cambioIdioma = {}
+        en.cambioIdioma.esp = 'Spanish';
+        en.cambioIdioma.ing = 'English';
+        en.cambioIdioma.cat =  "Catalan",
+        en.cambioIdioma.cat =  "Galician",
+        es.cambioIdioma.eus =  "Basque",
+        en.cambioIdioma.contenedor = 'Change of language';
+        en.cambioIdioma.divIdioma = 'Languaje of visualizador';
+        M.language.addTranslation('en', en);
+
+        // Se añaden los diccionarios importados
+        M.language.addTranslation('ca', diccCatalan);
+        M.language.addTranslation('ga', diccGallego);
+        M.language.addTranslation('eu', diccEuskera);
+
+
+        // Se define el nuevo control a partir de unas funciones y dos botones
+        var setEn = () => {
+            localStorage.setItem('language', 'en');
+            top.location.reload()
+        }
+
+        var setEs = () => {
+            localStorage.setItem('language', 'es');
+            top.location.reload()
+        }
+
+        var setCA = () => {
+            localStorage.setItem('language', 'ca');
+            top.location.reload()
+        }
+
+        var setGA = () => {
+            localStorage.setItem('language', 'ga');
+            top.location.reload()
+        }
+
+        var setEU = () => {
+            localStorage.setItem('language', 'eu');
+            top.location.reload()
+        }
+
+        var cambioIdioma = () => {
+          document.getElementById("p_idioma").innerHTML=M.language.getValue('cambioIdioma').divIdioma + ' : '+M.language.getLang();            
+          buttonES.title = M.language.getValue('cambioIdioma').esp;
+          buttonEN.title = M.language.getValue('cambioIdioma').ing;
+          buttonCA.title = M.language.getValue('cambioIdioma').cat;
+          buttonGA.title = M.language.getValue('cambioIdioma').gal;
+          buttonEU.title = M.language.getValue('cambioIdioma').eus;
+          titulo.innerHTML= M.language.getValue('cambioIdioma').contenedor;
+        }
+
+        var buttonES = document.createElement('button');
+        buttonES.onclick = setEs
+        buttonES.innerHTML = 'ESP';
+        buttonES.title = M.language.getValue('cambioIdioma').esp;
+        
+        var buttonEN = document.createElement('button');
+        buttonEN.onclick = setEn
+        buttonEN.innerHTML = 'ENG';
+        buttonEN.title = M.language.getValue('cambioIdioma').ing;
+
+        var buttonCA= document.createElement('button');
+        buttonCA.onclick = setCA
+        buttonCA.innerHTML = 'CAT';
+        buttonCA.title = M.language.getValue('cambioIdioma').cat;
+
+        var buttonGA= document.createElement('button');
+        buttonGA.onclick = setGA
+        buttonGA.innerHTML = 'GAL';
+        buttonGA.title = M.language.getValue('cambioIdioma').gal;
+
+        var buttonEU= document.createElement('button');
+        buttonEU.onclick = setEU
+        buttonEU.innerHTML = 'EUS';
+        buttonEU.title = M.language.getValue('cambioIdioma').eus;
+        
+
+        var mcontrolmcontainer = document.createElement('div');
+        mcontrolmcontainer.className = 'm-control m-container';
+        var tituloContenedor = document.createElement('div');
+        tituloContenedor.className = 'divTitulo'
+        var titulo = document.createElement('p');
+        titulo.innerHTML= M.language.getValue('cambioIdioma').contenedor;
+        titulo.id = "titleInfo"
+        tituloContenedor.appendChild(titulo);
+        var contenedorPadre = document.createElement('div');
+        contenedorPadre.className = 'controlPadre'
+        var contenedor = document.createElement('div');
+        contenedor.appendChild(buttonES);
+        contenedor.appendChild(buttonEN);
+        contenedor.appendChild(buttonCA);
+        contenedor.appendChild(buttonGA);
+        contenedor.appendChild(buttonEU);
+        contenedor.className = 'ol-control ol-control-tool'
+        contenedorPadre.appendChild(tituloContenedor);
+        contenedorPadre.appendChild(contenedor);
+        mcontrolmcontainer.appendChild(contenedorPadre);
+                
+
+        const panelExtra = new M.ui.Panel('idiomas', {
+          "collapsible": true,
+          "className": 'g-cartografia-herramienta',
+          "collapsedButtonClass": 'icon-target',
+          "position": M.ui.position.TL
+        });
+        
+
+        // Configuración del mapa e idioma
+        M.language.setLang(localStorage.getItem('language') || 'es');
+
+        const mapjs = M.map({
+            container: 'mapjs', //id del contenedor del mapa
+            controls: ['scale*true'],
+            zoom: 5,
+            maxZoom: 20,
+            minZoom: 4,
+            center: [-467062.8225, 4683459.6216],
+        });
+
+
+        // Se añade un nuevo panel en la carga del mapa, donde se añade el contenedor creado
+        mapjs.on(M.evt.COMPLETED, () => {
+            panelExtra.on(M.evt.ADDED_TO_MAP, (e) => {
+                cambioIdioma();
+                panelExtra.getControlsContainer().append(mcontrolmcontainer);
+                panelExtra.getTemplatePanel().title = M.language.getValue('cambioIdioma').contenedor;
+            });
+        mapjs.addPanels(panelExtra);
+        });
+    </script>
+</body>
+
+</html>
+
+</textarea>
+<!-- Fin del textarea -->
+
+</div>
+
+  <div id="iframe" class="col text-center">
+    <div id="iframewrapper"> </div>
+  </div>
+
+  </div>
+</div>
+
+</body>
+</html>

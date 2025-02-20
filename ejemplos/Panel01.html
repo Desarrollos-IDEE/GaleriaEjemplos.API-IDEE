@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Líbrerías para poner el código bonito: -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.css" integrity="sha512-7vaQ4LLdaXd2IuMd4MUQ6LRFIGbEwJI1aq6KYqL3RjbdQyUkRFhwZKmqmkBXurTFdGlx687lTN8FSJfX6Df8Gw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://codemirror.net/addon/hint/show-hint.css">
+
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- CSS propio -->
+    <link rel="stylesheet" type="text/css" href="../css/paginaEjemplos.css" crossorigin="anonymous"/>
+
+
+
+    <title>Ejemplo Paneles</title>
+  </head>
+  <body>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+    <!-- Líbrerías para poner el código bonito: -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/xml/xml.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.js"></script>
+
+  
+
+    <!-- js propio -->
+    <script src="../js/paginaEjemplos.js"></script>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+            <!-- Aquí va el título del ejemplo -->
+            <a class="navbar-brand">Creación de una extensión personalizada a través de un panel</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button type="button" onclick="reCodigo()" title="Change code line"  class="btn btn-info">
+            <i class="bi bi-code-slash"></i>
+          </button>
+          <button type="button" onclick="retheme()" title="Change Theme"  class="btn btn-secondary">
+            <i class="bi bi-circle-half"></i>
+        </button>
+          <button type="button" class="btn btn-success" onclick="submitTryit()">
+            <i class="bi bi-play"></i>
+          </button>        
+        </div>
+      </div>
+    </div>
+
+
+    <div id="container">
+      <div class="row row-cols-2">
+
+        <div id="textareawrapper" class="col CodeMirror cm-s-default CodeMirror-wrap" >
+          <!-- Poner el código sin tabuladores iniciales -->
+          <!-- Poner espacios en blanco al final de la línea más larga -->
+          <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false" >
+		  
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="cnig" content="yes">
+  <title>Ejemplo Paneles</title>
+  <!-- Estilo de la API -->
+  <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+
+  <style type="text/css">
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    /* 
+      Se añade el estilo necesario para implementar la extensión personalizada
+    */
+    .g-herramienta .m-tools:before {
+      content: "🖭";  /*  icono a usar */
+      font-size: 22px;
+      font-family: none
+    }
+
+    div.opened {
+      background-color: #fff !important;
+      box-shadow: none !important;
+    }
+
+    div.opened>button {
+      color: #71a7d3 !important;
+      background-color: #fff !important;
+    }
+
+    .m-areas>div.m-area>div.m-panel.opened {
+      background-color: #ffffff00 !important;
+    }
+
+    div.m-panel-contenedor{
+      box-shadow: 0 2px 4px rgba(0, 0, 0, .2), 0 -1px 0 rgba(0, 0, 0, .02)!important;
+    }
+    div.m-control.m-container {
+      position: inherit !important;
+      overflow: hidden;
+      background-color: white;
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
+      display: table;
+      width: 100%;
+      
+    }
+
+    .m-panel .title {
+      line-height: 40px;
+      color: #ffffff !important;
+      background-color: #71a7d3;
+      padding: 0px 18px;
+    }
+
+
+    .divContenido {
+      margin: 5px;
+      display: flex;
+    }
+
+    .buttonContenido {
+      cursor: pointer;
+      border: 2px solid #fff!important;
+      border-radius: 50%!important;
+      color: #364b5f!important;
+      background-color: #fff!important;
+      opacity: 1;
+      margin: 0;
+      transition: opacity .25s ease 0s;
+      background: none;
+      padding: 8px;
+      font-size: 24px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Contenedor principal del mapa -->
+  <div id="mapjs" class="m-container"></div>
+  <!-- Ficheros javascript de la API -->
+  <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
+  <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
+  <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+
+
+  <script type="text/javascript">
+    // Configuración del mapa
+    M.proxy(true)
+    M.config.PROXY_URL = 'https://componentes.cnig.es/api-core/api/proxy'
+    const mapajs = M.map({
+      container: 'mapjs', //id del contenedor del mapa
+      controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
+      zoom: 3,
+      maxZoom: 20,
+      minZoom: 3,
+    });
+
+    // Se crea el panel donde se incluirán las funcionalidades
+    const panelExtra = new M.ui.Panel('toolsExtra', {
+      "collapsible": true,
+      "className": 'g-herramienta',
+      "collapsedButtonClass": 'm-tools',
+      "position": M.ui.position.TL
+    });
+    
+    // Se crea un contenedor padre que servirá de nodo principal de la estructura del panel
+    var contenedorPadre = document.createElement('div');
+    contenedorPadre.id = 'div-contenedorPadre'
+    contenedorPadre.className = 'm-panel-contenedor'
+
+    var contenedor = document.createElement('div');
+    contenedor.id = 'div-contenedor'
+    contenedor.className = 'm-control m-container'
+
+    // Se crea un div para el título del panel
+    var tituloContenedor = document.createElement('div');
+    tituloContenedor.className = 'divTitulo'
+    tituloContenedor.className = 'title'
+    tituloContenedor.id = "titleInfo"
+    tituloContenedor.role = "heading"
+    tituloContenedor.innerHTML = "Esto es un título";
+
+    // Se crea un div para el contenido del panel
+    var contenido = document.createElement('div');
+    contenido.id = "contenidoDIV"
+    contenido.className = 'divContenido'
+
+    // Se crea un botón que nos servirá para hacer click y llamar a la función que queramos ejecutar
+    var botonDemo = document.createElement('button');
+    botonDemo.innerHTML = '🕬';
+    botonDemo.className = "buttonContenido"
+    botonDemo.title="Hola, esto es un botón que hace un aviso"
+
+    // Se crea la función, en este caso nos mostrará una ventana modal
+    var botonDemoFunc = () => {
+      M.dialog.success('Le has dado al botón');
+    }
+    botonDemo.onclick = botonDemoFunc
+    contenido.appendChild(botonDemo)
+
+
+    // Se añaden los div contenido y título al elemento contenedor, y éste 
+    contenedor.appendChild(tituloContenedor)
+    contenedor.appendChild(contenido)
+    contenedorPadre.appendChild(contenedor)
+
+    // Se añade el panel al mapa
+
+    // caso 1: añadiéndolo como objetos HTML
+    mapajs.addPanels([panelExtra]);
+    panelExtra.getControlsContainer().appendChild(contenedorPadre)
+
+    panelExtra._element.title="Esto es una extensión personalizada"
+    panelExtra._buttonPanel.title="Click aquí para cerrar"
+
+
+    // // caso 2: añadirlo como innerHTML directamente
+    // mapajs.addPanels([panelExtra]);
+    // panelExtra.getControlsContainer().innerHTML+= `
+    // <div id="div-contenedor" class="m-control m-container m-panel-controls">
+    //   <div class="divTitulo">
+    //     <p id="titleInfo" class="title" role="heading">Esto es un título</p>
+    //   </div>
+    //   <div id="contenidoDIV">
+    //     <button>botón</button>
+    //   </div>`
+
+  </script>
+</body>
+
+</html>
+
+          </textarea>
+          <!-- Fin del textarea -->
+        </div>
+
+        <div id="iframe" class="col text-center">
+          <div id="iframewrapper"> </div>
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+  </body>
+</html>

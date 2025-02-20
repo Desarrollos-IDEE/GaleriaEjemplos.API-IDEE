@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Líbrerías para poner el código bonito: -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.css"
+        integrity="sha512-7vaQ4LLdaXd2IuMd4MUQ6LRFIGbEwJI1aq6KYqL3RjbdQyUkRFhwZKmqmkBXurTFdGlx687lTN8FSJfX6Df8Gw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://codemirror.net/addon/hint/show-hint.css">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- CSS propio -->
+    <link rel="stylesheet" type="text/css" href="../css/paginaEjemplos.css" crossorigin="anonymous" />
+
+
+
+    <title>Plugin - StoryMap</title>
+</head>
+
+<body>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+
+    <!-- Líbrerías para poner el código bonito: -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/xml/xml.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.js"></script>
+
+
+
+    <!-- js propio -->
+    <script src="../js/paginaEjemplos.js"></script>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <!-- Aquí va el título del ejemplo -->
+                <a class="navbar-brand">Plugin - StoryMap</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="button" onclick="reCodigo()" title="Change code line" class="btn btn-info">
+                    <i class="bi bi-code-slash"></i>
+                </button>
+                <button type="button" onclick="retheme()" title="Change Theme" class="btn btn-secondary">
+                    <i class="bi bi-circle-half"></i>
+                </button>
+                <button type="button" class="btn btn-success" onclick="submitTryit()">
+                    <i class="bi bi-play"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="container">
+        <div class="row row-cols-2">
+
+            <div id="textareawrapper" class="col CodeMirror cm-s-default CodeMirror-wrap">
+                <!-- Poner el código sin tabuladores iniciales -->
+                <!-- Poner espacios en blanco al final de la línea más larga -->
+                <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false">
+<!DOCTYPE html> 
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Plugin - StoryMap</title>
+
+    <!-- Estilo de la API -->
+    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+
+    <style type="text/css">
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
+
+    <!-- Ficheros javascript de la API -->
+    <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
+    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
+    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+
+
+    <!-- StoryMap-->
+    <link href="https://componentes.cnig.es/api-core/plugins/storymap/storymap.ol.min.css" rel="stylesheet" />
+    <script type="text/javascript"
+        src="https://componentes.cnig.es/api-core/plugins/storymap/storymap.ol.min.js"></script>
+
+
+</head>
+
+<body>
+    <!-- Contenedor principal del mapa -->
+    <div id="mapjs_div" class="m-container"></div>
+
+     
+    <script type="text/javascript">
+
+        // Configuración del mapa
+
+        const zoom_p = M.config.MAP_VIEWER_ZOOM || 5;
+        const center_p = M.config.MAP_VIEWER_CENTER || ol.proj.fromLonLat([-3, 40]);
+
+        M.proxy(false) // Necesario para ejecutar el visualizador en local.
+        const mapajs = M.map({
+            container: 'mapjs_div',
+            controls: [],
+            zoom: zoom_p,
+            maxZoom: 20,
+            minZoom: 4,
+            center: center_p,
+        });
+
+        const layers_p = M.config.MAP_VIEWER_LAYERS || [];
+        mapajs.addLayers(layers_p)
+
+
+        var StoryMapJSON = {
+            head: {
+                "title": "Story Map sobre APICNIG"
+            },
+            cap: [
+                {
+                    "title": "Capítulo 1",
+                    "subtitle": "gestión del mapa",
+                    "steps": [
+                        {
+                            "html": `
+                                        <ol id='indexContent2'>
+                                            <li index=\"1\" style=" padding: 10px;" onMouseOver="this.style.color='darkorange'; this.style.cursor='pointer';" onMouseOut="this.style.color='';"  onclick='functionIndex(this)' id='centroMapa'> 
+                                                    Obtener el centro y el zoom del mapa 
+                                            </li>
+                                            <li index=\"2\" style=" padding: 10px;" onMouseOver="this.style.color='darkorange'; this.style.cursor='pointer';" onMouseOut="this.style.color='';"  onclick='functionIndex(this)' id='zoomMapa'> 
+                                                    Obtener el mínimo rectángulo envolvenete o BBOX
+                                            </li>
+                                        </ol>
+
+                                        <br><br><br><br> <br><br><br> <br><br><br>
+                                        <br><br><br><br> <br><br><br> <br><br><br>
+                                        <br><br><br><br> <br><br><br> <br><br><br>
+                                    `,
+                            "js": `
+                                    console.log('hola, estoy comenzando el cap 1');
+                                    
+
+                                    function functionIndex(li) {
+                                        var nodes = Array.from( li.closest('ol').children );
+                                        var index = nodes.indexOf( li ) +1 ;
+                                        stringSVG = "pointStep"
+                                        document.getElementById(stringSVG.concat(index)).dispatchEvent(new Event('click'))
+                                    };
+
+                                    
+                                `,
+
+                        },
+                        {
+                            "html": `
+
+                                        <section id="centroMapaSection"> 
+                                                <div class='place'>
+                                                    <h4>Centro del mapa y zoom</h4> 
+                                                </div> 
+
+                                                <ul> 
+                                                        <li style=" padding: 10px;" >Para obtener la posición del mapa usaremos el método mapajs.getCenter() </li> 
+                                                        <li style=" padding: 10px;" >Para obtener el zoom actual del mapa usaremos el método mapajs.getZoom() </li> 
+                                                        <li style=" padding: 10px;" >Para mover el mapa a una posición en concreto, se puede usar el método mapajs.setCenter() </li> 
+                                                        <li style=" padding: 10px;" >Para cambiar el zoom del mapa, se puede usar el método mapajs.setZoom() </li> 
+
+                                                        <ol> 
+                                                            <li style=" padding: 10px;"  onMouseOver="this.style.color='darkorange'; this.style.cursor='pointer';" onMouseOut="this.style.color='';"  onclick='mapjs.setCenter([-411265.54,4926379.30]); mapjs.setZoom(10);'> Madrid </li> 
+                                                            <li style=" padding: 10px;"  onMouseOver="this.style.color='darkorange'; this.style.cursor='pointer';" onMouseOut="this.style.color='';"  onclick='mapjs.setCenter([-54098.36,4629613.86]); mapjs.setZoom(12);'> Alicante </li> 
+                                                        </ol> 
+                                                      
+                                                </ul> 
+                                                
+                                                
+                                                
+                                        </section>
+                                        
+                                        <br><br><br><br> <br><br><br> <br><br><br>
+                                        <br><br><br><br> <br><br><br> <br><br><br>
+                                        <br><br><br><br> <br><br><br> <br><br><br>
+                                    `,
+                            "js": `
+                                    console.log('cap 1, centro del mapa');
+                                    console.log(mapajs.getCenter());
+   
+                                `,
+
+                        },
+                        {
+                            "html": `
+
+                                        <section id="centroMapaSection"> 
+                                                <div class='place'>
+                                                    <h4> Mínimo rectángulo envolvenete o BBOX</h4> 
+                                                </div> 
+
+                                                <ul> 
+                                                        <li style=" padding: 10px;" >Para obtener la posición del mapa usaremos el método mapajs.getBbox() </li> 
+    
+                                                      
+                                                </ul> 
+                                                
+                                                
+                                                
+                                        </section>
+                                        
+                                        <br><br><br><br> <br><br><br> <br><br><br>
+                                        <br><br><br><br> <br><br><br> <br><br><br>
+                                        <br><br><br><br> <br><br><br> <br><br><br>
+                                    `,
+                            "js": `
+                                    console.log('cap 1, BBOX del mapa');
+                                    console.log(mapajs.getBbox());
+   
+                                `,
+
+                        }
+                    ]
+                },
+                {
+                    "title": "Capítulo 2",
+                    "subtitle": "gestión de utilidades",
+                    "steps": [
+                        {
+                            "html": `
+                                        <ol id='indexContent2'>
+                                            <li index=\"1\" style=" padding: 10px;" onMouseOver="this.style.color='darkorange'; this.style.cursor='pointer';" onMouseOut="this.style.color='';"  onclick='functionIndex(this)' > 
+                                                Diálogos
+                                            </li>
+                                            <li index=\"2\" style=" padding: 10px;" onMouseOver="this.style.color='darkorange'; this.style.cursor='pointer';" onMouseOut="this.style.color='';"  onclick='functionIndex(this)' > 
+                                                Toasts
+                                            </li>
+                                        </ol>
+
+                                        <br><br><br><br> <br><br><br> <br><br><br>
+                                        <br><br><br><br> <br><br><br> <br><br><br>
+                                        <br><br><br><br> <br><br><br> <br><br><br>
+                                    `,
+                            "js": `
+                                    console.log('hola, estoy comenzando el cap 2');
+                                    
+
+                                    function functionIndex(li) {
+                                        var nodes = Array.from( li.closest('ol').children );
+                                        var index = nodes.indexOf( li ) +1 ;
+                                        stringSVG = "pointStep"
+                                        document.getElementById(stringSVG.concat(index)).dispatchEvent(new Event('click'))
+                                    };
+
+                                    
+                                `,
+
+                        },
+                        {
+                            "html": `
+
+                                        <section > 
+                                                <div class='place'>
+                                                    <h4>Diálogos</h4> 
+                                                </div> 
+
+                                                <ul> 
+                                                        <li style=" padding: 10px;" >Para hacer uso de los distintos diálogos, se utiliza el método M.dialog.{tipoDeDialogo}.("texto del diálogo")</li> 
+                                                        <li style=" padding: 10px;" >Los tipos de diálogos disponibles son: </li> 
+
+                                                        <ol> 
+                                                            <li style=" padding: 10px;"  onMouseOver="this.style.color='darkorange'; this.style.cursor='pointer';" onMouseOut="this.style.color='';"  onclick="M.dialog.info('Mensaje informativo', 'Diálogo informativo');"> de información </li> 
+                                                            <li style=" padding: 10px;"  onMouseOver="this.style.color='darkorange'; this.style.cursor='pointer';" onMouseOut="this.style.color='';"  onclick="M.dialog.success('Mensaje de éxito');"> de éxito </li> 
+                                                            <li style=" padding: 10px;"  onMouseOver="this.style.color='darkorange'; this.style.cursor='pointer';" onMouseOut="this.style.color='';"  onclick="M.dialog.error('Mensaje de error', 'Diálogo de error', 1);"> de error </li> 
+                                                        </ol> 
+                                                      
+                                                </ul> 
+                                                
+                                                
+                                                
+                                        </section>
+                                        
+                                        <br><br><br><br> <br><br><br> <br><br><br>
+                                        <br><br><br><br> <br><br><br> <br><br><br>
+                                        <br><br><br><br> <br><br><br> <br><br><br>
+                                    `,
+                            "js": `
+                                    console.log('cap 2, diálogos'); 
+                                `,
+
+                        },
+                        {
+                            "html": `
+
+                                        <section > 
+                                                <div class='place'>
+                                                    <h4>Toast</h4> 
+                                                </div> 
+
+                                                <ul> 
+                                                        <li style=" padding: 10px;" >Para hacer uso de los distintos avisos medainte toast, se utiliza el método M.toast.{tipoDeDialogo}.("texto del toast")</li> 
+                                                        <li style=" padding: 10px;" >Los tipos de toast disponibles son: </li> 
+
+                                                        <ol> 
+                                                            <li style=" padding: 10px;"  onMouseOver="this.style.color='darkorange'; this.style.cursor='pointer';" onMouseOut="this.style.color='';"  onclick="M.toast.info('Notificación informativa', 1, 6000); "> de información </li> 
+                                                            <li style=" padding: 10px;"  onMouseOver="this.style.color='darkorange'; this.style.cursor='pointer';" onMouseOut="this.style.color='';"  onclick="M.toast.success('Notificación de éxito');"> de éxito </li> 
+                                                            <li style=" padding: 10px;"  onMouseOver="this.style.color='darkorange'; this.style.cursor='pointer';" onMouseOut="this.style.color='';"  onclick="M.toast.error('Notificación de error', null, 8000);"> de error </li> 
+                                                            <li style=" padding: 10px;"  onMouseOver="this.style.color='darkorange'; this.style.cursor='pointer';" onMouseOut="this.style.color='';"  onclick="M.toast.warning('Notificación de aviso');"> de aviso</li> 
+                                                        </ol> 
+                                                      
+                                                </ul> 
+                                                
+                                                
+                                                
+                                        </section>
+                                        
+                                        <br><br><br><br> <br><br><br> <br><br><br>
+                                        <br><br><br><br> <br><br><br> <br><br><br>
+                                        <br><br><br><br> <br><br><br> <br><br><br>
+                                    `,
+                            "js": `
+                                    console.log('cap 2, toast'); 
+                                `,
+
+                        },
+                    ]
+                },
+            ]
+
+
+        }
+
+        var indexInContent = {
+            "title": "Esto es un ínidice",
+            "subtitle": "Esto es lo que va debajo del índice"
+        }
+
+
+        const storyMap = new M.plugin.StoryMap({
+            collapsed: false,
+            collapsible: true,
+            position: 'TR',
+            tooltip: 'Tooltip Storymap',
+            content: {
+                es: StoryMapJSON,
+            },
+            indexInContent: indexInContent,
+            delay: 2000,
+        });
+
+
+
+
+        mapajs.addPlugin(storyMap);
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
+</textarea>
+                <!-- Fin del textarea -->
+
+            </div>
+
+            <div id="iframe" class="col text-center">
+                <div id="iframewrapper"> </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

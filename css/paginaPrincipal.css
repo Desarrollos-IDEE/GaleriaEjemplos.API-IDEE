@@ -1,0 +1,40 @@
+body {
+  padding-top: 10px;
+}
+
+.navbar-brand {
+  padding-left: 10px;
+}
+
+.form-inline {
+  padding: 0px 20px;
+}
+
+input.search-query {
+  color: #333;
+}
+
+.example {
+  display: block;
+  padding: 0.65rem;
+  height: 140px;
+  margin: 0.65rem 0;
+  overflow: auto;
+}
+
+.example p.description {
+  font-size: smaller;
+  margin: 5px 0;
+}
+
+.example:hover {
+  background-color: #F5F5F5;
+}
+
+h3 {
+  padding: 1px 20px;
+}
+
+#idImgAPICNIG {
+  padding: 0px 20px;
+}
