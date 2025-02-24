@@ -22,7 +22,7 @@
 
 
 
-  <title>Ejemplo MVT</title>
+  <title>Capas MVT</title>
 </head>
 
 <body>
@@ -76,7 +76,7 @@
       <div id="textareawrapper" class="col CodeMirror cm-s-default CodeMirror-wrap">
         <!-- Poner el código sin tabuladores iniciales -->
         <!-- Poner espacios en blanco al final de la línea más larga -->
-        <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false">
+        <textarea aulayerswitcheromplete="off" id="textareaCode" wrap="logical" spellcheck="false">
 
 
 <!DOCTYPE html>         
@@ -86,12 +86,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="cnig" content="yes">
-    <title>visualizador base</title>
+    <title>Capas MVT</title>
     <!-- Estilo de la API -->
     <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
     <!-- Estilos de los plugins añadidos -->
     
-    <link href="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.css" rel="stylesheet" />
+    <link href="https://componentes.cnig.es/api-core/plugins/layerswitcher/layerswitcher.ol.min.css" rel="stylesheet" />
     <style type="text/css">
         html,
         body {
@@ -112,7 +112,7 @@
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
       <!-- Ficheros  javascript de los plugins añadidos-->
       
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.js"></script>
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/layerswitcher/layerswitcher.ol.min.js"></script>
 
       <script type="text/javascript">
         // Configuración del mapa
@@ -166,26 +166,19 @@
           extract: true,
         });
 
-        const LaRiojaMVT = new M.layer.MVT({
-          url: 'https://vts.larioja.org/rioja/{z}/{x}/{y}.pbf',
-          legend: 'MVT La Rioja (A partir del nivel 10)',
-          name: 'La Rioja',
-          layers:'municipio_pol,edificio_pol',
-          visibility: true,
-          extract:true
-        });
+        
         
 
         capaMVT_sendero_gr.setStyle(estilo_gr);
 
-		    mapjs.addLayers([capaMVT_BTN,capaMVT_sendero_gr,LaRiojaMVT]);
+		    mapjs.addLayers([capaMVT_BTN,capaMVT_sendero_gr]);
 
         // En el caso de querer mostrar sólo una capa del servicio MVT, se añade el parámetro "layers", seguido con el nombre de las capas
         // que se quiere mostrar separado por comas. Si no se pone ninguna se cargarían todas las capas del servicio.
      
 
         // Configuración de los plugins
-        const mp8 = new M.plugin.TOC({
+        const mp8 = new M.plugin.Layerswitcher({
           collapsed: true,
           collapsible: true,
         });

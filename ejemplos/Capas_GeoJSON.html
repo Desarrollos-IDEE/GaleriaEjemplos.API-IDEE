@@ -18,7 +18,7 @@
 
 
 
-    <title>Galería ejemplos API-CNIG</title>
+    <title>Capas - GeoJSON</title>
   </head>
   <body>
     <!-- Optional JavaScript; choose one of the two! -->
@@ -44,7 +44,7 @@
       <div class="row">
         <div class="col">
             <!-- Aquí va el título del ejemplo -->
-            <a class="navbar-brand">Carga de una capa vectorial procedente de servicio WFS</a>
+            <a class="navbar-brand">Carga de una capa vectorial GeoJSON</a>
         </div>
       </div>
       <div class="row">
@@ -69,7 +69,7 @@
         <div id="textareawrapper" class="col CodeMirror cm-s-default CodeMirror-wrap" >
           <!-- Poner el código sin tabuladores iniciales -->
           <!-- Poner espacios en blanco al final de la línea más larga -->
-          <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false" >
+          <textarea aulayerswitcheromplete="off" id="textareaCode" wrap="logical" spellcheck="false" >
 <!DOCTYPE html>         
 <html>
   <head>
@@ -77,11 +77,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="cnig" content="yes">
-    <title>visualizador base</title>
+    <title>Capas - GeoJSON</title>
     <!-- Estilo de la API -->
     <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
     <!-- Estilos de los plugins añadidos -->
-    <link href="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.css" rel="stylesheet" />
+    <link href="https://componentes.cnig.es/api-core/plugins/layerswitcher/layerswitcher.ol.min.css" rel="stylesheet" />
     <style type="text/css">
         html,
         body {
@@ -101,7 +101,7 @@
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
       <!-- Ficheros  javascript de los plugins añadidos-->
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.js"></script>
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/layerswitcher/layerswitcher.ol.min.js"></script>
 
       <script type="text/javascript">
 
@@ -116,27 +116,13 @@
           });
           // Configuración de las capas
           
-          const geodesia = new M.layer.WFS({
-              url: 'https://www.ign.es/wfs/redes-geodesicas?',
-              legend: 'Red Geodésica Nacional por Técnicas Espaciales (REGENTE)',
-              name: 'RED_REGENTE',
-              geometry: 'POINT',
-              extract: true
-          });
-
-          
+         
           var provincias = new M.layer.GeoJSON({
               name: "Provincias", 
               url: "http://geostematicos-sigc.juntadeandalucia.es/geoserver/tematicos/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=tematicos:Provincias&maxFeatures=50&outputFormat=application/json",
               extract:false
           });
 
-          const delegaciones = new M.layer.KML({
-              url: 'https://www.ign.es/web/resources/delegaciones/DelegacionesIGN-APICNIG.kml',
-              name: "capaKML",
-              extract: true
-    }); 
-       
           
           
           // Configuracion de estilos
@@ -151,23 +137,15 @@
             }
           });	
         
-
-          let estilo2 = new M.style.Point({
-              radius: 2, 
-              fill: {  
-                color: 'black',
-                opacity: 0.5
-              }
-          });
         
           // Asignamos el estilo a la capa
-          geodesia.setStyle(estilo2);
+          
           provincias.setStyle(estilo1);
 
-          mapjs.addLayers([geodesia,provincias,delegaciones]);
+          mapjs.addLayers([provincias]);
        
           // Configuración de los plugins
-          const mp8 = new M.plugin.TOC({
+          const mp8 = new M.plugin.Layerswitcher({
             collapsed: false,
             collapsible: true,
           });

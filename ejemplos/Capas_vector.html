@@ -22,7 +22,7 @@
 
 
 
-  <title> Filtro AND/OR </title>
+  <title>Capas - Vector</title>
 </head>
 
 <body>
@@ -51,7 +51,7 @@
     <div class="row">
       <div class="col">
         <!-- Aquí va el título del ejemplo -->
-        <a class="navbar-brand">Aplicación de filtros and/or</a>
+        <a class="navbar-brand">Carga de una capa vectorial</a>
       </div>
     </div>
     <div class="row">
@@ -76,20 +76,19 @@
       <div id="textareawrapper" class="col CodeMirror cm-s-default CodeMirror-wrap">
         <!-- Poner el código sin tabuladores iniciales -->
         <!-- Poner espacios en blanco al final de la línea más larga -->
-        <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false">
-
-<!DOCTYPE html>
+        <textarea aulayerswitcheromplete="off" id="textareaCode" wrap="logical" spellcheck="false">
+<!DOCTYPE html>         
 <html>
-
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="cnig" content="yes">
-    <title>Filtro AND/OR </title>
+    <title>Capas - Vector</title>
     <!-- Estilo de la API -->
     <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
-
+    <!-- Estilos de los plugins añadidos -->
+    <link href="https://componentes.cnig.es/api-core/plugins/layerswitcher/layerswitcher.ol.min.css" rel="stylesheet" />
     <style type="text/css">
         html,
         body {
@@ -99,55 +98,82 @@
             overflow: hidden;
         }
     </style>
-</head>
+  </head>
 
-<body>
-    <!-- Contenedor principal del mapa -->
-    <div id="mapjs" class="m-container"></div>
-    <!-- Ficheros javascript de la API -->
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
-    <script type="text/javascript">
+  <body>
+      <!-- Contenedor principal del mapa -->
+      <div id="mapjs" class="m-container"></div>
+      <!-- Ficheros javascript de la API -->
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+      <!-- Ficheros  javascript de los plugins añadidos-->
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/layerswitcher/layerswitcher.ol.min.js"></script>
 
-      // Configuración del mapa
-      const mapjs = M.map({
-        container: 'mapjs', //id del contenedor del mapa     
-        zoom: 5,
-        center: [-413228.4623444635, 4919525.828830231]
-      });
+      <script type="text/javascript">
 
-      const RED_REGENTE = new M.layer.GeoJSON({
-            name: "red_regente",
-            url: 'https://api-features.ign.es/collections/red_regente/items?limit=2000&f=json',
-            extract: true
+        // Configuración del mapa
+        const mapjs = M.map({
+          container: 'mapjs', //id del contenedor del mapa
+          controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
+          zoom: 5,
+          maxZoom: 20,
+          minZoom: 6,
+          center: [-467062.8225, 4883459.6216],
         });
-        
-        mapjs.addLayers(RED_REGENTE);
-        RED_REGENTE.on(M.evt.LOAD, () => {
+        // Configuración de las capas
 
-            //Filtro por atributo nombre
-            let filtro = M.filter.OR(
-                [M.filter.EQUAL("nombre", "Morena"),
-                M.filter.EQUAL("nombre", "Tabernillas")]);
+        const capaVectorial = new M.layer.Vector({
+          name: 'capaVectorial',
+          legend: 'Capa Vector',
+          extract: true,
+        });
 
-            // Si se quiere aplicar el filtro a la capa sobre el mapa:
-            RED_REGENTE.setFilter(filtro);
+        // Creamos feature
+        const feature = new M.Feature("featurePrueba002", {
+          "type": "Feature",
+          "id": "prueba_pol_wfst.1985",
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [-437700.72265536943, 5085361.4590256726],
+                [-409100.00600234355, 5031901.3328427672],
+                [-482930.77947248437, 5017678.0840030923],
+                [-437700.72265536943, 5085361.4590256726]
+              ]
+            ]
+          },
+          "geometry_name": "geometry",
+          "properties": {
+            "cod_ine_municipio": "41091",
+            "cod_ine_provincia": "-",
+            "area": 1234,
+            "perimetro": 345,
+            "cod_ine_comunidad": "-",
+            "nombre": "feature2",
+            "nom_provincia": "Cádiz",
+            "alias": "f2",
+            "nom_ccaa": "Andalucía"
+          }
+        });
+        // lo añadimos a la capa
+        capaVectorial.addFeatures([feature])
+        mapjs.addLayers(capaVectorial)
 
-            //Si se quiere eliminar el filtro
-            // RED_REGENTE.removeFilter();
+        // Configuración de los plugins
+        const mp8 = new M.plugin.Layerswitcher({
+          collapsed: false,
+          collapsible: true,
+        });
+        mapjs.addPlugin(mp8);
 
-      });
-
-
-    </script>
-
-</body>
-
+      </script>
+  </body>
 </html>
-
-          </textarea>
+  </textarea>
         <!-- Fin del textarea -->
+
       </div>
 
       <div id="iframe" class="col text-center">

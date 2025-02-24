@@ -18,7 +18,7 @@
 
 
 
-    <title> OSM </title>
+    <title>Capas - KML</title>
   </head>
   <body>
     <!-- Optional JavaScript; choose one of the two! -->
@@ -44,7 +44,7 @@
       <div class="row">
         <div class="col">
             <!-- Aquí va el título del ejemplo -->
-            <a class="navbar-brand">Carga de servicio XYZ de OSM</a>
+            <a class="navbar-brand">Carga de una capa vectorial de formato KML</a>
         </div>
       </div>
       <div class="row">
@@ -69,8 +69,7 @@
         <div id="textareawrapper" class="col CodeMirror cm-s-default CodeMirror-wrap" >
           <!-- Poner el código sin tabuladores iniciales -->
           <!-- Poner espacios en blanco al final de la línea más larga -->
-          <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false" >
-		  
+          <textarea aulayerswitcheromplete="off" id="textareaCode" wrap="logical" spellcheck="false" >
 <!DOCTYPE html>         
 <html>
   <head>
@@ -78,10 +77,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="cnig" content="yes">
-    <title>visualizador base</title>
+    <title>Capas - KML</title>
     <!-- Estilo de la API -->
-    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">          
-
+    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+    <!-- Estilos de los plugins añadidos -->
+    <link href="https://componentes.cnig.es/api-core/plugins/layerswitcher/layerswitcher.ol.min.css" rel="stylesheet" />
     <style type="text/css">
         html,
         body {
@@ -94,45 +94,55 @@
   </head>
 
   <body>
-    <!-- Contenedor principal del mapa -->
-    <div id="mapjs" class="m-container"></div>
-    <!-- Ficheros javascript de la API -->
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>          
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>        
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>         
-
+      <!-- Contenedor principal del mapa -->
+      <div id="mapjs" class="m-container"></div>
+      <!-- Ficheros javascript de la API -->
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+      <!-- Ficheros  javascript de los plugins añadidos-->
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/layerswitcher/layerswitcher.ol.min.js"></script>
 
       <script type="text/javascript">
-        // Configuración del mapa
-        const mapjs = M.map({
-            container: 'mapjs', //id del contenedor del mapa
-            controls: ['panzoom'],
-            zoom: 6,
-            maxZoom: 20,
-            minZoom: 4,
-            center: [-467062.8225, 4683459.6216],
-            // layers: ['OSM'], //carga de capa OSM de forma simple
-        });
 
-        const layer = new M.layer.OSM({
-            name: 'OSM',
-            legend: 'OSM',
-            transparent: true,
-            tiled: true,
-            url: 'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
-            matrixSet: 'EPSG:3857',
-            displayInLayerSwitcher: true,
-            visible: true
-        });
+          // Configuración del mapa
+          const mapjs = M.map({
+              container: 'mapjs', //id del contenedor del mapa
+              controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
+              zoom: 5,
+              maxZoom: 20,
+              minZoom: 6,
+              center: [-467062.8225, 4683459.6216],
+          });
+          // Configuración de las capas
+          
+          
 
-        mapjs.addLayers(layer);
+          const delegaciones = new M.layer.KML({
+              url: 'https://www.ign.es/web/resources/delegaciones/DelegacionesIGN-APICNIG.kml',
+              name: "capaKML",
+              extract: true
+    }); 
+       
+          
+          
+         
 
-    </script>
+          mapjs.addLayers([delegaciones]);
+       
+          // Configuración de los plugins
+          const mp8 = new M.plugin.Layerswitcher({
+            collapsed: false,
+            collapsible: true,
+          });
+          mapjs.addPlugin(mp8);
+
+      </script>
   </body>
 </html>
-
-          </textarea>
+  </textarea>
           <!-- Fin del textarea -->
+
         </div>
 
         <div id="iframe" class="col text-center">

@@ -1,30 +1,37 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Líbrerías para poner el código bonito: -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.css" integrity="sha512-7vaQ4LLdaXd2IuMd4MUQ6LRFIGbEwJI1aq6KYqL3RjbdQyUkRFhwZKmqmkBXurTFdGlx687lTN8FSJfX6Df8Gw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.css"
+        integrity="sha512-7vaQ4LLdaXd2IuMd4MUQ6LRFIGbEwJI1aq6KYqL3RjbdQyUkRFhwZKmqmkBXurTFdGlx687lTN8FSJfX6Df8Gw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://codemirror.net/addon/hint/show-hint.css">
 
-    
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- CSS propio -->
-    <link rel="stylesheet" type="text/css" href="../css/paginaEjemplos.css" crossorigin="anonymous"/>
+    <link rel="stylesheet" type="text/css" href="../css/paginaEjemplos.css" crossorigin="anonymous" />
 
 
 
     <title>Estilo genérico</title>
-  </head>
-  <body>
+</head>
+
+<body>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
 
     <!-- Líbrerías para poner el código bonito: -->
@@ -34,43 +41,43 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.js"></script>
 
-  
+
 
     <!-- js propio -->
     <script src="../js/paginaEjemplos.js"></script>
 
 
     <div class="container">
-      <div class="row">
-        <div class="col">
-            <!-- Aquí va el título del ejemplo -->
-            <a class="navbar-brand">Aplicación de un estilo genérico</a>
+        <div class="row">
+            <div class="col">
+                <!-- Aquí va el título del ejemplo -->
+                <a class="navbar-brand">Aplicación de un estilo genérico</a>
+            </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <button type="button" onclick="reCodigo()" title="Change code line"  class="btn btn-info">
-            <i class="bi bi-code-slash"></i>
-          </button>
-          <button type="button" onclick="retheme()" title="Change Theme"  class="btn btn-secondary">
-            <i class="bi bi-circle-half"></i>
-        </button>
-          <button type="button" class="btn btn-success" onclick="submitTryit()">
-            <i class="bi bi-play"></i>
-          </button>        
+        <div class="row">
+            <div class="col">
+                <button type="button" onclick="reCodigo()" title="Change code line" class="btn btn-info">
+                    <i class="bi bi-code-slash"></i>
+                </button>
+                <button type="button" onclick="retheme()" title="Change Theme" class="btn btn-secondary">
+                    <i class="bi bi-circle-half"></i>
+                </button>
+                <button type="button" class="btn btn-success" onclick="submitTryit()">
+                    <i class="bi bi-play"></i>
+                </button>
+            </div>
         </div>
-      </div>
     </div>
 
 
     <div id="container">
-      <div class="row row-cols-2">
+        <div class="row row-cols-2">
 
-        <div id="textareawrapper" class="col CodeMirror cm-s-default CodeMirror-wrap" >
-          <!-- Poner el código sin tabuladores iniciales -->
-          <!-- Poner espacios en blanco al final de la línea más larga -->
-          <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false" >
-		  
+            <div id="textareawrapper" class="col CodeMirror cm-s-default CodeMirror-wrap">
+                <!-- Poner el código sin tabuladores iniciales -->
+                <!-- Poner espacios en blanco al final de la línea más larga -->
+                <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false">
+
 <!DOCTYPE html>
 <html>
 
@@ -79,7 +86,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="cnig" content="yes">
-    <title>Zoom</title>
+    <title>Estilo genérico</title>
     <!-- Estilo de la API -->
     <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
 
@@ -107,124 +114,37 @@
         // Configuración del mapa
         const mapjs = M.map({
             container: 'mapjs', //id del contenedor del mapa
-            zoom: 7,
+            zoom: 9,
             center: [-467062.8225, 4683459.6216],
         });
         // Configuración de las capas
-        //Capa punto
-        const punto = new M.layer.GeoJSON({
-            name: "Punto",
-            source: {
-                "type": "FeatureCollection",
-                "features": [
-                    {
-                        "type": "Feature",
-                        "id": "temp_1681819953694.1681819957816",
-                        "geometry": {
-                            "type": "Point",
-                            "coordinates": [
-                                -6.026838207273456,
-                                36.489457102963826
-                            ]
-                        },
-                        "properties": {}
-                    },
-                    {
-                        "type": "Feature",
-                        "id": "temp_1681820669059.1681820675794",
-                        "geometry": {
-                            "type": "LineString",
-                            "coordinates": [
-                                [
-                                    -6.784894847898456,
-                                    37.576931925409056
-                                ],
-                                [
-                                    -4.543683910398455,
-                                    38.528530348922374
-                                ],
-                                [
-                                    -5.060041332273456,
-                                    37.35020468180723
-                                ],
-                                [
-                                    -2.752912426023455,
-                                    38.28747987157581
-                                ],
-                                [
-                                    -3.225324535398456,
-                                    37.24532960800482
-                                ],
-                                [
-                                    -1.225812816648455,
-                                    38.29610265771595
-                                ],
-                                [
-                                    -1.2477854728984543,
-                                    38.27885606091664
-                                ]
-                            ]
-                        },
-                        "properties": {}
-                    },
-                    {
-                        "type": "Feature",
-                        "id": "temp_1681885857129.1681885870986",
-                        "geometry": {
-                            "type": "Polygon",
-                            "coordinates": [
-                                [
-                                    [
-                                        -5.657958984375004,
-                                        40.30047607974953
-                                    ],
-                                    [
-                                        -5.657958984375004,
-                                        40.30047607974953
-                                    ],
-                                    [
-                                        -4.9328613281250036,
-                                        42.36260292172
-                                    ],
-                                    [
-                                        -0.7580566406250043,
-                                        38.878204997061545
-                                    ],
-                                    [
-                                        2.4499511718749956,
-                                        40.55137419871522
-                                    ],
-                                    [
-                                        -6.8225097656250036,
-                                        38.06971703320488
-                                    ],
-                                    [
-                                        0.010986328124995517,
-                                        41.43037188265285
-                                    ],
-                                    [
-                                        -5.6799316406250036,
-                                        40.2501841838199
-                                    ],
-                                    [
-                                        -5.6140136718750036,
-                                        40.26695230509782
-                                    ],
-                                    [
-                                        -5.657958984375004,
-                                        40.30047607974953
-                                    ]
-                                ]
-                            ]
-                        },
-                        "properties": {}
-                    },
-                ]
-            },
 
-            extract: false
-
+        const capaMVT_BTN = new M.layer.MVT({
+            url: "https://vt-btn.idee.es/1.0.0/btn/tile/{z}/{y}/{x}.pbf",
+            name: 'BTN',
+            visibility: true,
+            extract: true,
+            layers: "btn0302l_rio"
         });
+
+        let lyProv = new M.layer.WFS({
+            name: "Provincias",
+            url: "http://geostematicos-sigc.juntadeandalucia.es/geoserver/tematicos/wfs?",
+            legend: "Provincias - COROPLETAS",
+            geometry: 'POLYGON',
+            extract: true,
+        });
+
+        const geodesia = new M.layer.WFS({
+            url: 'https://www.ign.es/wfs/redes-geodesicas?',
+            legend: 'Red Geodésica Nacional por Técnicas Espaciales (REGENTE)',
+            name: 'RED_REGENTE',
+            geometry: 'POINT',
+            extract: true
+        });
+
+
+
         //Creo los estilos 
         const estilo1 = new M.style.Generic({
             point: {
@@ -274,10 +194,14 @@
             }
         });
 
-        // Configuracion de estilos 
-        punto.setStyle(estilo1);
-        //Añadir capa al mapa
-        mapjs.addLayers(punto);
+        capaMVT_BTN.setStyle(estilo1);
+        mapjs.addLayers(capaMVT_BTN);
+
+        lyProv.setStyle(estilo1);
+        mapjs.addLayers(lyProv);
+
+        geodesia.setStyle(estilo1);
+        mapjs.addLayers(geodesia);
 
     </script>
 </body>
@@ -285,18 +209,19 @@
 </html>
 
           </textarea>
-          <!-- Fin del textarea -->
-        </div>
+                <!-- Fin del textarea -->
+            </div>
 
-        <div id="iframe" class="col text-center">
-          <div id="iframewrapper"> </div>
-        </div>
+            <div id="iframe" class="col text-center">
+                <div id="iframewrapper"> </div>
+            </div>
 
-      </div>
+        </div>
 
 
     </div>
 
 
-  </body>
+</body>
+
 </html>

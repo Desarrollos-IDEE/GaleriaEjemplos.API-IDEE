@@ -18,7 +18,7 @@
 
 
 
-    <title> Capa OL </title>
+    <title> Capas - OSM </title>
   </head>
   <body>
     <!-- Optional JavaScript; choose one of the two! -->
@@ -44,7 +44,7 @@
       <div class="row">
         <div class="col">
             <!-- Aquí va el título del ejemplo -->
-            <a class="navbar-brand">Añadir capa OL a APICNIG</a>
+            <a class="navbar-brand">Carga de servicio XYZ de OSM</a>
         </div>
       </div>
       <div class="row">
@@ -71,7 +71,6 @@
           <!-- Poner espacios en blanco al final de la línea más larga -->
           <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false" >
 		  
-
 <!DOCTYPE html>         
 <html>
   <head>
@@ -79,7 +78,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="cnig" content="yes">
-    <title>Capa OL desde APICNIG</title>
+    <title>OSM</title>
     <!-- Estilo de la API -->
     <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">          
 
@@ -104,29 +103,29 @@
 
 
       <script type="text/javascript">
-        // Construimos un mapa
+        // Configuración del mapa
         const mapjs = M.map({
-            container: 'mapjs', //id del contenedor del mapa   
+            container: 'mapjs', //id del contenedor del mapa
+            controls: ['panzoom'],
             zoom: 6,
             maxZoom: 20,
             minZoom: 4,
-            center: [-467062.8225, 4683459.6216]
-        });
-        
-        // Layer de la API
-        TMS_PNOA = new M.layer.TMS({
-            url: 'https://tms-pnoa-ma.idee.es/1.0.0/pnoa-ma/{z}/{x}/{-y}.jpeg',
-            name: 'PNOA_MA_IGN',
-        });
-        mapjs.addLayers(TMS_PNOA);
-
-        // Layer de OpenLayers
-        const layerOL = new ol.layer.Tile({
-            source: new ol.source.OSM()
+            center: [-467062.8225, 4683459.6216],
+            // layers: ['OSM'], //carga de capa OSM de forma simple
         });
 
-        // Cambiamos la capa de la API por la de OpenLayers
-        const nuevalayerOL = TMS_PNOA.getImpl().setOL3Layer(layerOL);
+        const layer = new M.layer.OSM({
+            name: 'OSM',
+            legend: 'OSM',
+            transparent: true,
+            tiled: true,
+            url: 'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            matrixSet: 'EPSG:3857',
+            displayInLayerSwitcher: true,
+            visible: true
+        });
+
+        mapjs.addLayers(layer);
 
     </script>
   </body>

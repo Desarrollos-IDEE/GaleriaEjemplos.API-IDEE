@@ -18,7 +18,7 @@
 
 
 
-    <title>Galería ejemplos API-CNIG</title>
+    <title>Ejemplo de visualizador</title>
   </head>
   <body>
     <!-- Optional JavaScript; choose one of the two! -->
@@ -77,17 +77,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="cnig" content="yes">
-    <title>visualizador base</title>
+    <title>Ejemplo de visualizador</title>
     <!-- Estilo de la API -->
     <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">            
     <!-- Estilos de los plugins añadidos -->
-    <link href="https://componentes.cnig.es/api-core/plugins/ignsearchlocator/ignsearchlocator.ol.min.css" rel="stylesheet" />           
-    <link href="https://componentes.cnig.es/api-core/plugins/attributions/attributions.ol.min.css" rel="stylesheet" />            
-    <link href="https://componentes.cnig.es/api-core/plugins/xylocator/xylocator.ol.min.css" rel="stylesheet" />               
+    <link href="https://componentes.cnig.es/api-core/plugins/locator/locator.ol.min.css" rel="stylesheet" />                                      
     <link href="https://componentes.cnig.es/api-core/plugins/sharemap/sharemap.ol.min.css" rel="stylesheet" />            
     <link href="https://componentes.cnig.es/api-core/plugins/mousesrs/mousesrs.ol.min.css" rel="stylesheet" />              
     <link href="https://componentes.cnig.es/api-core/plugins/viewmanagement/viewmanagement.ol.min.css" rel="stylesheet" />             
-    <link href="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.css" rel="stylesheet" />              
+    <link href="https://componentes.cnig.es/api-core/plugins/layerswitcher/layerswitcher.ol.min.css" rel="stylesheet" />              
     <style type="text/css">
         html,
         body {
@@ -107,23 +105,21 @@
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
       <!-- Ficheros  javascript de los plugins añadidos-->
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/ignsearchlocator/ignsearchlocator.ol.min.js"></script>        
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/attributions/attributions.ol.min.js"></script>         
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/xylocator/xylocator.ol.min.js"></script>         
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/locator/locator.ol.min.js"></script>                       
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/sharemap/sharemap.ol.min.js"></script>         
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/viewmanagement/viewmanagement.ol.min.js"></script>         
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/mousesrs/mousesrs.ol.min.js"></script>            
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.js"></script>            
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/layerswitcher/layerswitcher.ol.min.js"></script>            
 
       <script type="text/javascript">
           // Configuración del mapa
           const mapjs = M.map({
               container: 'mapjs', //id del contenedor del mapa
-              controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
+              controls: ['scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
               zoom: 5,
               maxZoom: 20,
               minZoom: 4,
-              center: [-467062.8225, 4683459.6216],
+              center: [-467062.8225, 4983459.6216],
           });
           // Configuración de las capas
           const layerinicial = new M.layer.WMS({
@@ -159,47 +155,33 @@
           mapjs.addLayers([ocupacionSuelo, layerinicial, layerUA, kml]);
           
           // Configuración de los plugins
-          const mp = new M.plugin.IGNSearchLocator({
-              servicesToSearch: 'gn',
-              maxResults: 10,
-              isCollapsed: false,
-              noProcess: 'municipio,poblacion',
-              countryCode: 'es',
-              reverse: true,
+          const mp = new M.plugin.Locator({
+              
+              position: 'TC',
           });
-          const mp2 = new M.plugin.Attributions({
-              mode: 1,
-              scale: 10000,
-          });
-
-          const mp3 = new M.plugin.ShareMap({
+          const mp1 = new M.plugin.ShareMap({
               baseUrl: 'https://componentes.cnig.es/api-core/',
-              position: 'BR',
+              position: 'BL',
           });
-          const mp4 = new M.plugin.XYLocator({
-              position: 'TL',
-          });
-          const mp6 = new M.plugin.ViewManagement();
-          const mp7 = new M.plugin.MouseSRS({
+          const mp2 = new M.plugin.ViewManagement();
+          const mp3 = new M.plugin.MouseSRS({
               srs: 'EPSG:4326',
               label: 'WGS84',
               precision: 6,
               geoDecimalDigits: 4,
               utmDecimalDigits: 2,
           });
-
-          const mp8 = new M.plugin.TOC({
+          const mp4 = new M.plugin.Layerswitcher({
             collapsed: true,
             collapsible: true,
+            position: 'TL',
           });
 
           mapjs.addPlugin(mp);
+          mapjs.addPlugin(mp1);
           mapjs.addPlugin(mp2);
           mapjs.addPlugin(mp3);
           mapjs.addPlugin(mp4);
-          mapjs.addPlugin(mp6);
-          mapjs.addPlugin(mp7);
-          mapjs.addPlugin(mp8);
       </script>
   </body>
 </html>

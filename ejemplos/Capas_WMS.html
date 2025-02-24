@@ -3,10 +3,10 @@
 
 <head>
   <!-- Required meta tags -->
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Líbrerías para poner el código bonito: -->
+  <!-- Líbrerías para poner el código bonito -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.css"
     integrity="sha512-7vaQ4LLdaXd2IuMd4MUQ6LRFIGbEwJI1aq6KYqL3RjbdQyUkRFhwZKmqmkBXurTFdGlx687lTN8FSJfX6Df8Gw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -22,7 +22,7 @@
 
 
 
-  <title>Galería ejemplos API-CNIG</title>
+  <title>Capas - WMS</title>
 </head>
 
 <body>
@@ -43,9 +43,6 @@
 
 
 
-
-
-
   <!-- js propio -->
   <script src="../js/paginaEjemplos.js"></script>
 
@@ -54,7 +51,7 @@
     <div class="row">
       <div class="col">
         <!-- Aquí va el título del ejemplo -->
-        <a class="navbar-brand">Utilización de extensión fuente de datos multipropietario</a>
+        <a class="navbar-brand">Utilización de servicio de visualización WMS</a>
       </div>
     </div>
     <div class="row">
@@ -78,29 +75,30 @@
 
       <div id="textareawrapper" class="col CodeMirror cm-s-default CodeMirror-wrap">
         <!-- Poner el código sin tabuladores iniciales -->
+        <!-- Poner espacios en blanco al final de la línea más larga -->
         <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false">
-<!DOCTYPE html>                 
+
+<!DOCTYPE html>         
 <html>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="cnig" content="yes">
-    <title>visualizador base</title>
+    <title>Capas - WMS</title>
     <!-- Estilo de la API -->
     <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
-     <!-- Estilos de los plugins añadidos -->
-     <link href="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.css" rel="stylesheet" />
-     <style type="text/css">
-      html,
-      body {
-          margin: 0;
-          padding: 0;
-          height: 100%;
-          overflow: hidden;
-      }
-  </style>
-    <link href="https://componentes.cnig.es/api-core/plugins/attributions/attributions.ol.min.css" rel="stylesheet" />
+    <!-- Estilos de los plugins añadidos -->
+    <link href="https://componentes.cnig.es/api-core/plugins/layerswitcher/layerswitcher.ol.min.css" rel="stylesheet" />
+    <style type="text/css">
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
   </head>
 
   <body>
@@ -110,58 +108,51 @@
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
       <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
-    <script type="text/javascript"
-        src="https://componentes.cnig.es/api-core/plugins/attributions/attributions.ol.min.js"></script>
       <!-- Ficheros  javascript de los plugins añadidos-->
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.js"></script>
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/layerswitcher/layerswitcher.ol.min.js"></script>
+
       <script type="text/javascript">
-        <!-- Dependencias atribuciones -->
-
-
-
 
         // Configuración del mapa
         const mapjs = M.map({
           container: 'mapjs', //id del contenedor del mapa
-          controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
-          zoom: 6,
           maxZoom: 20,
-          minZoom: 4,
+          minZoom: 2,
+          zoom: 12,
           center: [-467062.8225, 4683459.6216],
         });
 
-        // Configuración de la capa WMS
-        const cs = new M.layer.WMS({
-          url: 'https://www.ign.es/wms-inspire/camino-santiago',
-          legend: 'Caminos de Santiago',
+        // Configuración de las capas ráster
+
+        
+
+        const OLISTAT = new M.layer.WMS({
+          url: 'https://www.ign.es/wms/pnoa-historico?',
+          name: 'OLISTAT',
+          legend: 'OLISTAT (1997-1998)',
+          maxZoom: 20,
+          minZoom: 6,
+          visibility: true,
+          tiled: false,
+        }, {});
+
+        // Configuración de capa WMS vectorial --> Ejemplo de carga de una capa ráster WS procedente de una capa vectorial origen (WMS).
+        const hidrografia = new M.layer.WMS({
+          url: 'https://servicios.idee.es/wms-inspire/hidrografia',
+          name: 'HY.Network',
+          legend: 'Red hidrográfica',
           tiled: false,
         });
-        mapjs.addLayers(cs);
 
-        //Creamos plugin
-        // documentación de la extensión : https://github.com/IGN-CNIG/API-CNIG/tree/master/api-ign-js/src/plugins/attributions   
-        const mp = new M.plugin.Attributions({
-          mode: 1,
-          scale: 200000,
-          url: 'https://componentes.ign.es/NucleoVisualizador/vectorial_examples/atribucionPNOA.kml',
-          type: 'kml',
-          position: 'TL',
-          minWidth: "150px",
-          maxWidth: "250px",
-          defaultAttribution: "Personalización atribución ",
-          urlAttribute: " "
 
-        });
-
-        //añade attribtions al mapa
-        mapjs.addPlugin(mp);
+        mapjs.addLayers([OLISTAT, hidrografia]);
 
         // Configuración de los plugins
-        const mp8 = new M.plugin.TOC({
-          collapsed: true,
+        const mp = new M.plugin.Layerswitcher({
+          collapsed: false,
           collapsible: true,
         });
-        mapjs.addPlugin(mp8);
+        mapjs.addPlugin(mp);
 
       </script>
   </body>

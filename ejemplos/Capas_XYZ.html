@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Líbrerías para poner el código bonito: -->
+  <!-- Líbrerías para poner el código bonito -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.css"
     integrity="sha512-7vaQ4LLdaXd2IuMd4MUQ6LRFIGbEwJI1aq6KYqL3RjbdQyUkRFhwZKmqmkBXurTFdGlx687lTN8FSJfX6Df8Gw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -22,7 +22,7 @@
 
 
 
-  <title>Galería ejemplos API-CNIG</title>
+  <title>Capas - XYZ</title>
 </head>
 
 <body>
@@ -51,7 +51,7 @@
     <div class="row">
       <div class="col">
         <!-- Aquí va el título del ejemplo -->
-        <a class="navbar-brand">Carga de una capa vectorial de un servicio OGCAPI-Features</a>
+        <a class="navbar-brand">Utilización de servicio XYZ</a>
       </div>
     </div>
     <div class="row">
@@ -76,8 +76,7 @@
       <div id="textareawrapper" class="col CodeMirror cm-s-default CodeMirror-wrap">
         <!-- Poner el código sin tabuladores iniciales -->
         <!-- Poner espacios en blanco al final de la línea más larga -->
-        <textarea autocomplete="off" id="textareaCode" wrap="logical" spellcheck="false">
-
+        <textarea aulayerswitcheromplete="off" id="textareaCode" wrap="logical" spellcheck="false">
 
 <!DOCTYPE html>         
 <html>
@@ -86,14 +85,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="cnig" content="yes">
-    <title>visualizador base</title>
+    <title>Capas - XYZ</title>
     <!-- Estilo de la API -->
-    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">  
-    
-    <!-- Estilo de extensiones -->
-    <link href="https://componentes.cnig.es/api-core/plugins/fulltoc/fulltoc.ol.min.css" rel="stylesheet" />
-   
-
+    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+    <!-- Estilos de los plugins añadidos -->
+    <link href="https://componentes.cnig.es/api-core/plugins/layerswitcher/layerswitcher.ol.min.css" rel="stylesheet" />
     <style type="text/css">
         html,
         body {
@@ -109,106 +105,49 @@
       <!-- Contenedor principal del mapa -->
       <div id="mapjs" class="m-container"></div>
       <!-- Ficheros javascript de la API -->
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>          
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>        
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>      
-      
-      <!-- Ficheros javascript de extensiones -->
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/fulltoc/fulltoc.ol.min.js"></script>
-
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+      <!-- Ficheros  javascript de los plugins añadidos-->
+      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/layerswitcher/layerswitcher.ol.min.js"></script>
 
       <script type="text/javascript">
+
         // Configuración del mapa
         const mapjs = M.map({
           container: 'mapjs', //id del contenedor del mapa
-          controls: ['panzoom', 'scale*true', 'scaleline', 'location', 'backgroundlayers'],
-          zoom: 5,
+          controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location'],
           maxZoom: 20,
-          minZoom: 4,
+          minZoom: 2,
+          zoom: 5,
           center: [-467062.8225, 4683459.6216],
         });
-        // define la capa
-        const layer = new M.layer.OGCAPIFeatures({
-          url: 'https://api-features.idee.es/collections/',
-          name: 'hidrografia/Falls',
-          legend: 'Capa OGCAPIFeatures',
-          limit: 20
 
-        }, {
+       
 
-          // aplica un estilo a la capa
-          style: new M.style.Point({
-            fill: {
-              color: 'blue',
-            }
-          }),
-
-          // define los posibles estilos que puede tener la capa desde el selector de capas
-          predefinedStyles:[  
-
-          new M.style.Point({
-            fill: {
-              color: 'red',
-            }
-          }),
-
-          new M.style.Cluster(),
-
-          new M.style.Heatmap(),
-
-          new M.style.Category("hydroid_localid"),
-          ]
-        }, {
-
-          opacity: 0.5 // aplica opacidad a la capa
-
-        });
-        // añade la capa al mapa
-        mapjs.addOGCAPIFeatures(layer);
-
-
-
-        // define el constructor para la configuración del selector de capas
-        const mpFullTOC = new M.plugin.FullTOC({
-          collapsed: true,
-          position: 'TR',
-          https: true,
-          http: true,
-
-          // configura los servicios disponibles para el usuario en el selector de capas
-          precharged: {
-            groups: [
-              {
-                name: 'Capas vectoriales',
-                services: [
-                  {
-                    name: 'Colecciones del Sistema Cartográfico Nacional',
-                    type: 'OGCAFPIFeatures',
-                    url: 'https://api-features.idee.es/',
-                  },
-                  {
-                    name: 'Colecciones del Instituto Geográfico Nacional',
-                    type: 'OGCAFPIFeatures',
-                    url: 'https://api-features.ign.es/',
-                  },
-                ],
-              }
-
-            ],
-          },
+        const xyz = new M.layer.XYZ({
+          url: 'https://rts.larioja.org/mapa-base/rioja/{z}/{x}/{y}.png',
+          name: 'XYZLaRioja',
+          projection: 'EPSG:3857',
+          visible: false,
+          displayInLayerSwitcher: true
         });
 
-        mapjs.addPlugin(mpFullTOC);
+    
+
+
+        mapjs.addLayers([xyz]);
+
+        // Configuración de los plugins
+        const mp8 = new M.plugin.Layerswitcher({
+          collapsed: false,
+          collapsible: true,
+        });
+        mapjs.addPlugin(mp8);
 
       </script>
   </body>
 </html>
-
-
-
-
-
-
 
           </textarea>
         <!-- Fin del textarea -->
