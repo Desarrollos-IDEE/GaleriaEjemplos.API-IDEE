@@ -7,11 +7,11 @@
         <title>checkboxPlugins</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <!-- fichero estilos -->
-        <link href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css" rel="stylesheet" />
+        <link href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css" rel="stylesheet" />
 
         <!-- ficheros javascript -->
-        <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
-        <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+        <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>
+        <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>
 
         <style>
                 html,
@@ -27,7 +27,7 @@
                 #app-container,
                 iframe {
                         height: calc(100% - 28.8px) !important;
-                       
+
                 }
 
                 .col-md-4,
@@ -37,14 +37,16 @@
                 }
 
                 #plugins {
-                        height: 30%;
+                        height: calc(25% - 28.8px - 24px/3 - 50px/3);
                         overflow: auto;
                         border: 1px solid #dee2e6;
                         padding: 5px;
                         margin: 5px;
-                        background: #f8f9fa; 
+                        background: #f8f9fa;
                 }
+
                 #controls {
+                        height: calc(25% - 28.8px - 24px/3 - 50px/3);
                         overflow: auto;
                         border: 1px solid #dee2e6;
                         padding: 5px;
@@ -53,29 +55,29 @@
                 }
 
                 #quick_options {
-                        height: calc(50% - 28.8px*4 - 24px - 50px);
+                        height: calc(40% - 28.8px - 24px/3 - 50px/3);
                         overflow: auto;
                         border: 1px solid #dee2e6;
                         padding: 5px;
-                        background: #f8f9fa; 
+                        background: #f8f9fa;
                         margin: 5px;
                 }
-               
-                #cnigIframe{
-                        border:1px solid #dee2e6;
-                }
 
-
-                /* Estilos para la tabla */
-                table {
-                        font-size: 12px;
-                        /* Tamaño de la fuente */
-                        line-height: 0.0;
-                        /* Espaciado entre líneas */
+                #cnigIframe {
+                        border: 1px solid #dee2e6;
                 }
 
                 #output {
                         word-wrap: break-word
+                }
+
+                #url {
+                        height: calc(15% - 28.8px - 24px/3 - 50px/3);
+                        overflow: auto;
+                        border: 1px solid #dee2e6;
+                        padding: 5px;
+                        background: #f8f9fa;
+                        margin: 5px;
                 }
         </style>
 
@@ -198,7 +200,7 @@
                                 </div>
                                 <h4>Select Controls:</h4>
                                 <div class="row" id="controls">
-                                        <div class="col-sm-4 col-sm-6"><input type="checkbox" id="panzoombar"
+                                        <!-- <div class="col-sm-4 col-sm-6"><input type="checkbox" id="panzoombar"
                                                         name="control" value="panzoombar" onchange="updateIframe()">
                                                 <label for="panzoombar">panzoombar</label>
                                         </div>
@@ -232,7 +234,7 @@
                                         <div class="col-sm-4 col-sm-6"><input type="checkbox" id="attributions"
                                                         name="control" value="attributions" onchange="updateIframe()">
                                                 <label for="attributions">attributions</label>
-                                        </div>
+                                        </div> -->
 
                                 </div>
                                 <h4>Select Base Layer:</h4>
@@ -256,7 +258,7 @@
                         <script>
 
                                 let parent = document.querySelector('#quick_options');
-                                let quickLayers = Object.entries(M.getQuickLayers()).forEach(layer => {
+                                let quickLayers = Object.values(IDEE.getQuickLayers()).forEach((layer, index) => {
                                         let div = document.createElement('div');
                                         div.setAttribute('class', 'col-sm-4 col-sm-6');
                                         let checkbox = document.createElement('input');
@@ -264,14 +266,47 @@
                                         checkbox.addEventListener('change', updateIframe);
                                         checkbox.setAttribute('name', 'layer');
                                         let label = document.createElement('label');
-                                        label.innerHTML = layer[0];
-                                        checkbox.setAttribute('value', layer[0]);
-
+                                        label.setAttribute("style", "font-size:small");
+                                        if (typeof (layer) === 'object') {
+                                                label.innerHTML = layer.name;
+                                                checkbox.setAttribute('value', layer.name);
+                                        } else {
+                                                label.innerHTML = Object.keys(IDEE.getQuickLayers())[index];
+                                                checkbox.setAttribute('value', label.innerHTML)
+                                        };
                                         div.appendChild(checkbox);
                                         div.appendChild(label);
                                         parent.appendChild(div);
 
+                                });
+
+                                let parent2 = document.querySelector('#controls');
+                                let controles = Object.entries(IDEE.control).forEach(control => {
+                                        let div = document.createElement('div');
+                                        div.setAttribute('class', 'col-sm-4 col-sm-6');
+                                        let checkbox2 = document.createElement('input');
+                                        checkbox2.setAttribute('type', 'checkbox');
+                                        checkbox2.addEventListener('change', updateIframe);
+                                        checkbox2.setAttribute('name', 'control');
+                                        let label2 = document.createElement('label');
+                                        label2.innerHTML = control[1].NAME;
+                                        checkbox2.setAttribute('value', control[1].NAME);
+
+                                        div.appendChild(checkbox2);
+                                        div.appendChild(label2);
+                                        parent2.appendChild(div);
+
                                 })
+
+                                // fetch('https://componentes.idee.es/api-idee/api/actions/plugins')
+                                //         .then(response => {
+                                //                 return response.json();
+                                //         })
+                                //         .then(data => {
+                                //                 console.log(data);
+                                //         })
+
+
                                 // Función JavaScript para actualizar el iframe
                                 function updateIframe() {
                                         const checkboxes = document.querySelectorAll('input[name="plugin"]:checked');
@@ -281,7 +316,7 @@
                                         const selectedControls = Array.from(checkboxes2).map(cb => cb.value).join(',');
                                         const selectedLayers = Array.from(checkboxes3).map(cb => cb.value).join(',QUICK*');
                                         const iframe = document.getElementById('cnigIframe');
-                                        const baseUrl = "https://componentes.cnig.es/api-core/?zoom=7" +
+                                        const baseUrl = "https://componentes.idee.es/api-idee/?zoom=7" +
                                                 "&center=-530658,4905352*false";
                                         console.log(baseUrl);
                                         if (selectedPlugins !== '') {
