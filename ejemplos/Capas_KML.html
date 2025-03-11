@@ -79,9 +79,9 @@
     <meta name="cnig" content="yes">
     <title>Capas - KML</title>
     <!-- Estilo de la API -->
-    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+    <link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">
     <!-- Estilos de los plugins añadidos -->
-    <link href="https://componentes.cnig.es/api-core/plugins/layerswitcher/layerswitcher.ol.min.css" rel="stylesheet" />
+    <link href="https://componentes.idee.es/api-idee/plugins/layerswitcher/layerswitcher.ol.min.css" rel="stylesheet" />
     <style type="text/css">
         html,
         body {
@@ -97,16 +97,16 @@
       <!-- Contenedor principal del mapa -->
       <div id="mapjs" class="m-container"></div>
       <!-- Ficheros javascript de la API -->
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+      <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>
+      <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>
+      <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>
       <!-- Ficheros  javascript de los plugins añadidos-->
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/layerswitcher/layerswitcher.ol.min.js"></script>
+      <script type="text/javascript" src="https://componentes.idee.es/api-idee/plugins/layerswitcher/layerswitcher.ol.min.js"></script>
 
       <script type="text/javascript">
 
           // Configuración del mapa
-          const mapjs = M.map({
+          const mapjs = IDEE.map({
               container: 'mapjs', //id del contenedor del mapa
               controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
               zoom: 5,
@@ -118,7 +118,7 @@
           
           
 
-          const delegaciones = new M.layer.KML({
+          const delegaciones = new IDEE.layer.KML({
               url: 'https://www.ign.es/web/resources/delegaciones/DelegacionesIGN-APICNIG.kml',
               name: "capaKML",
               extract: true
@@ -131,7 +131,7 @@
           mapjs.addLayers([delegaciones]);
        
           // Configuración de los plugins
-          const mp8 = new M.plugin.Layerswitcher({
+          const mp8 = new IDEE.plugin.Layerswitcher({
             collapsed: false,
             collapsible: true,
           });

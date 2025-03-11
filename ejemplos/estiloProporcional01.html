@@ -88,7 +88,7 @@
               <meta name="cnig" content="yes">
               <title>Ejemplo Proporcional</title>
               <!-- Estilo de la API -->
-              <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+              <link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">
           
               <style type="text/css">
                   html,
@@ -105,21 +105,21 @@
               <!-- Contenedor principal del mapa -->
               <div id="mapjs" class="m-container"></div>
               <!-- Ficheros javascript de la API -->
-              <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
-              <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
-              <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+              <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>
+              <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>
+              <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>
               <script type="text/javascript">
 
                 // Configuración del mapa
-                M.proxy(false)
-                const mapjs = M.map({
+                IDEE.proxy(false)
+                const mapjs = IDEE.map({
                     container: 'mapjs', //id del contenedor del mapa     
                     zoom: 6,
                     center: [-413228.4623444635, 4919525.828830231],
                 });
 
                 //modo objeto
-                const geojson = new M.layer.GeoJSON({
+                const geojson = new IDEE.layer.GeoJSON({
                     url: '../datos/estaciones.geojson',
                     name: "capaGeojson",
                    extract: true,
@@ -129,7 +129,7 @@
 
 
                 // Estilo personalizado para los puntos
-                const estiloPunto = new M.style.Point({
+                const estiloPunto = new IDEE.style.Point({
                         fill: {
                             color: "red",
                             opacity: 0.5,
@@ -154,7 +154,7 @@
                 //En el caso de que no se defina ninguna función personalizada y/o no se añada como parámetro al constructor se utilizará el escalado absoluto.
                 let sizeMin = 5;
                 let sizeMax = 15;
-                let proportionalStyle = new M.style.Proportional('altitude', sizeMin, sizeMax, estiloPunto);
+                let proportionalStyle = new IDEE.style.Proportional('altitude', sizeMin, sizeMax, estiloPunto);
 
 
                 // lo establecemos a la capa

@@ -86,7 +86,7 @@
     <meta name="cnig" content="yes">
     <title>Cambio idioma</title>
     <!-- Estilo de la API -->
-    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">    
+    <link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">    
 
     <style type="text/css">
         html,
@@ -169,9 +169,9 @@
     <!-- Contenedor principal del mapa -->
     <div id="mapjs" class="m-container"></div>
     <!-- Ficheros javascript de la API -->
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>             
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>             
 
     
     <!--Se importan los nuevos diccionarios de idioma: diccCatalan -->
@@ -181,7 +181,7 @@
 
     <script type="text/javascript">
         // Se extrae y se añaden nuevos valores a los diccionarios de idiomas
-        const es = M.language.getTranslation('es');
+        const es = IDEE.language.getTranslation('es');
         es.cambioIdioma = {}
         es.cambioIdioma.esp = 'Español';
         es.cambioIdioma.ing = 'Inglés';
@@ -190,9 +190,9 @@
         es.cambioIdioma.eus =  "Euskera",
         es.cambioIdioma.contenedor = 'Cambio de idioma';
         es.cambioIdioma.divIdioma = 'Idioma del visualizador';
-        M.language.addTranslation('es', es);
+        IDEE.language.addTranslation('es', es);
 
-        const en = M.language.getTranslation('en');
+        const en = IDEE.language.getTranslation('en');
         en.cambioIdioma = {}
         en.cambioIdioma.esp = 'Spanish';
         en.cambioIdioma.ing = 'English';
@@ -201,12 +201,12 @@
         es.cambioIdioma.eus =  "Basque",
         en.cambioIdioma.contenedor = 'Change of language';
         en.cambioIdioma.divIdioma = 'Languaje of visualizador';
-        M.language.addTranslation('en', en);
+        IDEE.language.addTranslation('en', en);
 
         // Se añaden los diccionarios importados
-        M.language.addTranslation('ca', diccCatalan);
-        M.language.addTranslation('ga', diccGallego);
-        M.language.addTranslation('eu', diccEuskera);
+        IDEE.language.addTranslation('ca', diccCatalan);
+        IDEE.language.addTranslation('ga', diccGallego);
+        IDEE.language.addTranslation('eu', diccEuskera);
 
 
         // Se define el nuevo control a partir de unas funciones y dos botones
@@ -236,39 +236,39 @@
         }
 
         var cambioIdioma = () => {
-          document.getElementById("p_idioma").innerHTML=M.language.getValue('cambioIdioma').divIdioma + ' : '+M.language.getLang();            
-          buttonES.title = M.language.getValue('cambioIdioma').esp;
-          buttonEN.title = M.language.getValue('cambioIdioma').ing;
-          buttonCA.title = M.language.getValue('cambioIdioma').cat;
-          buttonGA.title = M.language.getValue('cambioIdioma').gal;
-          buttonEU.title = M.language.getValue('cambioIdioma').eus;
-          titulo.innerHTML= M.language.getValue('cambioIdioma').contenedor;
+          document.getElementById("p_idioma").innerHTML=IDEE.language.getValue('cambioIdioma').divIdioma + ' : '+IDEE.language.getLang();            
+          buttonES.title = IDEE.language.getValue('cambioIdioma').esp;
+          buttonEN.title = IDEE.language.getValue('cambioIdioma').ing;
+          buttonCA.title = IDEE.language.getValue('cambioIdioma').cat;
+          buttonGA.title = IDEE.language.getValue('cambioIdioma').gal;
+          buttonEU.title = IDEE.language.getValue('cambioIdioma').eus;
+          titulo.innerHTML= IDEE.language.getValue('cambioIdioma').contenedor;
         }
 
         var buttonES = document.createElement('button');
         buttonES.onclick = setEs
         buttonES.innerHTML = 'ESP';
-        buttonES.title = M.language.getValue('cambioIdioma').esp;
+        buttonES.title = IDEE.language.getValue('cambioIdioma').esp;
         
         var buttonEN = document.createElement('button');
         buttonEN.onclick = setEn
         buttonEN.innerHTML = 'ENG';
-        buttonEN.title = M.language.getValue('cambioIdioma').ing;
+        buttonEN.title = IDEE.language.getValue('cambioIdioma').ing;
 
         var buttonCA= document.createElement('button');
         buttonCA.onclick = setCA
         buttonCA.innerHTML = 'CAT';
-        buttonCA.title = M.language.getValue('cambioIdioma').cat;
+        buttonCA.title = IDEE.language.getValue('cambioIdioma').cat;
 
         var buttonGA= document.createElement('button');
         buttonGA.onclick = setGA
         buttonGA.innerHTML = 'GAL';
-        buttonGA.title = M.language.getValue('cambioIdioma').gal;
+        buttonGA.title = IDEE.language.getValue('cambioIdioma').gal;
 
         var buttonEU= document.createElement('button');
         buttonEU.onclick = setEU
         buttonEU.innerHTML = 'EUS';
-        buttonEU.title = M.language.getValue('cambioIdioma').eus;
+        buttonEU.title = IDEE.language.getValue('cambioIdioma').eus;
         
 
         var mcontrolmcontainer = document.createElement('div');
@@ -276,7 +276,7 @@
         var tituloContenedor = document.createElement('div');
         tituloContenedor.className = 'divTitulo'
         var titulo = document.createElement('p');
-        titulo.innerHTML= M.language.getValue('cambioIdioma').contenedor;
+        titulo.innerHTML= IDEE.language.getValue('cambioIdioma').contenedor;
         titulo.id = "titleInfo"
         tituloContenedor.appendChild(titulo);
         var contenedorPadre = document.createElement('div');
@@ -293,18 +293,18 @@
         mcontrolmcontainer.appendChild(contenedorPadre);
                 
 
-        const panelExtra = new M.ui.Panel('idiomas', {
+        const panelExtra = new IDEE.ui.Panel('idiomas', {
           "collapsible": true,
           "className": 'g-cartografia-herramienta',
           "collapsedButtonClass": 'icon-target',
-          "position": M.ui.position.TL
+          "position": IDEE.ui.position.TL
         });
         
 
         // Configuración del mapa e idioma
-        M.language.setLang(localStorage.getItem('language') || 'es');
+        IDEE.language.setLang(localStorage.getItem('language') || 'es');
 
-        const mapjs = M.map({
+        const mapjs = IDEE.map({
             container: 'mapjs', //id del contenedor del mapa
             controls: ['scale*true'],
             zoom: 5,
@@ -315,11 +315,11 @@
 
 
         // Se añade un nuevo panel en la carga del mapa, donde se añade el contenedor creado
-        mapjs.on(M.evt.COMPLETED, () => {
-            panelExtra.on(M.evt.ADDED_TO_MAP, (e) => {
+        mapjs.on(IDEE.evt.COMPLETED, () => {
+            panelExtra.on(IDEE.evt.ADDED_TO_MAP, (e) => {
                 cambioIdioma();
                 panelExtra.getControlsContainer().append(mcontrolmcontainer);
-                panelExtra.getTemplatePanel().title = M.language.getValue('cambioIdioma').contenedor;
+                panelExtra.getTemplatePanel().title = IDEE.language.getValue('cambioIdioma').contenedor;
             });
         mapjs.addPanels(panelExtra);
         });

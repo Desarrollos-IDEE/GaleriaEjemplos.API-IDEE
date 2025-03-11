@@ -88,7 +88,7 @@
     <meta name="cnig" content="yes">
     <title>Filtro Espacial</title>
     <!-- Estilo de la API -->
-    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+    <link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">
 
     <style type="text/css">
         html,
@@ -105,19 +105,19 @@
     <!-- Contenedor principal del mapa -->
     <div id="mapjs" class="m-container"></div>
     <!-- Ficheros javascript de la API -->
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>
     <script type="text/javascript">
 
       // Configuración del mapa
-      const mapjs = M.map({
+      const mapjs = IDEE.map({
         container: 'mapjs', //id del contenedor del mapa     
         zoom: 5,
         center: [-413228.4623444635, 4919525.828830231]
       });
 
-      const Rectangulo = new M.layer.GeoJSON({
+      const Rectangulo = new IDEE.layer.GeoJSON({
         name: "Rectángulo",
         source: {
           "type": "FeatureCollection",
@@ -159,7 +159,7 @@
       });
       mapjs.addLayers(Rectangulo);
 
-      const RED_REGENTE = new M.layer.GeoJSON({
+      const RED_REGENTE = new IDEE.layer.GeoJSON({
         name: "red_regente",
         url: 'https://api-features.ign.es/collections/red_regente/items?limit=2000&f=json',
         extract: true
@@ -167,14 +167,14 @@
 
       mapjs.addLayers(RED_REGENTE);
 
-      RED_REGENTE.on(M.evt.LOAD, () => {
+      RED_REGENTE.on(IDEE.evt.LOAD, () => {
 
         //Comprueba que el un elemento A esté dentro de otro B
-        // let filter = M.filter.spatial.CONTAIN(RED_REGENTE);
+        // let filter = IDEE.filter.spatial.CONTAIN(RED_REGENTE);
         // Rectangulo.setFilter(filter);
 
         // Comprueba que el elemento B esté dentro de A
-        let filter = M.filter.spatial.WITHIN(Rectangulo);
+        let filter = IDEE.filter.spatial.WITHIN(Rectangulo);
         RED_REGENTE.setFilter(filter);
 
       });

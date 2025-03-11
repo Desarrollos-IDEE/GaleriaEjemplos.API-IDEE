@@ -81,8 +81,8 @@
   <meta name="cnig" content="yes">
   <title>Ejemplo panel</title>
   <!-- Estilo de la API -->
-  <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
-  <link href="https://componentes.cnig.es/api-core/plugins/zoompanel/zoompanel.ol.min.css" rel="stylesheet" />
+  <link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">
+  <link href="https://componentes.idee.es/api-idee/plugins/zoompanel/zoompanel.ol.min.css" rel="stylesheet" />
 
 
   <style type="text/css">
@@ -202,15 +202,15 @@
   <!-- Contenedor principal del mapa -->
   <div id="mapjs" class="m-container"></div>
   <!-- Ficheros javascript de la API -->
-  <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
-  <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
-  <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+  <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>
+  <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>
+  <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>
 
   <script type="text/javascript">
     // Configuración del mapa
-    M.proxy(true)
-    M.config.PROXY_URL = 'https://componentes.cnig.es/api-core/api/proxy'
-    const mapajs = M.map({
+    IDEE.proxy(true)
+    IDEE.config.PROXY_URL = 'https://componentes.idee.es/api-idee/api/proxy'
+    const mapajs = IDEE.map({
       container: 'mapjs',
       zoom: 2,
       maxZoom: 20,
@@ -218,11 +218,11 @@
     });
 
     // 1. Se crea un panel y se añade al mapa
-    const panelExtra = new M.ui.Panel('toolsExtra', {
+    const panelExtra = new IDEE.ui.Panel('toolsExtra', {
       "collapsible": true,
       "className": 'g-herramienta',
       "collapsedButtonClass": 'm-tools',
-      "position": M.ui.position.TL
+      "position": IDEE.ui.position.TL
     });
 
     const htmlPanel =
@@ -245,11 +245,11 @@
     mapajs.addPanels([panelExtra]);
     document.querySelector('.g-herramienta .m-panel-controls').innerHTML = htmlPanel;
     // Para hacer movible el panel desde el título
-    M.utils.draggabillyPlugin(panelExtra, '#m-herramienta-title');
+    IDEE.utils.draggabillyPlugin(panelExtra, '#m-herramienta-title');
 
 
     //2. Se crean los controles
-    const controlToast = new M.Control(new M.impl.Control(), 'controlToast');
+    const controlToast = new IDEE.control(new IDEE.impl.Control(), 'controlToast');
     controlToast.createView = (map) => {
       const contenedor = document.createElement('div');
       return contenedor;
@@ -266,21 +266,21 @@
       document.querySelector('#m-herramienta-contents').innerHTML = controlToast.htmlView
 
       document.querySelector('#toastInfor').onclick = function () {
-        M.toast.info('Notificación informativa');
+        IDEE.toast.info('Notificación informativa');
       };
       document.querySelector('#toastError').onclick = function () {
-        M.toast.error('Notificación de error', null, 5000);
+        IDEE.toast.error('Notificación de error', null, 5000);
       };
       document.querySelector('#toastwarning').onclick = function () {
-        M.toast.warning('Notificación de aviso', 2, 3000);
+        IDEE.toast.warning('Notificación de aviso', 2, 3000);
       };
       document.querySelector('#toastExito').onclick = function () {
-        M.toast.success('Notificación de éxito', 1, 1000);
+        IDEE.toast.success('Notificación de éxito', 1, 1000);
       };
     }
 
 
-    const controlModal = new M.Control(new M.impl.Control(), 'controlModal');
+    const controlModal = new IDEE.control(new IDEE.impl.Control(), 'controlModal');
     controlModal.createView = (map) => {
       const contenedor = document.createElement('div');
       return contenedor;
@@ -298,13 +298,13 @@
       document.querySelector('#m-herramienta-contents').innerHTML = controlModal.htmlView
 
       document.querySelector('#ModalInfor').onclick = function () {
-        M.dialog.info('Mensaje informativo', 'Diálogo informativo');
+        IDEE.dialog.info('Mensaje informativo', 'Diálogo informativo');
       };
       document.querySelector('#ModalError').onclick = function () {
-        M.dialog.error('Mensaje de error');
+        IDEE.dialog.error('Mensaje de error');
       };
       document.querySelector('#ModalExito').onclick = function () {
-        M.dialog.success('Mensaje de éxito');
+        IDEE.dialog.success('Mensaje de éxito');
       };
     }
 

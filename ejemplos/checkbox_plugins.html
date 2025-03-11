@@ -258,7 +258,7 @@
                         <script>
 
                                 let parent = document.querySelector('#quick_options');
-                                let quickLayers = Object.values(IDEE.getQuickLayers()).forEach((layer, index) => {
+                                let quickLayers = Object.entries(IDEE.getQuickLayers()).forEach(([key, value]) => {
                                         let div = document.createElement('div');
                                         div.setAttribute('class', 'col-sm-4 col-sm-6');
                                         let checkbox = document.createElement('input');
@@ -266,12 +266,12 @@
                                         checkbox.addEventListener('change', updateIframe);
                                         checkbox.setAttribute('name', 'layer');
                                         let label = document.createElement('label');
-                                        label.setAttribute("style", "font-size:small");
-                                        if (typeof (layer) === 'object') {
-                                                label.innerHTML = layer.name;
-                                                checkbox.setAttribute('value', layer.name);
+                                        label.setAttribute("style", "font-size:x-small");
+                                        if (typeof (value) === 'object') {
+                                                label.innerHTML = value.name;
+                                                checkbox.setAttribute('value', key);
                                         } else {
-                                                label.innerHTML = Object.keys(IDEE.getQuickLayers())[index];
+                                                label.innerHTML = key;
                                                 checkbox.setAttribute('value', label.innerHTML)
                                         };
                                         div.appendChild(checkbox);

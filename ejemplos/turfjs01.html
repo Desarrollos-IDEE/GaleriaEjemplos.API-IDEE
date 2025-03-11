@@ -75,9 +75,9 @@
     <head>
         <title>Poligonización Voronoi</title>
         <!-- Estilo de la API -->
-        <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+        <link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">
         <!-- Estilos de los plugins añadidos -->
-        <link href="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.css" rel="stylesheet" />
+        <link href="https://componentes.idee.es/api-idee/plugins/toc/toc.ol.min.css" rel="stylesheet" />
 
         <style type="text/css">
             html,
@@ -95,19 +95,19 @@
         <!-- Ficheros  javascript de TURF-->
         <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
         <!-- Ficheros javascript de la API -->
-        <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
-        <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
-        <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+        <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>
+        <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>
+        <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>
         <!-- Ficheros  javascript de los plugins añadidos-->
-        <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/toc/toc.ol.min.js"></script>
+        <script type="text/javascript" src="https://componentes.idee.es/api-idee/plugins/toc/toc.ol.min.js"></script>
         
         <!-- Contenedor principal del mapa -->
         <div id="mapjs" class="m-container"></div>
 
         <script type="text/javascript">
             // Configuración del mapa
-            M.proxy(false)
-            const mapjs = M.map({
+            IDEE.proxy(false)
+            const mapjs = IDEE.map({
               container: 'mapjs', //id del contenedor del mapa
               controls: ['scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
               zoom: 8,
@@ -117,7 +117,7 @@
              });
 
             // Configuración de las capas
-            const geodesia = new M.layer.GeoJSON({
+            const geodesia = new IDEE.layer.GeoJSON({
                 name: "vértices", 
                 url: "https://www.ign.es/wfs/redes-geodesicas?service=WFS&version=1.0.0&request=GetFeature&typename=RED_REGENTE&outputFormat=application%2Fjson&srsname=EPSG%3A3857&",        
                 extract: false
@@ -125,7 +125,7 @@
         
 
             // Configuracion de estilos
-            let estilo1 = new M.style.Point({
+            let estilo1 = new IDEE.style.Point({
                 radius: 2, 
                 fill: {  
                     color: 'black',
@@ -136,24 +136,24 @@
             mapjs.addLayers(geodesia);
             geodesia.setStyle(estilo1);
 
-            const mp_toc = new M.plugin.TOC({
+            const mp_toc = new IDEE.plugin.TOC({
                 collapsed: true,
                 collapsible: true,
             });
             mapjs.addPlugin(mp_toc);
 
             // A partir del evento on load de la capa, obtenemos el geojson de la capa para aplicar el análisis espacial
-            geodesia.on(M.evt.LOAD, function(features) {
+            geodesia.on(IDEE.evt.LOAD, function(features) {
                 var voronoiPolygonsGJSON = turf.voronoi(geodesia.toGeoJSON());
                 
-                const voronoiPolygons = new M.layer.GeoJSON({
+                const voronoiPolygons = new IDEE.layer.GeoJSON({
                     name: "Poligonización", 
                     source: voronoiPolygonsGJSON,
                     extract: true
                 });
                 mapjs.addLayers(voronoiPolygons);
 
-                let estilo2 = new M.style.Polygon({
+                let estilo2 = new IDEE.style.Polygon({
                     fill: {
                         color: 'blue',
                         opacity: 0.1,

@@ -81,9 +81,9 @@
     <meta name="cnig" content="yes">
     <title>Escala gráfica OL</title>
     <!-- Estilo de la API -->
-    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+    <link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">
     <!-- Estilos de los plugins añadidos -->
-    <link href="https://componentes.cnig.es/api-core/plugins/attributions/attributions.ol.min.css" rel="stylesheet" />
+    <link href="https://componentes.idee.es/api-idee/plugins/attributions/attributions.ol.min.css" rel="stylesheet" />
 
     <!-- ol-ext - css -->
     <link rel="stylesheet" href="https://cdn.rawgit.com/Viglino/ol-ext/master/dist/ol-ext.min.css" />
@@ -103,9 +103,9 @@
       <!-- Contenedor principal del mapa -->
       <div id="mapjs" class="m-container"></div>
       <!-- Ficheros javascript de la API -->
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+      <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>
+      <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>
+      <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>
 
       <!-- ol-ext - js -->
       <script type="text/javascript" src="https://cdn.rawgit.com/Viglino/ol-ext/master/dist/ol-ext.min.js"></script>
@@ -113,7 +113,7 @@
       <script type="text/javascript">
           // Configuración del mapa
         
-          const mapjs = M.map({
+          const mapjs = IDEE.map({
               container: 'mapjs', //id del contenedor del mapa
               controls: ['panzoom', 'scale*true', 'rotate', 'location'],
               zoom: 13,
@@ -127,7 +127,7 @@
           mapaOL.addControl(scaleLineControl);
 
           // Configuración de las capas
-          TMS_PNOA = new M.layer.TMS({
+          TMS_PNOA = new IDEE.layer.TMS({
               url: 'https://tms-pnoa-ma.idee.es/1.0.0/pnoa-ma/{z}/{x}/{-y}.jpeg',
               name: 'PNOA_MA_IGN',
           });

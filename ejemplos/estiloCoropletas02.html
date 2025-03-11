@@ -88,7 +88,7 @@
     <meta name="cnig" content="yes">
     <title>Ejemplo Coropletas II </title>
     <!-- Estilo de la API -->
-    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+    <link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">
 
     <style type="text/css">
         html,
@@ -105,21 +105,21 @@
     <!-- Contenedor principal del mapa -->
     <div id="mapjs" class="m-container"></div>
     <!-- Ficheros javascript de la API -->
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>
     <script type="text/javascript">
 
 
         // Configuración del mapa
-        const mapjs = M.map({
+        const mapjs = IDEE.map({
             container: 'mapjs', //id del contenedor del mapa     
             zoom: 6,
             center: [-413228.4623444635, 4919525.828830231],
 
 
         });
-        let lyProv = new M.layer.WFS({
+        let lyProv = new IDEE.layer.WFS({
             name: "Provincias",
             url: "http://geostematicos-sigc.juntadeandalucia.es/geoserver/tematicos/wfs?",
             name: "Provincias",
@@ -131,7 +131,7 @@
         // se crea el estilo y se aplica a la capa
         /*En caso de que queramos pasar directamente los rangos de clasificación, la función que tenemos que definir es tan simple como la siguiente:*/
         var rangos_usuario = [10, 20, 30, 40, 50];
-        let choropleth = new M.style.Choropleth("u_cod_prov", ["red", "blue", "purple"], () => rangos_usuario);
+        let choropleth = new IDEE.style.Choropleth("u_cod_prov", ["red", "blue", "purple"], () => rangos_usuario);
 
 
         //se añade la capa al mapa

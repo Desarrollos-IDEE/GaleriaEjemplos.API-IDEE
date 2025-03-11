@@ -88,10 +88,10 @@
     <meta name="cnig" content="yes">
     <title>Servicio - OGCAPI Features</title>
     <!-- Estilo de la API -->
-    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">  
+    <link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">  
     
     <!-- Estilo de extensiones -->
-    <link href="https://componentes.cnig.es/api-core/plugins/layerswitcher/layerswitcher.ol.min.css" rel="stylesheet" />
+    <link href="https://componentes.idee.es/api-idee/plugins/layerswitcher/layerswitcher.ol.min.css" rel="stylesheet" />
    
 
     <style type="text/css">
@@ -109,17 +109,17 @@
       <!-- Contenedor principal del mapa -->
       <div id="mapjs" class="m-container"></div>
       <!-- Ficheros javascript de la API -->
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>          
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>        
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>      
+      <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>          
+      <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>        
+      <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>      
       
       <!-- Ficheros javascript de extensiones -->
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/layerswitcher/layerswitcher.ol.min.js"></script>
+      <script type="text/javascript" src="https://componentes.idee.es/api-idee/plugins/layerswitcher/layerswitcher.ol.min.js"></script>
 
 
       <script type="text/javascript">
         // Configuración del mapa
-        const mapjs = M.map({
+        const mapjs = IDEE.map({
           container: 'mapjs', //id del contenedor del mapa
           controls: ['panzoom', 'scale*true', 'scaleline', 'location', 'backgroundlayers'],
           zoom: 5,
@@ -128,7 +128,7 @@
           center: [-467062.8225, 4683459.6216],
         });
         // define la capa
-        const layer = new M.layer.OGCAPIFeatures({
+        const layer = new IDEE.layer.OGCAPIFeatures({
           url: 'https://api-features.idee.es/collections/',
           name: 'falls',
           legend: 'Capa OGCAPIFeatures',
@@ -137,7 +137,7 @@
         }, {
 
           // aplica un estilo a la capa
-          style: new M.style.Point({
+          style: new IDEE.style.Point({
             fill: {
               color: 'blue',
             }
@@ -146,17 +146,17 @@
           // define los posibles estilos que puede tener la capa desde el selector de capas
           predefinedStyles:[  
 
-          new M.style.Point({
+          new IDEE.style.Point({
             fill: {
               color: 'red',
             }
           }),
 
-          new M.style.Cluster(),
+          new IDEE.style.Cluster(),
 
-          new M.style.Heatmap(),
+          new IDEE.style.Heatmap(),
 
-          new M.style.Category("hydroid_localid"),
+          new IDEE.style.Category("hydroid_localid"),
           ]
         }, {
 
@@ -169,7 +169,7 @@
 
 
         // define el constructor para la configuración del selector de capas
-        const mplayerswitcher = new M.plugin.Layerswitcher({
+        const mplayerswitcher = new IDEE.plugin.Layerswitcher({
           collapsed: true,
           position: 'TR',
           https: true,

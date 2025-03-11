@@ -81,7 +81,7 @@
   <meta name="cnig" content="yes">
   <title>Control personalizado</title>
   <!-- Estilo de la API -->
-  <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+  <link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">
 
   <style type="text/css">
     * {
@@ -104,16 +104,16 @@
   <!-- Contenedor principal del mapa -->
   <div id="mapjs" class="m-container"></div>
   <!-- Ficheros javascript de la API -->
-  <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
-  <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
-  <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+  <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>
+  <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>
+  <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>
 
 
   <script type="text/javascript">
     // Configuración del mapa
-    M.proxy(true)
-    M.config.PROXY_URL = 'https://componentes.cnig.es/api-core/api/proxy'
-    const mapajs = M.map({
+    IDEE.proxy(true)
+    IDEE.config.PROXY_URL = 'https://componentes.idee.es/api-idee/api/proxy'
+    const mapajs = IDEE.map({
       container: 'mapjs', //id del contenedor del mapa
       zoom: 2,
       maxZoom: 20,
@@ -122,9 +122,9 @@
 
 
     // 1. Se crean los controles, primer parámetro la implementación del control, segundo parámetro el nombre del control
-    const controlAlerta = new M.Control(new M.impl.Control(), 'controlAlerta');
-    const controlToast = new M.Control(new M.impl.Control(), 'controlToast');
-    const controlModal = new M.Control(new M.impl.Control(), 'controlModal');
+    const controlAlerta = new IDEE.control(new IDEE.impl.Control(), 'controlAlerta');
+    const controlToast = new IDEE.control(new IDEE.impl.Control(), 'controlToast');
+    const controlModal = new IDEE.control(new IDEE.impl.Control(), 'controlModal');
 
 
     // 2. Se sobrescribe el método, tiene que devolver un elemento HTML
@@ -148,7 +148,7 @@
         // Aquí se comprueba que se ha pulsado sobre la tecla "t" que tiene el valor 84:
         if (event.keyCode === 84) {
           (function () {
-            M.toast.info('Nombre del control: ' + map.getControls()[1].name); 
+            IDEE.toast.info('Nombre del control: ' + map.getControls()[1].name); 
           })();
 
         }
@@ -165,7 +165,7 @@
         // Aquí se comprueba que se ha pulsado sobre la tecla "m" que tiene el valor 77:
         if (event.keyCode === 77) {
           (function () {
-            M.dialog.info('Nombre del control: ' + map.getControls()[2].name); 
+            IDEE.dialog.info('Nombre del control: ' + map.getControls()[2].name); 
           })();
 
         }

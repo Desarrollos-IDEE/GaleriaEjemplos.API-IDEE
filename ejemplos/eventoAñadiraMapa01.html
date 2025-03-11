@@ -80,7 +80,7 @@
     <meta name="cnig" content="yes">
     <title>Evento añadir objeto al mapa</title>
     <!-- Estilo de la API -->
-    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">          
+    <link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">          
 
     <style type="text/css">
         html,
@@ -97,14 +97,14 @@
     <!-- Contenedor principal del mapa -->
     <div id="mapjs" class="m-container"></div>
     <!-- Ficheros javascript de la API -->
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>          
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>        
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>         
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>          
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>        
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>         
 
 
       <script type="text/javascript">
         // Configuración del mapa
-        const mapjs = M.map({
+        const mapjs = IDEE.map({
             container: 'mapjs', //id del contenedor del mapa
             controls: ['panzoom'], //control panzoom: botones +/- de zoom       
             zoom: 6,
@@ -113,14 +113,14 @@
             center: [-467062.8225, 4683459.6216]
         });
 
-        const capa = new M.layer.WMS({
+        const capa = new IDEE.layer.WMS({
           url: 'http://www.ign.es/wms-inspire/unidades-administrativas?',
           name: 'AU.AdministrativeBoundary',
           legend: 'Límite administrativo',
         });
 
-        capa.getImpl().on(M.evt.ADDED_TO_MAP, (impl) => {
-          M.dialog.info("Evento ADDED_TO_MAP: " + impl.legend);
+        capa.getImpl().on(IDEE.evt.ADDED_TO_MAP, (impl) => {
+          IDEE.dialog.info("Evento ADDED_TO_MAP: " + impl.legend);
         });
 
         mapjs.addLayers([capa]);

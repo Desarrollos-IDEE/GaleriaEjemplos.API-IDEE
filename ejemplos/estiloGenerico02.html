@@ -82,17 +82,17 @@
 
     <!-- CSS -->
     <!-- Estilo de la API -->
-    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+    <link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">
     <!-- Estilos de los plugins añadidos -->
-    <link href="https://componentes.cnig.es/api-core/plugins/layerswitcher/layerswitcher.ol.min.css" rel="stylesheet" />
+    <link href="https://componentes.idee.es/api-idee/plugins/layerswitcher/layerswitcher.ol.min.css" rel="stylesheet" />
 
     <!-- JS -->
     <!-- Ficheros javascript de la API -->
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>
     <!-- Ficheros  javascript de los plugins añadidos-->
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/layerswitcher/layerswitcher.ol.min.js"></script>
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/plugins/layerswitcher/layerswitcher.ol.min.js"></script>
 
 
     <style>
@@ -110,8 +110,8 @@
 
     <script type="text/javascript">
         // Configuración del mapa
-        M.proxy(false);
-        const mapjs = M.map({
+        IDEE.proxy(false);
+        const mapjs = IDEE.map({
             container: 'mapjs', //id del contenedor del mapa
             controls: ['scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
             zoom: 5,
@@ -121,7 +121,7 @@
         });
 
         // Creación de estilos
-        let estilo_CCAA = new M.style.Polygon({
+        let estilo_CCAA = new IDEE.style.Polygon({
                 fill: {
                     color: (feature) => {
 			                  let nameunit = feature.getAttributes().nameunit;
@@ -149,7 +149,7 @@
             });
 
 
-            let estilo_Municipios = new M.style.Polygon({
+            let estilo_Municipios = new IDEE.style.Polygon({
                 fill: {
                     color: (feature) => {
 			                  let nameunit = feature.getAttributes().nameunit;
@@ -175,14 +175,14 @@
             });
         
         // Definición de las capas
-        const capaMVT_CCAA = new M.layer.MVT({
+        const capaMVT_CCAA = new IDEE.layer.MVT({
             url: "https://vt-unidades-administrativas.ign.es/1.0.0/uadministrativa/{z}/{x}/{y}.pbf",
             layers: 'comunidadautonoma',
             name: 'CCAA',
             visibility: true,
             extract: true,
         });
-        const capaMVT_Municipios = new M.layer.MVT({
+        const capaMVT_Municipios = new IDEE.layer.MVT({
             url: "https://vt-unidades-administrativas.ign.es/1.0.0/uadministrativa/{z}/{x}/{y}.pbf",
             name: 'Municipios',
             layers: 'municipio',
@@ -199,7 +199,7 @@
 
 
          // Construcción del selector de capas e incorporación al mapa
-        const mp_layerswitcher = new M.plugin.Layerswitcher({
+        const mp_layerswitcher = new IDEE.plugin.Layerswitcher({
             postition: 'TL',
             collapsible: true,
             collapsed: true,

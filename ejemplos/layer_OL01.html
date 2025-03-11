@@ -44,7 +44,7 @@
       <div class="row">
         <div class="col">
             <!-- Aquí va el título del ejemplo -->
-            <a class="navbar-brand">Obtener una capa OL desde capa APICNIG</a>
+            <a class="navbar-brand">Obtener una capa OL desde capa APIIDEE</a>
         </div>
       </div>
       <div class="row">
@@ -78,9 +78,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="cnig" content="yes">
-    <title>Capa OL desde APICNIG</title>
+    <title>Capa OL desde APIIDEE</title>
     <!-- Estilo de la API -->
-    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">          
+    <link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">          
 
     <style type="text/css">
         html,
@@ -97,14 +97,14 @@
     <!-- Contenedor principal del mapa -->
     <div id="mapjs" class="m-container"></div>
     <!-- Ficheros javascript de la API -->
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>          
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>        
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>         
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>          
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>        
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>         
 
 
       <script type="text/javascript">
         // Construimos un mapa
-        const mapjs = M.map({
+        const mapjs = IDEE.map({
             container: 'mapjs', //id del contenedor del mapa   
             zoom: 6,
             maxZoom: 20,
@@ -113,7 +113,7 @@
         });
 
         // Añadimos una capa TMS
-        TMS_PNOA = new M.layer.TMS({
+        TMS_PNOA = new IDEE.layer.TMS({
             url: 'https://tms-pnoa-ma.idee.es/1.0.0/pnoa-ma/{z}/{x}/{-y}.jpeg',
             name: 'PNOA_MA_IGN',
         });
