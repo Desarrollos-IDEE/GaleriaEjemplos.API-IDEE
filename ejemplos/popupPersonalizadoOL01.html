@@ -81,7 +81,7 @@
     <meta name="cnig" content="yes">
     <title>Popup desde OL</title>
     <!-- Estilo de la API -->
-    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+    <link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">
 
     <style type="text/css">
         html,
@@ -145,15 +145,15 @@
       <!-- Contenedor principal del mapa -->
       <div id="mapjs" class="m-container"></div>
       <!-- Ficheros javascript de la API -->
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+      <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>
+      <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>
+      <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>
 
 
       <script type="text/javascript">
           // Configuración del mapa
-		      M.proxy(false)
-          const mapjs = M.map({
+		      IDEE.proxy(false)
+          const mapjs = IDEE.map({
               container: 'mapjs', //id del contenedor del mapa
               controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
               zoom: 5,
@@ -164,7 +164,7 @@
           var mapaOL = mapjs.getMapImpl();
 
           // Configuración de las capas
-          const geodesia = new M.layer.GeoJSON({
+          const geodesia = new IDEE.layer.GeoJSON({
                 name: "vértices", 
                 url: "https://www.ign.es/wfs/redes-geodesicas?service=WFS&version=1.0.0&request=GetFeature&typename=RED_REGENTE&outputFormat=application%2Fjson&srsname=EPSG%3A3857&",        
                 extract: false

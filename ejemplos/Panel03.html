@@ -125,7 +125,7 @@
 
   </style>
 
-  <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+  <link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">
 
 </head>
 
@@ -133,23 +133,23 @@
   <!-- Contenedor principal del mapa -->
   <div id="mapjs" class="m-container"></div>
   <!-- Ficheros javascript de la API -->
-  <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
-  <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
-  <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+  <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>
+  <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>
+  <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>
 
 
   <script type="text/javascript">
     // Configuración del mapa
-    M.proxy(true)
-    M.config.PROXY_URL = 'https://componentes.cnig.es/api-core/api/proxy'
-    const mapajs = M.map({
+    IDEE.proxy(true)
+    IDEE.config.PROXY_URL = 'https://componentes.idee.es/api-idee/api/proxy'
+    const mapajs = IDEE.map({
       container: 'mapjs', //id del contenedor del mapa
     });
 
-    const panelExtra = new M.ui.Panel('toolsExtra', {
+    const panelExtra = new IDEE.ui.Panel('toolsExtra', {
       "className": 'm-herramienta',
       "collapsedButtonClass": 'm-tools',
-      "position": M.ui.position.TL
+      "position": IDEE.ui.position.TL
     });
     mapajs.addPanels([panelExtra]);
 
@@ -162,7 +162,7 @@
     `
 
     // 4. Se crea un control, primer parámetro la implementación del control, segundo parámetro el nombre del control
-    const control1 = new M.Control(new M.impl.Control(), 'ControlPrueba');
+    const control1 = new IDEE.control(new IDEE.impl.Control(), 'ControlPrueba');
 
     // Con esta línea, se comparte con el obbjeto window la variable control1
     window.control1 = control1;
@@ -179,13 +179,13 @@
     }
 
     control1.activate = () => {
-      M.toast.success('Activado'); 
+      IDEE.toast.success('Activado'); 
       console.log('Activado');
       document.querySelector('.buttonHerramienta').classList.add("activated");
     }
 
     control1.deactivate = () => {
-      M.toast.info('Desactivado'); 
+      IDEE.toast.info('Desactivado'); 
       console.log('Desactivado');
       document.querySelector('.buttonHerramienta').classList.remove("activated");
     }

@@ -18,7 +18,7 @@
 
 
 
-    <title>Galería ejemplos API-CNIG</title>
+    <title>Galería ejemplos API-IDEE</title>
   </head>
   <body>
     <!-- Optional JavaScript; choose one of the two! -->
@@ -80,10 +80,10 @@
     <meta name="cnig" content="yes">
     <title>Visualización de información a partir de petición POST a OGCAPI-Processes</title>
     <!-- Estilo de la API -->
-    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+    <link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">
 
     <!-- Extensión información de coordenadas -->
-    <link href="https://componentes.cnig.es/api-core/plugins/infocoordinates/infocoordinates.ol.min.css"
+    <link href="https://componentes.idee.es/api-idee/plugins/infocoordinates/infocoordinates.ol.min.css"
         rel="stylesheet" />
     <!-- Estilos del mapa y del buevo control añadido -->
     <style type="text/css">
@@ -213,13 +213,13 @@
       <!-- Contenedor principal del mapa -->
       <div id="mapjs_div" class="m-container"></div>
       <!-- Ficheros javascript de la API -->
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+      <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>
+      <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>
+      <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>
 
       <!-- Extensión información de coordenadas -->
       <script type="text/javascript"
-        src="https://componentes.cnig.es/api-core/plugins/infocoordinates/infocoordinates.ol.min.js"></script>
+        src="https://componentes.idee.es/api-idee/plugins/infocoordinates/infocoordinates.ol.min.js"></script>
       <!-- Con este script se va a realizar una petición HTTP POST al OGCAPI Processes para obtener la altitud de un punto al hacer clic sobre el mapa   -->
       <!-- En primer lugar se ha de habilitar el panel de la izquierda que mandará la orden de realizar la petición al processes invocando a la función myFunction() -->
       <!-- Seguidamente se hace clic sobre el mapa en el lugar donde se quiera conocer la altitud -->
@@ -229,11 +229,11 @@
 
         // Configuración del mapa
 
-        const zoom_p = M.config.MAP_VIEWER_ZOOM || 5;
-        const center_p = M.config.MAP_VIEWER_CENTER || ol.proj.fromLonLat([-3, 40]);
+        const zoom_p = IDEE.config.MAP_VIEWER_ZOOM || 5;
+        const center_p = IDEE.config.MAP_VIEWER_CENTER || ol.proj.fromLonLat([-3, 40]);
 
-        M.proxy(false) // Necesario para ejecutar el visualizador en local.
-        const mapajs = M.map({
+        IDEE.proxy(false) // Necesario para ejecutar el visualizador en local.
+        const mapajs = IDEE.map({
             container: 'mapjs_div',
             controls: [
                 // 'backgroundlayers'
@@ -244,12 +244,12 @@
             center: center_p,
         });
 
-        const layers_p = M.config.MAP_VIEWER_LAYERS || [];
+        const layers_p = IDEE.config.MAP_VIEWER_LAYERS || [];
         mapajs.addLayers(layers_p)
 
 
         // Extensión información de coordenadas para comprobar las coordenadas
-        const infoCoordenadas = new M.plugin.Infocoordinates({
+        const infoCoordenadas = new IDEE.plugin.Infocoordinates({
             position: 'TR',
             decimalGEOcoord: 6,
             decimalUTMcoord: 3
@@ -258,11 +258,11 @@
         infoCoordenadas.panel_._element.style.order = 4
 
 
-        const panelExtra = new M.ui.Panel('DameLaCoordenada', {
+        const panelExtra = new IDEE.ui.Panel('DameLaCoordenada', {
             "collapsible": true,
             "className": 'panelExtraCSS',
             "collapsedButtonClass": 'icon-target',
-            "position": M.ui.position.TL
+            "position": IDEE.ui.position.TL
         });
         //  Definición del contenido del nuevo panel
         var mcontrolmcontainer = document.createElement('div');
@@ -292,7 +292,7 @@
             var text = document.getElementById("text");
             if (checkBox.checked == true) {
                 // Se invoca el evento onClick para que el pulsar en el mapa se realice la petición HTTP POST al OGCAPI Processes
-                mapajs.on(M.evt.CLICK, (m) => {
+                mapajs.on(IDEE.evt.CLICK, (m) => {
                     Este = m.coord[0];
                     Norte = m.coord[1];
                     fetch('https://api-processes.idee.es/processes/getElevation/execution', {
@@ -316,7 +316,7 @@
                         .then(response => 
                             (
                             // Se muestan las coordenadas obtenidas en un dialogo. El valor de la altitud es el obtenido a traves de la petición
-                            M.dialog.info(
+                            IDEE.dialog.info(
                                 `
                         <p>Se ha hecho click sobre el mapa</p>
                         <p>Coordenadas en WGS84/Pseudo-Mercator (EPSG:3857)</p>
@@ -343,10 +343,10 @@
         contenedorPadre.appendChild(contenedor);
         mcontrolmcontainer.appendChild(contenedorPadre);
 
-        mapajs.on(M.evt.COMPLETED, () => {
-            panelExtra.on(M.evt.ADDED_TO_MAP, (e) => {
+        mapajs.on(IDEE.evt.COMPLETED, () => {
+            panelExtra.on(IDEE.evt.ADDED_TO_MAP, (e) => {
                 panelExtra.getControlsContainer().append(mcontrolmcontainer);
-                // panelExtra.getTemplatePanel().title = M.language.getValue('cambioIdioma').contenedor;
+                // panelExtra.getTemplatePanel().title = IDEE.language.getValue('cambioIdioma').contenedor;
             });
             mapajs.addPanels(panelExtra);
         });

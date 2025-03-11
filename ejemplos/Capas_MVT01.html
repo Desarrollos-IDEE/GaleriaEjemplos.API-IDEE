@@ -88,10 +88,10 @@
     <meta name="cnig" content="yes">
     <title>Capas MVT</title>
     <!-- Estilo de la API -->
-    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+    <link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">
     <!-- Estilos de los plugins añadidos -->
     
-    <link href="https://componentes.cnig.es/api-core/plugins/layerswitcher/layerswitcher.ol.min.css" rel="stylesheet" />
+    <link href="https://componentes.idee.es/api-idee/plugins/layerswitcher/layerswitcher.ol.min.css" rel="stylesheet" />
     <style type="text/css">
         html,
         body {
@@ -107,16 +107,16 @@
       <!-- Contenedor principal del mapa -->
       <div id="mapjs" class="m-container"></div>
       <!-- Ficheros javascript de la API -->
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+      <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>
+      <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>
+      <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>
       <!-- Ficheros  javascript de los plugins añadidos-->
       
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/layerswitcher/layerswitcher.ol.min.js"></script>
+      <script type="text/javascript" src="https://componentes.idee.es/api-idee/plugins/layerswitcher/layerswitcher.ol.min.js"></script>
 
       <script type="text/javascript">
         // Configuración del mapa
-        const mapjs = M.map({
+        const mapjs = IDEE.map({
           container: 'mapjs', //id del contenedor del mapa
           controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
           zoom:10,
@@ -126,7 +126,7 @@
         });
 
         // Configuración de las capas
-        let estilo_gr = new M.style.Line({
+        let estilo_gr = new IDEE.style.Line({
           fill: {
             color: 'white',
             width: 1
@@ -137,7 +137,7 @@
           },
         });
 
-         let estilo_rios = new M.style.Line({
+         let estilo_rios = new IDEE.style.Line({
           fill: {
             color: 'white',
             width: 1
@@ -148,7 +148,7 @@
           },
         });
 
-        const capaMVT_BTN = new M.layer.MVT({
+        const capaMVT_BTN = new IDEE.layer.MVT({
           url: "https://vt-btn.idee.es/1.0.0/btn/tile/{z}/{y}/{x}.pbf",
           name: 'BTN',
           visibility: true,
@@ -159,7 +159,7 @@
 
     
 
-        const capaMVT_sendero_gr = new M.layer.MVT({
+        const capaMVT_sendero_gr = new IDEE.layer.MVT({
           url: "https://vt-fedme.idee.es/vt.senderogr/{z}/{x}/{y}.pbf",
           name: 'sendero_gr',
           visibility: true,
@@ -178,7 +178,7 @@
      
 
         // Configuración de los plugins
-        const mp8 = new M.plugin.Layerswitcher({
+        const mp8 = new IDEE.plugin.Layerswitcher({
           collapsed: true,
           collapsible: true,
         });

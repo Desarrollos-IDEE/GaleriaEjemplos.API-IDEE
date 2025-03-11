@@ -81,17 +81,17 @@
     <meta name="cnig" content="yes">
     <title>Estilos de panel</title>
     <!-- Estilo de la API -->
-    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+    <link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">
 
     <!-- Dependencias beautyTOC -->
-    <link href="https://componentes.cnig.es/api-core/plugins/beautytoc/beautytoc.ol.min.css" rel="stylesheet" />
+    <link href="https://componentes.idee.es/api-idee/plugins/beautytoc/beautytoc.ol.min.css" rel="stylesheet" />
     <!-- Dependencias atribuciones -->
-    <link href="https://componentes.cnig.es/api-core/plugins/attributions/attributions.ol.min.css" rel="stylesheet" />
+    <link href="https://componentes.idee.es/api-idee/plugins/attributions/attributions.ol.min.css" rel="stylesheet" />
 
     <!-- Dependencias backimglayer -->
-    <link href="https://componentes.cnig.es/api-core/plugins/backimglayer/backimglayer.ol.min.css" rel="stylesheet" />
+    <link href="https://componentes.idee.es/api-idee/plugins/backimglayer/backimglayer.ol.min.css" rel="stylesheet" />
     <!-- Dependencias buffer -->
-    <link href="https://componentes.cnig.es/api-core/plugins/buffer/buffer.ol.min.css" rel="stylesheet" />
+    <link href="https://componentes.idee.es/api-idee/plugins/buffer/buffer.ol.min.css" rel="stylesheet" />
 
     <style type="text/css">
         html,
@@ -108,34 +108,34 @@
     <!-- Contenedor principal del mapa -->
     <div id="mapjs" class=""></div>
     <!-- Ficheros javascript de la API -->
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>
 
     <!-- Dependencias beautyTOC -->
     <script type="text/javascript"
-        src="https://componentes.cnig.es/api-core/plugins/beautytoc/beautytoc.ol.min.js"></script>
+        src="https://componentes.idee.es/api-idee/plugins/beautytoc/beautytoc.ol.min.js"></script>
     <!-- Dependencias atribuciones -->
     <script type="text/javascript"
-        src="https://componentes.cnig.es/api-core/plugins/attributions/attributions.ol.min.js"></script>
+        src="https://componentes.idee.es/api-idee/plugins/attributions/attributions.ol.min.js"></script>
     <!-- Dependencias buffer -->
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/plugins/buffer/buffer.ol.min.js"></script>
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/plugins/buffer/buffer.ol.min.js"></script>
 
     <!-- Dependencias backimglayer -->
     <script type="text/javascript"
-        src="https://componentes.cnig.es/api-core/plugins/backimglayer/backimglayer.ol.min.js"></script>
+        src="https://componentes.idee.es/api-idee/plugins/backimglayer/backimglayer.ol.min.js"></script>
 
     <script type="text/javascript">
 
         // Configuración del mapa
-        const mapjs = M.map({
+        const mapjs = IDEE.map({
             container: 'mapjs',
             zoom: 6,
             center: [-467062.8225, 4683459.6216],
         });
 
         //Creamos plugins de Buffer
-        const buffer = new M.plugin.Buffer({
+        const buffer = new IDEE.plugin.Buffer({
             position: 'TL',
         });
         //añade attribtions al mapa

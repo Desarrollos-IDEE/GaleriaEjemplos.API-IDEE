@@ -89,10 +89,10 @@
               <meta name="cnig" content="yes">
               <title>BackImgLayer</title>
               <!-- Estilo de la API -->
-              <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+              <link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">
           
               <!-- Dependencias backimglayer -->
-              <link href="https://componentes.cnig.es/api-core/plugins/backimglayer/backimglayer.ol.min.css" rel="stylesheet" />
+              <link href="https://componentes.idee.es/api-idee/plugins/backimglayer/backimglayer.ol.min.css" rel="stylesheet" />
               <style type="text/css">
                   html,
                   body {
@@ -108,25 +108,25 @@
               <!-- Contenedor principal del mapa -->
               <div id="mapjs" class="m-container"></div>
               <!-- Ficheros javascript de la API -->
-              <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
-              <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
-              <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+              <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>
+              <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>
+              <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>
           
               <!-- Dependencias backimglayer -->
               <script type="text/javascript"
-                  src="https://componentes.cnig.es/api-core/plugins/backimglayer/backimglayer.ol.min.js"></script>
+                  src="https://componentes.idee.es/api-idee/plugins/backimglayer/backimglayer.ol.min.js"></script>
           
               <script type="text/javascript">
           
                   // Configuración del mapa
-                  const mapjs = M.map({
+                  const mapjs = IDEE.map({
                       container: 'mapjs',
                       center: [-467062.8225, 4683459.6216],
                       zoom: 6,
           
                   });
           
-                  const mp = new M.plugin.BackImgLayer({
+                  const mp = new IDEE.plugin.BackImgLayer({
                       position: 'TR',
                       collapsible: true,
                       collapsed: true,
@@ -135,9 +135,9 @@
                       layerVisibility: true,
                       layerOpts: [{
                           id: 'mapjs',
-                          preview: 'https://componentes.cnig.es/api-core/plugins/backimglayer/images/svqmapa.png', // ruta relativa, edite por la deseada
+                          preview: 'https://componentes.idee.es/api-idee/plugins/backimglayer/images/svqmapa.png', // ruta relativa, edite por la deseada
                           title: 'Mapa',
-                          layers: [new M.layer.WMTS({
+                          layers: [new IDEE.layer.WMTS({
                               url: 'http://www.ign.es/wmts/ign-base?',
                               name: 'IGNBaseTodo',
                               legend: 'Mapa IGN',
@@ -152,8 +152,8 @@
                       {
                           id: 'imagen',
                           title: 'Imagen',
-                          preview: 'https://componentes.cnig.es/api-core/plugins/backimglayer/images/svqimagen.png', // ruta relativa, edite por la deseada
-                          layers: [new M.layer.WMTS({
+                          preview: 'https://componentes.idee.es/api-idee/plugins/backimglayer/images/svqimagen.png', // ruta relativa, edite por la deseada
+                          layers: [new IDEE.layer.WMTS({
                               url: 'http://www.ign.es/wmts/pnoa-ma?',
                               name: 'OI.OrthoimageCoverage',
                               legend: 'Imagen (PNOA)',
@@ -168,8 +168,8 @@
                       {
                           id: 'hibrido',
                           title: 'Híbrido',
-                          preview: 'https://componentes.cnig.es/api-core/plugins/backimglayer/images/svqhibrid.png', // ruta relativa, edite por la deseada
-                          layers: [new M.layer.WMTS({
+                          preview: 'https://componentes.idee.es/api-idee/plugins/backimglayer/images/svqhibrid.png', // ruta relativa, edite por la deseada
+                          layers: [new IDEE.layer.WMTS({
                               url: 'http://www.ign.es/wmts/pnoa-ma?',
                               name: 'OI.OrthoimageCoverage',
                               legend: 'Imagen (PNOA)',
@@ -180,7 +180,7 @@
                               visible: true,
                               format: 'image/png',
                           }),
-                          new M.layer.WMTS({
+                          new IDEE.layer.WMTS({
                               url: 'http://www.ign.es/wmts/ign-base?',
                               name: 'IGNBaseOrto',
                               matrixSet: 'GoogleMapsCompatible',

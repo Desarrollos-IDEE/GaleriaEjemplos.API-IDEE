@@ -81,7 +81,7 @@
     <meta name="cnig" content="yes">
     <title>Utilidad modal</title>
     <!-- Estilo de la API -->
-    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">          
+    <link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">          
 
     <style type="text/css">
         html,
@@ -98,14 +98,14 @@
     <!-- Contenedor principal del mapa -->
     <div id="mapjs" class="m-container"></div>
     <!-- Ficheros javascript de la API -->
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>          
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>        
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>         
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>          
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>        
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>         
 
 
       <script type="text/javascript">
         // Configuración del mapa
-        const mapjs = M.map({
+        const mapjs = IDEE.map({
             container: 'mapjs', //id del contenedor del mapa
             controls: ['panzoom'],
             zoom: 6,
@@ -115,15 +115,15 @@
         });
 
         setTimeout(() => {
-          M.dialog.info('Mensaje informativo'); // color azul
+          IDEE.dialog.info('Mensaje informativo'); // color azul
         }, 1000);
 
         setTimeout(() => {
-          M.dialog.error('Mensaje de error'); // color rojo
+          IDEE.dialog.error('Mensaje de error'); // color rojo
         }, 3000);
 
         setTimeout(() => {
-          M.dialog.success('Mensaje de éxito'); // color verde
+          IDEE.dialog.success('Mensaje de éxito'); // color verde
         }, 7000);
         
     </script>

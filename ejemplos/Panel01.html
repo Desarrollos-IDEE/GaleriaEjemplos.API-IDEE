@@ -81,7 +81,7 @@
   <meta name="cnig" content="yes">
   <title>Ejemplo Paneles</title>
   <!-- Estilo de la API -->
-  <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+  <link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">
 
   <style type="text/css">
     html,
@@ -163,16 +163,16 @@
   <!-- Contenedor principal del mapa -->
   <div id="mapjs" class="m-container"></div>
   <!-- Ficheros javascript de la API -->
-  <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
-  <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
-  <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+  <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>
+  <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>
+  <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>
 
 
   <script type="text/javascript">
     // Configuración del mapa
-    M.proxy(true)
-    M.config.PROXY_URL = 'https://componentes.cnig.es/api-core/api/proxy'
-    const mapajs = M.map({
+    IDEE.proxy(true)
+    IDEE.config.PROXY_URL = 'https://componentes.idee.es/api-idee/api/proxy'
+    const mapajs = IDEE.map({
       container: 'mapjs', //id del contenedor del mapa
       controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
       zoom: 3,
@@ -181,11 +181,11 @@
     });
 
     // Se crea el panel donde se incluirán las funcionalidades
-    const panelExtra = new M.ui.Panel('toolsExtra', {
+    const panelExtra = new IDEE.ui.Panel('toolsExtra', {
       "collapsible": true,
       "className": 'g-herramienta',
       "collapsedButtonClass": 'm-tools',
-      "position": M.ui.position.TL
+      "position": IDEE.ui.position.TL
     });
     
     // Se crea un contenedor padre que servirá de nodo principal de la estructura del panel
@@ -218,7 +218,7 @@
 
     // Se crea la función, en este caso nos mostrará una ventana modal
     var botonDemoFunc = () => {
-      M.dialog.success('Le has dado al botón');
+      IDEE.dialog.success('Le has dado al botón');
     }
     botonDemo.onclick = botonDemoFunc
     contenido.appendChild(botonDemo)

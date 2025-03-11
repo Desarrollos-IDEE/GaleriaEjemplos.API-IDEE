@@ -88,7 +88,7 @@
                 <meta name="cnig" content="yes">
                 <title>Ejemplo Categoría sin parámetros</title>
                 <!-- Estilo de la API -->
-                <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+                <link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">
             
                 <style type="text/css">
                     html,
@@ -105,19 +105,19 @@
                 <!-- Contenedor principal del mapa -->
                 <div id="mapjs" class="m-container"></div>
                 <!-- Ficheros javascript de la API -->
-                <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
-                <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
-                <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+                <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>
+                <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>
+                <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>
                 <script type="text/javascript">
             
                     // Configuración del mapa
-                    const mapjs = M.map({
+                    const mapjs = IDEE.map({
                         container: 'mapjs', //id del contenedor del mapa     
                         zoom: 7,
                         center: [-413228.4623444635, 4919525.828830231],
                     });
                     //Creamos capa
-                   const geodesia = new M.layer.WFS({
+                   const geodesia = new IDEE.layer.WFS({
                 url: 'https://www.ign.es/wfs/redes-geodesicas?',
                 legend: 'Red Geodésica Nacional por Técnicas Espaciales (REGENTE)',
                 name: 'RED_REGENTE',
@@ -127,7 +127,7 @@
                     mapjs.addLayers(geodesia);
                   
                   //Especifica únicamente el 'attributeName' en el constructor del estilo, sin indicar ningún parámetro 'categoryStyles'.
-                    let categoryStyle = new M.style.Category("provincia");
+                    let categoryStyle = new IDEE.style.Category("provincia");
             
                     //Añadimos la capa estilo 
                     //Esta capa mostrará colores aleatoriamente

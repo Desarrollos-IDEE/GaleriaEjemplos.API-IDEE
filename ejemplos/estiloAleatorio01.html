@@ -79,7 +79,7 @@
     <meta name="cnig" content="yes">
     <title>Estilo aleatorio</title>
     <!-- Estilo de la API -->
-    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">
+    <link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">
 
     <style type="text/css">
         html,
@@ -96,15 +96,15 @@
       <!-- Contenedor principal del mapa -->
       <div id="mapjs" class="m-container"></div>
       <!-- Ficheros javascript de la API -->
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>
-      <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>
+      <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>
+      <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>
+      <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>
 
 
       <script type="text/javascript">
 
           // Configuración del mapa
-          const mapjs = M.map({
+          const mapjs = IDEE.map({
                   container: 'mapjs', //id del contenedor del mapa
                   controls: ['panzoom', 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers'],
                   zoom: 5,
@@ -114,7 +114,7 @@
               });
 
           // Configuración de las capas
-          const geodesia = new M.layer.WFS({
+          const geodesia = new IDEE.layer.WFS({
               url: 'https://www.ign.es/wfs/redes-geodesicas?',
               legend: 'Red Geodésica Nacional por Técnicas Espaciales (REGENTE)',
               name: 'RED_REGENTE',
@@ -125,7 +125,7 @@
           var listEstilosCapas = { };
           function rndInt0_255() { return (Math.floor(Math.random() * 255) + 1).toString(); };
           function rndInt0_10() { return ((Math.floor(Math.random() * 10) + 1)) };
-          let estilo = new M.style.Point({
+          let estilo = new IDEE.style.Point({
             radius: function(feature,map) {
                       return rndInt0_10();
             }, 

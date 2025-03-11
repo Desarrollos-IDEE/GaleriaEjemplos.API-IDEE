@@ -81,7 +81,7 @@
     <meta name="cnig" content="yes">
     <title>Utilidad Remote</title>
     <!-- Estilo de la API -->
-    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">          
+    <link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">          
 
     <style type="text/css">
         html,
@@ -98,14 +98,14 @@
     <!-- Contenedor principal del mapa -->
     <div id="mapjs" class="m-container"></div>
     <!-- Ficheros javascript de la API -->
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/vendor/browser-polyfill.js"></script>          
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/apiign.ol.min.js"></script>        
-    <script type="text/javascript" src="https://componentes.cnig.es/api-core/js/configuration.js"></script>         
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>          
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>        
+    <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>         
 
 
       <script type="text/javascript">
         // Configuración del mapa
-        const mapjs = M.map({
+        const mapjs = IDEE.map({
             container: 'mapjs', //id del contenedor del mapa
             controls: ['panzoom'],
             zoom: 6,
@@ -114,14 +114,14 @@
             center: [-467062.8225, 4683459.6216]
         });
 
-        mapjs.on(M.evt.CLICK, (e) => {   
-          //Hacemos una peticón get con M.remote
-          M.remote.get("http://ovc.catastro.meh.es/ovcservweb/OVCSWLocalizacionRC/OVCCoordenadas.asmx/Consulta_RCCOOR",
+        mapjs.on(IDEE.evt.CLICK, (e) => {   
+          //Hacemos una peticón get con IDEE.remote
+          IDEE.remote.get("http://ovc.catastro.meh.es/ovcservweb/OVCSWLocalizacionRC/OVCCoordenadas.asmx/Consulta_RCCOOR",
             {'SRS':mapjs.getProjection().code,
               'Coordenada_X':e.coord[0],
               'Coordenada_Y':e.coord[1]}
           ).then(function(res){
-            M.dialog.info(res.text);
+            IDEE.dialog.info(res.text);
           });
         });
     </script>
