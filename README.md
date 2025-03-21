@@ -1,4 +1,4 @@
-# GaleriaEjemplos.APICNIG
+# GaleriaEjemplos.API-IDEE
 
 
 Bienvenido a la **Galería de Ejemplos API-IDEE**. Este es un repositorio colaborativo donde podrás encontrar y contribuir con ejemplos prácticos de código que muestran cómo interactuar con la API-IDEE. El objetivo de este proyecto es proporcionar una amplia gama de casos de uso que ayuden a los desarrolladores a comprender mejor cómo utilizar esta API en diversos contextos.
