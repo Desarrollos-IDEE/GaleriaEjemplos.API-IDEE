@@ -45,6 +45,7 @@ Este es un proyecto abierto y colaborativo. Si tienes ejemplos útiles de cómo 
 1. **Issue** Crea un Issue en el repositorio explicando qué ejemplo te gustaría tener o qué ejemplo vas a desarrollar
 2. **Fork** Crea un fork y una Rama desde develop vinculada al issue.
 3. **Branch** Crea una nueva **rama** con un nombre descriptivo del trabajo a realizar.
+4. **Desarrolla** Desarrolla tu nuevo ejemplo. Puedes utilizar como plantilla el archivo /ejemplos/0_Plantilla.html, haciendo uan copia y reenombándolo, siguiendo el criterio del resto de ejemplos.
 5. **Pull Request** Realiza un **pull request** describiendo los cambios realizados desde tu rama de tu fork a la rama develop de éste repositorio.
 
 
