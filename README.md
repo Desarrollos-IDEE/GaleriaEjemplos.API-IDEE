@@ -13,7 +13,9 @@ Bienvenido a la **Galería de Ejemplos API-IDEE**. Este es un repositorio colabo
 
 ## Acerca de
 
-La **API-IDEE** proporciona acceso a diversos recursos geoespaciales y datos sobre infraestructuras urbanas. Este repositorio tiene como propósito centralizar ejemplos de código que ilustren cómo hacer uso de la API-IDEE para facilitar su adopción en proyectos de desarrollo y análisis de datos geoespaciales.
+La **API-IDEE** https://github.com/Desarrollos-IDEE/API-IDEE,  proporciona acceso a diversos recursos geoespaciales creando visualizadores cartográficos. Este repositorio tiene como propósito centralizar ejemplos de código que ilustren cómo hacer uso de la API-IDEE para facilitar su adopción en proyectos de desarrollo y análisis de datos geoespaciales.
+
+
 
 
 ## Estructura del Repositorio
