@@ -122,11 +122,10 @@
           center: [-467062.8225, 4683459.6216],
         });
 
-
         const olLayer = new ol.layer.Image({
           source: new ol.source.ImageWMS({
-            url: 'http://geostematicos-sigc.juntadeandalucia.es/geoserver/tematicos/wms?',
-            params: { 'LAYERS': 'tematicos:Municipios' },
+            url: 'https://www.ideandalucia.es:443/services/CDAV_01_limites_administrativos/ows?',
+            params: { 'LAYERS': 'cav_01_g13_01_TerminoMunicipal' },
           }),
           legend: 'Capa WMS'
         });
