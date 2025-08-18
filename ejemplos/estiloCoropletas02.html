@@ -119,19 +119,20 @@
 
 
         });
+        
         let lyProv = new IDEE.layer.WFS({
-            name: "Provincias",
-            url: "http://geostematicos-sigc.juntadeandalucia.es/geoserver/tematicos/wfs?",
-            name: "Provincias",
-            legend: "Provincias - COROPLETAS",
-            geometry: 'POLYGON',
+                    name: "CDAV_01_limites_administrativos:cav_01_g13_01_Provincia",
+                    url: "https://www.ideandalucia.es/services/CDAV_01_limites_administrativos/wfs?",
+                    legend: "Provincias - COROPLETAS",
+                    geometry: 'MPOLYGON',
+                    extract: true,
         });
         
 
         // se crea el estilo y se aplica a la capa
         /*En caso de que queramos pasar directamente los rangos de clasificación, la función que tenemos que definir es tan simple como la siguiente:*/
         var rangos_usuario = [10, 20, 30, 40, 50];
-        let choropleth = new IDEE.style.Choropleth("u_cod_prov", ["red", "blue", "purple"], () => rangos_usuario);
+        let choropleth = new IDEE.style.Choropleth("codigo", ["red", "blue", "purple"], () => rangos_usuario);
 
 
         //se añade la capa al mapa

@@ -126,14 +126,16 @@
             extract: true,
             layers: "btn0302l_rio"
         });
+        
 
         let lyProv = new IDEE.layer.WFS({
-            name: "Provincias",
-            url: "http://geostematicos-sigc.juntadeandalucia.es/geoserver/tematicos/wfs?",
-            legend: "Provincias - COROPLETAS",
-            geometry: 'POLYGON',
-            extract: true,
+                    name: "CDAV_01_limites_administrativos:cav_01_g13_01_Provincia",
+                    url: "https://www.ideandalucia.es/services/CDAV_01_limites_administrativos/wfs?",
+                    legend: "Provincias - COROPLETAS",
+                    geometry: 'MPOLYGON',
+                    extract: true,
         });
+
 
         const geodesia = new IDEE.layer.WFS({
             url: 'https://www.ign.es/wfs/redes-geodesicas?',
