@@ -119,17 +119,15 @@
                   });
 
                   let lyProv = new IDEE.layer.WFS({
-                    name: "Provincias",
-                    url: "http://geostematicos-sigc.juntadeandalucia.es/geoserver/tematicos/wfs?",
+                    name: "CDAV_01_limites_administrativos:cav_01_g13_01_Provincia",
+                    url: "https://www.ideandalucia.es/services/CDAV_01_limites_administrativos/wfs?",
                     legend: "Provincias - COROPLETAS",
-                    geometry: 'POLYGON',
+                    geometry: 'MPOLYGON',
                     extract: true,
-                  });
-
-
+        });
 
                   // se crea el estilo y se aplica a la capa
-                  let choropleth = new IDEE.style.Choropleth('u_cod_prov', ['#000000', '#008000', '#FFFFFF'], IDEE.style.quantification.JENKS(4));
+                  let choropleth = new IDEE.style.Choropleth('id', ['#000000', '#008000'], IDEE.style.quantification.JENKS(3));
                   lyProv.setStyle(choropleth);
 
                   mapjs.addLayers(lyProv);
