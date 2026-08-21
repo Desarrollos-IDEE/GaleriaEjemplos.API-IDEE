@@ -1,0 +1,90 @@
+.m-code-panel {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    background: #282c34;
+}
+
+.m-code-header {
+    flex: 0 0 auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #1e1e1e;
+}
+
+.m-code-tabs {
+    display: flex;
+}
+
+.m-code-tabs button {
+    border: none;
+    background: transparent;
+
+    color: #aaa;
+
+    padding: 10px 16px;
+
+    cursor: pointer;
+}
+
+.m-code-tabs button.active {
+    background: #282c34;
+    color: white;
+}
+
+.m-code-execute {
+    margin-right: 10px;
+
+    padding: 6px 14px;
+
+    cursor: pointer;
+}
+
+.m-code-editor {
+    flex: 1 1 auto;
+
+    min-height: 0;
+
+    width: 100%;
+
+    overflow: hidden;
+}
+
+.m-code-editor .cm-editor {
+    height: 100%;
+}
+
+.m-code-editor .cm-scroller {
+    overflow: auto;
+}
+
+.m-code-error {
+    flex: 0 0 auto;
+
+    max-height: 180px;
+
+    overflow: auto;
+
+    padding: 10px;
+
+    background: #351818;
+
+    color: #ffb3b3;
+
+    font-family: monospace;
+    font-size: 13px;
+}
+
+
+.m-code-error pre {
+    margin: 5px 0 0;
+    white-space: pre-wrap;
+}

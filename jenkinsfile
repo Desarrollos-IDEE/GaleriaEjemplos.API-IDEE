@@ -1,169 +1,285 @@
 pipeline {
-    agent { 
-      dockerfile {
-			args '-u 1002:978 --privileged -v /var/run/docker.sock:/var/run/docker.sock  -v /home/isdefeG/.ssh:/home/jenkins/.ssh'
-		  }
-    }
+	agent {
+		dockerfile {
+			filename 'Dockerfile'
+			dir 'galeriaejemplos' // TODO: Cambiar para que sea igual que el REPO_PATH
+			args '-u 9001:990 --privileged -v /var/run/docker.sock:/var/run/docker.sock  -v /home/isdefeG/.ssh:/home/jenkins/.ssh'
+		}
+	}
+	parameters { 
+		booleanParam(defaultValue: true,description: '¿Desea desplegar en DESARROLLO?', name: 'checkDes')
+		booleanParam(defaultValue: false,description: '¿Desea desplegar en CERTIFICACIÓN?', name: 'checkCert')
+		booleanParam(defaultValue: false,description: '¿Desea desplegar en PRODUCCIÓN?', name: 'checkProd')
+		booleanParam(defaultValue: true,description: '¿Desea compilar?', name: 'checkCom')
+		string(defaultValue:'0.0.0', description:'Introducir versión de despliegue', name:'versionProyecto')        
+		
+		
+	}
+	environment {
+		TOKENadministradorCNIG = credentials("TOKENadministradorCNIG")
+		TOKENIDEESpain = credentials("TOKENIDEESpain")
+		USERadministradorCNIG = credentials("USERadministradorCNIG")
+		AWS_ACCESS_KEY_ID = credentials("AWS_ACCESS_KEY_ID")
+		AWS_SECRET_ACCESS_KEY = credentials("AWS_SECRET_ACCESS_KEY")
 
-    parameters {
-        booleanParam(defaultValue: false,description: '¿Desea desplegar en DESARROLLO?', name: 'checkDesarrollo')
-        booleanParam(defaultValue: true,description: '¿Desea desplegar en CERTIFICACIÓN?', name: 'checkCert')
-		    booleanParam(defaultValue: false,description: '¿Desea desplegar en PRODUCCIÓN?', name: 'checkProd')
-		    string(defaultValue:'aaaa/mm/dd', description:'Introducir versión de despliegue', name:'versionProyecto') 
-        string(name: 'RAMA_DESPLIEGUE', defaultValue: 'GaleriaEjemplosAPICNIG', description: 'Rama desde la que se desplegará')
-    }
-    
-    environment {
-		    NAME_IMAGE = "vis_com-galeriaEjemplos"
-        AWS_ACCESS_KEY_ID = credentials("AWS_ACCESS_KEY_ID")
-    		AWS_SECRET_ACCESS_KEY = credentials("AWS_SECRET_ACCESS_KEY")
-        DISTRIBUTION_ID = "E3R8RHTMUIVQU2"
-        RUTA_TRABAJO_JENKINS = "/home/isdefeG/jenkins-agent/workspace/galeriaEjemplos"
-    }
-    
-    stages {
-        stage('Checkout desde GitHub') {
-            steps {
-                checkout([
-                    $class: 'GitSCM', 
-                    branches: [[name: '*/GaleriaEjemplosAPICNIG']],  
-                    userRemoteConfigs: [[
-                        url: 'https://github.com/VisualizadoresCartograficos/Despliegue_Visualizadores.git',
-                        credentialsId: 'IDEESpain'
-                    ]],
-                    extensions: [
-                        [$class: 'SubmoduleOption', recursiveSubmodules: true]
-                    ]
-                ])
-            }
-        }
-
-        
-        stage('1 cargar entornos') {
-                when {
-                    expression { return params.checkDesarrollo}
-                }
-                steps {
-    
-                    sh ("python3 -v 1_cargar_entornos.py")
-                    
-                }
-        }
-
-        stage('2 git clone') {
-            when {
-                expression { return params.checkDesarrollo}
-            }
-            steps {
-                sh ("python3 -v 2_git_clone.py" -u $USER-IDEESpain -c $TOKEN-IDEESpain)
-            }
-        }
-
-        stage('3 extraer copiar') {
-            when {
-                expression { return params.checkDesarrollo}
+		// TODO: Cambiar estas variables de entorno por las que correspondan a tu proyecto
+		REPO_URL = 'https://github.com/Desarrollos-IDEE/GaleriaEjemplos.API-IDEE.git'
+		REPO_PATH = 'galeriaejemplos'
+		IMAGE_BASENAME = "galeriaejemplos"
+        PORT=9007
+		CLOUDFRONT_ROUTES = "/galeriaejemplos*"
+		DISTRIBUTION_ID = "E3R8RHTMUIVQU2"
+		GIT_BRANCH = "Nextjs"
+		email_to = 'proyectos@cnig.es, G_servicio_cnig@syvalue.com, eduardo.martin@cnig.es, laura.gm@cnig.es, yaiza.gomez@cnig.es'
+	}
+	stages {
+		stage('1. Clonar repositorio') {
+			when {
+				expression { return params.checkCom }
+			}
+			steps {
+				echo "Clonando repositorio..."
+				// Repo en el que se encuentra el código del visualizador
+				git branch: "${GIT_BRANCH}", credentialsId: 'NewGithubTemp', url: "${REPO_URL}"
+				echo "Repo cloned to: ${env.WORKSPACE}"
+			}
+		}
+		stage('2. Crear subir imagenes - desarrollo') {
+			when {
+			expression { return params.checkCom}
+			}
+			environment {
+                IMAGE_NAME = "${IMAGE_BASENAME}_des:${versionProyecto}"
+                VERSION_TAG = "10.67.33.46:5000/${IMAGE_BASENAME}_des:${versionProyecto}"
+                LATEST_TAG = "10.67.33.46:5000/${IMAGE_BASENAME}_des:latest"
             }
             steps {
+				echo "Creando y subiendo imagenes a desarrollo..."
+                sh """
+					#!/bin/bash
+					set -e  # Para salir si hay algún fallo
 
-                sh ("python3 -v 3_extraer_copiar.py")
-                
+					echo "📁 Entrando al directorio del proyecto..."
+					cd ${REPO_PATH}
+
+					echo "✅ Construyendo imagen con docker-compose..."
+					docker build \
+					--no-cache \
+					--build-arg NEXT_PUBLIC_API_IDEE_URL=https://componentes-desarrollo.idee.es/api-idee \
+					--build-arg NEXT_PUBLIC_API_IDEE_PLUGINS_URL=https://componentes-desarrollo.idee.es/api-idee \
+					-t ${IMAGE_NAME} .
+
+					echo "🔁 Etiquetando imagen..."
+					docker tag ${IMAGE_NAME} ${VERSION_TAG}
+					docker tag ${IMAGE_NAME} ${LATEST_TAG}
+
+					echo "📤 Subiendo imagen al registry..."
+					docker push ${VERSION_TAG}
+					docker push ${LATEST_TAG}
+				"""
             }
-        }
-
-        stage('4 preparar conf') {
-            when {
-                expression { return params.checkDesarrollo}
-            }
-            steps {
-
-                sh ("python3 -v 4_preparar_conf.py")
-                
-            }
-        }
-
-        stage('5 crear subir imagenes') {
-            when {
-                expression { return params.checkDesarrollo}
-            }
-            steps {
-
-                sh ("python3 -v 5_crear_subir_imagenes.py -v ${params.versionProyecto} -e 1_desarrollo --no-localhost")
-                sh ("python3 -v 5_crear_subir_imagenes.py -v ${params.versionProyecto} -e 2_certificacion --no-localhost")
-                sh ("python3 -v 5_crear_subir_imagenes.py -v ${params.versionProyecto} -e 3_produccion --no-localhost")
-            }
-        }
-
-        stage('Deploy Desarrollo') {
-    			when {
-    					expression {return params.checkDes}
-    			}
-    			steps{
-    				 
-    				 sh'''
-    				 sshpass -p $DEVELOP_PASS ssh -o StrictHostKeyChecking=no root@10.67.33.46 "docker pull localhost:5000/${NAME_IMAGE}_des:latest && cd /docker/idee_visualizadores/vis_com-galeriaEjemplos/1_desarrollo/${NAME_IMAGE}"
-    				 sshpass -p $DEVELOP_PASS scp   imagenes/${NAME_IMAGE}_des.yml  root@10.67.33.46:/docker/idee_visualizadores/vis_com-galeriaEjemplos/1_desarrollo/${NAME_IMAGE}/${NAME_IMAGE}.yml
-    				 sshpass -p $DEVELOP_PASS ssh -o StrictHostKeyChecking=no root@10.67.33.46 "cd /docker/idee_visualizadores/vis_com-galeriaEjemplos/1_desarrollo/${NAME_IMAGE} && docker-compose -f ${NAME_IMAGE}.yml up -d"
-    				 '''
-    				
-    			}
-		    }
-
-        stage('Deploy Certificacion') {
-    			when {
-    					expression {return params.checkCert }
-    			}
-    			steps{
-    				echo "Desplegando en certificación...."
-    				sh '''
-    					ssh -o StrictHostKeyChecking=no isdefeG@192.168.193.46 "cd /docker/${NAME_IMAGE} && ls -l && docker pull 10.67.33.46:5000/${NAME_IMAGE}_cer:latest && docker images"
-    					scp   imagenes/${NAME_IMAGE}_cer.yml  isdefeG@192.168.193.46:/docker/${NAME_IMAGE}/${NAME_IMAGE}.yml
-    					ssh -o StrictHostKeyChecking=no isdefeG@192.168.193.46 "cd /docker/${NAME_IMAGE} && ls -l && cat ${NAME_IMAGE}.yml && docker stack deploy --compose-file ${NAME_IMAGE}.yml ${NAME_IMAGE}"
-    				'''
-    				emailext attachLog: true, 
-    				body: '''Desplegado $PROJECT_NAME en CERTIFICACIÓN - Build # $BUILD_NUMBER - $BUILD_STATUS: Check console output at $BUILD_URL to view the results.''', 
-    				recipientProviders: [buildUser()], 
-    				subject: '$PROJECT_NAME - CERTIFICACIÓN - Build # $BUILD_NUMBER - $BUILD_STATUS', 
-    				to: 'proyectos@cnig.es, G_servicio_cnig@syvalue.com, aurelio.aragon@cnig.es, eduardo.martin@cnig.es, laura.gm@cnig.es, yaiza.gomez@cnig.es'
-    			}
 		}
 
-      stage('Deploy Produción') {
-  			when {
-  					expression {return params.checkProd }
-  			}
-  			steps{
-  				echo "Desplegamdo en producción...."
-  				sh '''
-  					ssh -o StrictHostKeyChecking=no isdefeG@192.168.192.42 "cd /docker/${NAME_IMAGE} && ls -l && docker pull 10.67.33.46:5000/${NAME_IMAGE}_prod:latest && docker images"
-  					scp   imagenes/${NAME_IMAGE}_prod.yml  isdefeG@192.168.192.42:/docker/${NAME_IMAGE}/${NAME_IMAGE}.yml
-  					ssh -o StrictHostKeyChecking=no isdefeG@192.168.192.42 "cd /docker/${NAME_IMAGE} && ls -l && cat ${NAME_IMAGE}.yml && docker stack deploy --compose-file ${NAME_IMAGE}.yml ${NAME_IMAGE}"
-  					
-  				'''
-  				emailext attachLog: true, 
-  				body: '''Desplegado $PROJECT_NAME en PRODUCCIÓN - Build # $BUILD_NUMBER - $BUILD_STATUS: Check console output at $BUILD_URL to view the results.''', 
-  				recipientProviders: [buildUser()], 
-  				subject: '$PROJECT_NAME - PRODUCCIÓN - Build # $BUILD_NUMBER - $BUILD_STATUS', 
-  				to: 'proyectos@cnig.es, G_servicio_cnig@syvalue.com, aurelio.aragon@cnig.es, eduardo.martin@cnig.es, laura.gm@cnig.es, yaiza.gomez@cnig.es'
-  			}
+		stage('2 Crear subir imagenes - certificacion') {
+			when {
+				expression { return params.checkCom}
 			}
+            environment {
+                IMAGE_NAME = "${IMAGE_BASENAME}_cer:${versionProyecto}"
+                VERSION_TAG = "10.67.33.46:5000/${IMAGE_BASENAME}_cer:${versionProyecto}"
+                LATEST_TAG = "10.67.33.46:5000/${IMAGE_BASENAME}_cer:latest"
+            }
+            steps {
+				echo "Creando y subiendo imagenes a certificación..."
+                sh """
+					#!/bin/bash
+					set -e  # Para salir si hay algún fallo
 
-      stage('Invalidate CloudFront Cache') {
-            		steps {
-                		script {
-		                    sh '''
-		                    aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-		                    aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-		                    aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/GaleriaEjemplos*"
-		                    '''
-               			}
-            		}
-       	 	}
+					echo "📁 Entrando al directorio del proyecto..."
+					cd ${REPO_PATH}
 
-      stage('Limpiamos entorno de trabajo') {
-  			steps{
-  				sh "ls -l"
-  				sh "docker system prune -af"
-  			}
-		  }
-    }
+					echo "✅ Construyendo imagen con docker-compose..."
+					docker build \
+					--no-cache \
+					--build-arg NEXT_PUBLIC_API_IDEE_URL=http://192.168.193.46:9010/api-idee \
+					--build-arg NEXT_PUBLIC_API_IDEE_PLUGINS_URL=http://192.168.193.46:9010/api-idee \
+					-t ${IMAGE_NAME} .
+
+					echo "🔁 Etiquetando imagen..."
+					docker tag ${IMAGE_NAME} ${VERSION_TAG}
+					docker tag ${IMAGE_NAME} ${LATEST_TAG}
+
+					echo "📤 Subiendo imagen al registry..."
+					docker push ${VERSION_TAG}
+					docker push ${LATEST_TAG}
+				"""
+            }
+		}
+	
+		stage('2. Crear subir imagenes - produccion') {
+			when {
+				expression { return params.checkCom}
+			}
+            environment {
+                IMAGE_NAME = "${IMAGE_BASENAME}_prod:${versionProyecto}"
+                VERSION_TAG = "10.67.33.46:5000/${IMAGE_BASENAME}_prod:${versionProyecto}"
+                LATEST_TAG = "10.67.33.46:5000/${IMAGE_BASENAME}_prod:latest"
+            }
+            steps {
+				echo "Creando y subiendo imagenes a producción..."
+                sh """
+					#!/bin/bash
+					set -e  # Para salir si hay algún fallo
+
+					echo "📁 Entrando al directorio del proyecto..."
+					cd ${REPO_PATH}
+
+					echo "✅ Construyendo imagen con docker-compose..."
+					docker build \
+					--no-cache \
+					--build-arg NEXT_PUBLIC_API_IDEE_URL=https://componentes.idee.es/api-idee \
+					--build-arg NEXT_PUBLIC_API_IDEE_PLUGINS_URL=https://componentes.idee.es/api-idee \
+					-t ${IMAGE_NAME} .
+
+					echo "🔁 Etiquetando imagen..."
+					docker tag ${IMAGE_NAME} ${VERSION_TAG}
+					docker tag ${IMAGE_NAME} ${LATEST_TAG}
+
+					echo "📤 Subiendo imagen al registry..."
+					docker push ${VERSION_TAG}
+					docker push ${LATEST_TAG}
+				"""
+            }
+		}
+	
+		stage('3. Despliegue Desarrollo') {
+			when {
+				expression {return params.checkDes}
+			}
+            environment {
+                CONTAINER_NAME = "${IMAGE_BASENAME}_des"
+                VERSION_TAG = "localhost:5000/${IMAGE_BASENAME}_des:${versionProyecto}"
+                LATEST_TAG = "localhost:5000/${IMAGE_BASENAME}_des:latest"
+            }
+			steps{
+				echo "Desplegando en desarrollo...."
+				sh"""
+					ssh -o StrictHostKeyChecking=no root@10.67.33.46 "docker pull ${VERSION_TAG}"
+					ssh -o StrictHostKeyChecking=no root@10.67.33.46 'if lsof -i :${PORT} >/dev/null 2>&1; then docker ps --filter "publish=${PORT}" -q | xargs --no-run-if-empty docker rm -f; else echo "Puerto ${PORT} libre, no hay contenedores que eliminar."; fi'
+					ssh -o StrictHostKeyChecking=no root@10.67.33.46 "docker rm -f ${CONTAINER_NAME}"
+					ssh -o StrictHostKeyChecking=no root@10.67.33.46 "docker run -d --name ${CONTAINER_NAME} -p ${PORT}:3000 ${VERSION_TAG}"
+				"""
+			}
+		}
+	
+		stage('3. Despliegue Certificacion') {
+			when {
+					expression {return params.checkCert }
+			}
+			environment {
+                CONTAINER_NAME = "${IMAGE_BASENAME}_cer"
+                VERSION_TAG = "10.67.33.46:5000/${IMAGE_BASENAME}_cer:${versionProyecto}"
+                LATEST_TAG = "10.67.33.46:5000/${IMAGE_BASENAME}_cer:latest"
+            }
+			steps{
+				echo "Desplegando en certificación...."
+				sh"""
+					ssh -o StrictHostKeyChecking=no isdefeG@192.168.193.46 "docker pull ${VERSION_TAG}"
+					
+					ssh -o StrictHostKeyChecking=no isdefeG@192.168.193.46 "if netstat -tuln | grep -q ':${PORT} '; then docker ps --filter \"publish=${PORT}\" -q | xargs --no-run-if-empty docker rm -f; else echo \"Puerto ${PORT} libre, no hay contenedores que eliminar.\"; fi"
+					ssh -o StrictHostKeyChecking=no isdefeG@192.168.193.46 "docker rm -f ${CONTAINER_NAME}"
+					# Create directory, docker-compose file, and deploy stack
+					ssh -o StrictHostKeyChecking=no isdefeG@192.168.193.46 /bin/bash -c \"
+					cd /docker &&
+					mkdir -p ${IMAGE_BASENAME} &&
+					cat > ${IMAGE_BASENAME}/${IMAGE_BASENAME}.yml <<EOF
+version: '3'
+services:
+  ${IMAGE_BASENAME}:
+    image: ${VERSION_TAG}
+    ports:
+      - \\\"${PORT}:3000\\\"
+    deploy:
+      restart_policy:
+        condition: any
+EOF
+			docker swarm init 2>/dev/null || true
+            docker stack deploy -c ${IMAGE_BASENAME}/${IMAGE_BASENAME}.yml ${IMAGE_BASENAME}_stack
+        \"
+				"""
+
+				emailext attachLog: true, 
+				body: "Desplegado ${env.JOB_NAME} en CERTIFICACIÓN - Build # ${env.BUILD_NUMBER} - ${env.BUILD_STATUS}: Check console output at ${env.BUILD_URL} to view the results.", 
+				recipientProviders: [buildUser()], 
+				subject: "${env.JOB_NAME} - CERTIFICACIÓN - Build # ${env.BUILD_NUMBER} - ${env.BUILD_STATUS}", 
+				to: "${email_to}"
+			}
+		}
+	
+		stage('3. Despliegue Produción') {
+			when {
+				expression {return params.checkProd }
+			}
+			environment {
+                CONTAINER_NAME = "${IMAGE_BASENAME}_prod"
+                VERSION_TAG = "10.67.33.46:5000/${IMAGE_BASENAME}_prod:${versionProyecto}"
+                LATEST_TAG = "10.67.33.46:5000/${IMAGE_BASENAME}_prod:latest"
+            }
+			steps{
+				echo "Desplegamdo en producción...."
+				sh"""
+					ssh -o StrictHostKeyChecking=no isdefeG@192.168.192.42 "docker pull ${VERSION_TAG}"
+					ssh -o StrictHostKeyChecking=no isdefeG@192.168.192.42 'if lsof -i :${PORT} >/dev/null 2>&1; then docker ps --filter "publish=${PORT}" -q | xargs --no-run-if-empty docker rm -f; else echo "Puerto ${PORT} libre, no hay contenedores que eliminar."; fi'
+					ssh -o StrictHostKeyChecking=no isdefeG@192.168.192.42 "docker rm -f ${CONTAINER_NAME}"
+					# Create directory, docker-compose file, and deploy stack
+					ssh -o StrictHostKeyChecking=no isdefeG@192.168.192.42 /bin/bash -c \"
+					cd /docker &&
+					mkdir -p ${IMAGE_BASENAME} &&
+					cat > ${IMAGE_BASENAME}/${IMAGE_BASENAME}.yml <<EOF
+version: '3'
+services:
+  ${IMAGE_BASENAME}:
+    image: ${VERSION_TAG}
+    ports:
+      - \\\"${PORT}:3000\\\"
+    deploy:
+      restart_policy:
+        condition: any
+EOF
+            docker swarm init 2>/dev/null || true
+            docker stack deploy -c ${IMAGE_BASENAME}/${IMAGE_BASENAME}.yml ${IMAGE_BASENAME}_stack
+        \"
+				"""
+                
+				emailext attachLog: true, 
+				body: "Desplegado ${env.JOB_NAME} en PRODUCCIÓN - Build # ${env.BUILD_NUMBER} - ${env.BUILD_STATUS}: Check console output at ${env.BUILD_URL} to view the results.", 
+				recipientProviders: [buildUser()], 
+				subject: "${env.JOB_NAME} - PRODUCCIÓN - Build # ${env.BUILD_NUMBER} - ${env.BUILD_STATUS}", 
+				to: "${email_to}"
+			}
+		}
+
+		stage('Invalidate CloudFront Cache') {
+			when {
+				expression {return params.checkProd }
+			}
+			steps {
+				script {
+					sh """
+						aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+						aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+						aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths $CLOUDFRONT_ROUTES
+						"""
+				}
+			}
+		}
+	
+		stage('Limpiamos entorno de trabajo') {
+			steps{
+				sh "ls -l"
+				sh "docker system prune -af"
+			}
+		}
+	}
 }
+

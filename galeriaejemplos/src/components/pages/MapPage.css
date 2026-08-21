@@ -1,0 +1,121 @@
+.page-root {
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+
+.page-content {
+    flex: 1;
+
+    display: flex;
+
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+
+    overflow: hidden;
+}
+
+
+/* ==========================================
+   PANEL IZQUIERDO - CÓDIGO
+========================================== */
+
+.panel-left {
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+
+    overflow: hidden;
+
+    flex-shrink: 0;
+}
+
+
+/* ==========================================
+   SEPARADOR
+========================================== */
+
+.panel-resizer {
+    flex: 0 0 8px;
+
+    width: 8px;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #1e1e1e;
+
+    cursor: col-resize;
+
+    z-index: 20;
+
+    user-select: none;
+}
+
+
+.panel-resizer:hover {
+    background: #aaa;
+}
+
+
+.resizer-arrow {
+    width: 18px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 4px;
+
+    background: #666;
+
+    color: white;
+
+    font-size: 12px;
+
+    pointer-events: none;
+}
+
+
+/* ==========================================
+   PANEL DERECHO - MAPA
+========================================== */
+
+.panel-right {
+    flex: 1 1 auto;
+
+    width: auto;
+
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+
+    overflow: hidden;
+}
+
+
+/* ==========================================
+   MIENTRAS SE ARRASTRA
+========================================== */
+
+.page-content.is-resizing {
+    cursor: col-resize;
+
+    user-select: none;
+}
+
+
+.page-content.is-resizing iframe {
+    pointer-events: none;
+}
