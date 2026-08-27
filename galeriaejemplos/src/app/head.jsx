@@ -30,11 +30,6 @@ export default function CustomHead() {
 
             <title>{process.env.PAGE_TITLE}</title>
 
-            {/* Fonts */}
-            <link rel="preconnect" href="https://fonts.googleapis.com" />
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" />
-
             {/* CSS Assets */}
             <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_URL}/assets/css/apiidee.ol.min.css`} />
             <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/layerswitcher/layerswitcher.ol.min.css`} />

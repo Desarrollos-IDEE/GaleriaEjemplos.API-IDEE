@@ -1,12 +1,12 @@
-import { mapStyles } from '@/utils/styles';
-import { mapLayers, backgroundLayers } from '@/utils/layers';
+import { backgroundLayers, IGNLayers } from '@/utils/layers';
+import { styles } from '@/utils/styles';
 import { mapPlugins } from '@/utils/plugins';
 
 export async function getConfig() {
-    const STYLES = await mapStyles();
-    const LAYERS = await mapLayers();
     const BACKGROUNDLAYERS = await backgroundLayers();
     const PLUGINS = await mapPlugins();
+    const STYLES = await styles();
+    const LAYERS = await IGNLayers();
 
     const locator = PLUGINS.Locator({
         position: 'TL',
@@ -28,12 +28,19 @@ export async function getConfig() {
 
     return {
         favicon: null,
+        mapOptions: {
+            controls: ['location'],// Modificar a gusto la siguiente lista con los valores arriba indicados
+            zoom: 5,
+            maxZoom: 20,
+            minZoom: 4,
+            center: [-467062.8225, 4683459.6216]
+        },
         layers: [
             { layer: BACKGROUNDLAYERS.tms_ignbaseSimplificado },
             { layer: BACKGROUNDLAYERS.tms_relieve },
             { layer: BACKGROUNDLAYERS.tms_global },
-            { layer: LAYERS.monitores, style: STYLES.stylepoint },
+            { layer: LAYERS.regente, style: STYLES.point },
         ],
-        plugins: [PLUGINS.Layerswitcher({ addLayers: true }), locator, PLUGINS.BackImgLayer(), PLUGINS.MouseSRS()],
+        plugins: [PLUGINS.Layerswitcher({ addLayers: true }), locator, /*PLUGINS.BackImgLayer(),*/ PLUGINS.MouseSRS()],
     }
 } 

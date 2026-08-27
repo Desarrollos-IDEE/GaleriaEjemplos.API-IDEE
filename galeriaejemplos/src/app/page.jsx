@@ -32,9 +32,7 @@ export default function GaleriaEjemplosHomePage() {
           <LoadingIcon width={256} height={256} />
         </div>
         :
-        <div className="m-container" id="mapjs" style={{ width: "100vw", height: "100vh" }}>
-          <Home title1={description[0].title1} title2={description[1].title2} subtitle={description[2].subtitle} description={description[3].description} metadatos={metadatos} />
-        </div >
+        <Home title1={description[0].title1} title2={description[1].title2} subtitle={description[2].subtitle} description={description[3].description} metadatos={metadatos} />
       }
     </>
   );

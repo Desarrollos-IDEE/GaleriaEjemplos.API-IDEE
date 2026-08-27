@@ -9,24 +9,6 @@ export default function Map({ htmlCode, cssCode, jsCode, onExecutionError }) {
 
   const iframeRef = useRef(null);
 
-  useEffect(() => {
-
-    const handleMessage = (event) => {
-
-      if (event.data?.type === "MAP_ERROR") {
-        console.error("Error en ejemplo:", event.data.error);
-        onExecutionError?.(event.data.error);
-      }
-    };
-
-    window.addEventListener("message", handleMessage);
-
-    return () => {
-      window.removeEventListener("message", handleMessage);
-    };
-
-  }, [onExecutionError]);
-
 
   useEffect(() => {
 
@@ -50,9 +32,6 @@ export default function Map({ htmlCode, cssCode, jsCode, onExecutionError }) {
   }, [htmlCode, cssCode, jsCode]);
 
   return (
-
-    <div className="m-map-panel">
-      <iframe ref={iframeRef} className="m-map-iframe" title="Visualizador API-IDEE" />
-    </div>
+      <iframe ref={iframeRef} className="map-iframe" title="Visualizador API-IDEE" />
   );
 }

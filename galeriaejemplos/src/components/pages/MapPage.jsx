@@ -14,7 +14,7 @@ import { generateCSS } from "@/utils/cssGenerator";
 import "./MapPage.css";
 
 
-export default function MapPage({ feature }) {
+export default function MapPage({ config }) {
 
   const [htmlCode, setHtmlCode] = useState("");
   const [cssCode, setCssCode] = useState("");
@@ -25,14 +25,11 @@ export default function MapPage({ feature }) {
   const [isResizing, setIsResizing] = useState(false);
 
   useEffect(() => {
-
-    if (!feature) {
-      return;
-    }
-
-    const html = generateHTML(feature);
-    const css = generateCSS(feature);
-    const js = generateJS(feature);
+    if (!config) return;
+    const { favicon, mapOptions, layers, plugins } = config;
+    const html = generateHTML(favicon, plugins);
+    const css = generateCSS();
+    const js = generateJS(mapOptions, layers, plugins);
 
     setHtmlCode(html);
     setCssCode(css);
@@ -40,7 +37,7 @@ export default function MapPage({ feature }) {
 
     setExecutedCode({ html, css, js });
 
-  }, [feature]);
+  }, [config]);
 
 
   const startResize = (event) => {
@@ -50,9 +47,7 @@ export default function MapPage({ feature }) {
 
   useEffect(() => {
 
-    if (!isResizing) {
-      return;
-    }
+    if (!isResizing) return;
 
 
     const handleMouseMove = (event) => {
@@ -83,7 +78,7 @@ export default function MapPage({ feature }) {
     setExecutionError(error);
   };
 
-  if (!feature) {
+  if (!config) {
     return (
       <div className="block-loader-container">
         <LoadingIcon width={256} height={256} />

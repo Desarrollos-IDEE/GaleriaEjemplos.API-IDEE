@@ -1,5 +1,4 @@
 export function backgroundLayers() {
-    if (typeof window === 'undefined' || !window.IDEE) return {};
     return {
         tms_relieve: new IDEE.layer.TMS({
             url: 'https://tms-relieve.idee.es/1.0.0/relieve/{z}/{x}/{-y}.jpeg',
@@ -85,104 +84,52 @@ export function backgroundLayers() {
 }
 
 
-export async function mapLayers() {
-    if (typeof window === 'undefined' || !window.IDEE) return {};
-
-    const layers = {
-
-        monitores: new IDEE.layer.GeoJSON({
-            name: "Monitorización tiempo real",
-            url: 'https://www.ign.es/resources/sismologia/intensidades-lorca/data/lorca.geojson',
-            extract: false,
+export async function IGNLayers() {
+    return {
+        direcciones: new IDEE.layer.WFS({
+            url: "https://www.cartociudad.es/wfs-inspire/direcciones?",
+            name: "ad:Address",
+            name: "direcciones",
+            legend: "Direcciones cartociudad",
+        }),
+        
+        ngbe: new IDEE.layer.WFS({
+            url: "https://www.ign.es/wfs-inspire/ngbe?",
+            name: "gn:NamedPlace",
+            legend: "Nomenclator Geográfico Básico de España",
         }),
 
-        WMTS_mapaLidar: new IDEE.layer.WMTS({
-            url: "https://wmts-mapa-lidar.idee.es/lidar",
-            name: "EL.GridCoverageDSM",
-            matrixSet: "GoogleMapsCompatible",
-            legend: "Mapa_Lidar",
-        }, { displayInLayerSwitcher: false }),
-
-        tms_ignbaseorto2: new IDEE.layer.TMS({
-            url: 'https://tms-ign-base.idee.es/1.0.0/IGNBaseOrto/{z}/{x}/{-y}.png',
-            name: 'Información adicional',
-            projection: 'EPSG:3857',
-            minZoom: 1,
-            maxZoom: 15,
-            displayInLayerSwitcher: false,
-            visibility: true,
-            isBase: false,
+        rednap: new IDEE.layer.WFS({
+            url: "https://www.ign.es/wfs/redes-geodesicas?",
+            name: "RED_NAP",
+            legend: "Red de Nivelación de Alta Precisión (REDNAP)",
         }),
-
-        // Capas del visualizador Lorca/shakemaps
-        lineas_intensidad: new IDEE.layer.GeoJSON({
-            name: "Intensidad",
-            url: 'https://www.ign.es/resources/sismologia/shakemaps_lorca/data/cont_mi.json',
-            extract: false,
-            legend: 'Intensidad',
+        
+        regente: new IDEE.layer.WFS({
+            url: "https://www.ign.es/wfs/redes-geodesicas?",
+            name: "RED_REGENTE",
+            legend: "Red REGENTE",
         }),
-
-        lyrPGA: new IDEE.layer.GeoJSON({
-            name: "PGA",
-            url: 'https://www.ign.es/resources/sismologia/shakemaps_lorca/data/cont_pga.json',
-            extract: false,
-            legend: 'PGA',
-        }, { visibility: false }),
-
-        lyrPGV: new IDEE.layer.GeoJSON({
-            name: "PGV",
-            url: 'https://www.ign.es/resources/sismologia/shakemaps_lorca/data/cont_pgv.json',
-            extract: false,
-            legend: 'PGV',
-        }, { visibility: false }),
-
-        lyrStations: new IDEE.layer.GeoJSON({
-            name: "Estaciones",
-            url: 'https://www.ign.es/resources/sismologia/shakemaps_lorca/data/stationlist.json',
-            extract: false,
-            legend: 'Estaciones',
+        
+        roi: new IDEE.layer.WFS({
+            url: "https://www.ign.es/wfs/redes-geodesicas?",
+            name: "RED_ROI",
+            legend: "Red de Orden Inferior (ROI)",
         }),
-
-        lyrLorca: new IDEE.layer.GeoJSON({
-            name: "Lorca",
-            source: {
-                "type": "FeatureCollection",
-                "features": [{
-                    "properties": {
-                        "epicentro": "Lorca"
-                    },
-                    "type": "Feature",
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [-1.7114, 37.7175]
-                    }
-                }],
-                "crs": {
-                    "properties": {
-                        "name": "EPSG:4326"
-                    },
-                    "type": "name"
-                }
-            }
-        }, {
-            visible: true,
-            displayInLayerSwitcher: false
+        
+        mareografos: new IDEE.layer.WFS({
+            url: "https://www.ign.es/wfs/redes-geodesicas?",
+            name: "RED_MAREOGRAFOS",
+            legend: "Red de Mareógrafos",
         }),
-
-        lyrIntensidades: new IDEE.layer.GeoJSON({
-            name: "Monitorización día del terremoto",
-            url: 'https://www.ign.es/web/resources/sismologia/intensidades-lorca/data/intensidades.geojson',
-            extract: true,
-        }),
-     
-
-        vector: new IDEE.layer.Vector({
-            name: 'vectores',
-        }, {
-            displayInLayerSwitcher: false,
-        }),
+        
+        ua: new IDEE.layer.WFS({
+            url: "https://www.ign.es/wfs-inspire/unidades-administrativas?",
+            name: "au:AdministrativeUnit",
+            legend: "Unidad administrativa",
+        })
 
     }
-
-    return layers
 }
+
+

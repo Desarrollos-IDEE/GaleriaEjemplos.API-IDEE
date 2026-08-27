@@ -2,17 +2,12 @@ import CustomHead from "./head";
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="es"
-    >
+    <html lang="es">
       <head>
         <CustomHead />
         <style>{
           `html, body {
               margin: 0;
-              padding: 0;
-              height: 100%;
-              overflow: hidden;
           }`}
         </style>
       </head>
@@ -23,7 +18,6 @@ export default function RootLayout({ children }) {
           </noscript>
           {children}
         </main>
-        <div id="root"></div>
       </body>
     </html>
   );

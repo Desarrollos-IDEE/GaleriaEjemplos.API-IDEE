@@ -50,7 +50,7 @@ class Home extends Component {
                                 description={feature.description}
                                 onClick={() => {
                                     const ejemplo = feature.ejemplo;
-                                    window.open(`/galeriaejemplos/ejemplos/${ejemplo}`, '_blank', 'noopener,noreferrer');
+                                    window.open(`/galeriaejemplos/${ejemplo}`, '_blank', 'noopener,noreferrer');
                                 }}
                             />
                         ))}

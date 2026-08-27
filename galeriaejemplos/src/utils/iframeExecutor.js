@@ -14,118 +14,37 @@ export function createIframeDocument(htmlCode, cssCode, jsCode) {
 (function () {
 
     function sendError(error) {
-
-        let message;
-
-        if (error instanceof Error) {
-
-            message =
-                error.stack ||
-                error.message;
-
-        }
-        else {
-
-            message =
-                String(error);
-
-        }
-
-
-        window.parent.postMessage({
-
-            type: "MAP_ERROR",
-
-            error: message
-
-        }, "*");
-
+        let message = (error instanceof Error) ? (error.stack || error.message) : String(error);
+        window.parent.postMessage({ type: "MAP_ERROR", error: message }, "*");
     }
 
-
-    // ==========================================
     // ERRORES JAVASCRIPT
-    // ==========================================
+    window.addEventListener( "error", function (event) {
+        sendError( event.error || event.message );
+    });
 
-    window.addEventListener(
-        "error",
-        function (event) {
-
-            sendError(
-                event.error ||
-                event.message
-            );
-
-        }
-    );
-
-
-    // ==========================================
     // PROMESAS NO CONTROLADAS
-    // ==========================================
+    window.addEventListener( "unhandledrejection", function (event) {
+        sendError( event.reason );
+    });
 
-    window.addEventListener(
-        "unhandledrejection",
-        function (event) {
-
-            sendError(
-                event.reason
-            );
-
-        }
-    );
-
-
-    // ==========================================
     // ERRORES AL CARGAR RECURSOS
-    // ==========================================
-
-    window.addEventListener(
-        "error",
-        function (event) {
-
-            const target =
-                event.target;
-
-
-            if (
-                target &&
-                target.tagName === "SCRIPT"
-            ) {
-
-                sendError(
-                    "No se ha podido cargar: " +
-                    target.src
-                );
-
-            }
-
-        },
-        true
-    );
+    window.addEventListener( "error", function (event) {
+        const target = event.target;
+        if ( target && target.tagName === "SCRIPT" ) sendError( "No se ha podido cargar: " + target.src )
+    }, true );
 
 })();
 
 `;
 
-    document.head.appendChild(
-        errorScript
-    );
-
+    document.head.appendChild( errorScript );
 
     // JAVASCRIPT DEL USUARIO
     const script = document.createElement("script");
-
     script.textContent = jsCode;
+    document.body.appendChild( script );
 
-    document.body.appendChild(
-        script
-    );
-
-
-    return (
-        "<!DOCTYPE html>" +
-        document.documentElement.outerHTML
-    );
+    return ( "<!DOCTYPE html>" + document.documentElement.outerHTML );
 
 }
