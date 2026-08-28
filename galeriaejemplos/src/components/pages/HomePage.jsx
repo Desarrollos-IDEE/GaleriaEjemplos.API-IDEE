@@ -50,7 +50,7 @@ class Home extends Component {
                                 description={feature.description}
                                 onClick={() => {
                                     const title = encodeURIComponent(feature.title || feature.id || 'Ejemplo');
-                                    window.open(`/galeriaejemplos/${feature.id}?title=${title}`, '_blank', 'noopener,noreferrer');
+                                    window.open(`/GaleriaEjemplos_API-IDEE/${feature.id}?title=${title}`, '_blank', 'noopener,noreferrer');
                                 }}
                             />
                         ))}

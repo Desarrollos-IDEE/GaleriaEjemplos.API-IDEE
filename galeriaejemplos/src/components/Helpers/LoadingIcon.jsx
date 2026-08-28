@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-const EJEMPLOS = '/galeriaejemplos/static/svg/API_1.svg';
+const EJEMPLOS = '/GaleriaEjemplos_API-IDEE/static/svg/API_1.svg';
 
 const LoadingIcon = ({
     width = 512,

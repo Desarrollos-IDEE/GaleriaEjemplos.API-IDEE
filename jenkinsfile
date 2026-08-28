@@ -27,7 +27,7 @@ pipeline {
 		REPO_PATH = 'galeriaejemplos'
 		IMAGE_BASENAME = "galeriaejemplos"
         PORT=9007
-		CLOUDFRONT_ROUTES = "/galeriaejemplos*"
+		CLOUDFRONT_ROUTES = "/GaleriaEjemplos_API-IDEE*"
 		DISTRIBUTION_ID = "E3R8RHTMUIVQU2"
 		GIT_BRANCH = "Nextjs"
 		email_to = 'proyectos@cnig.es, G_servicio_cnig@syvalue.com, eduardo.martin@cnig.es, laura.gm@cnig.es, yaiza.gomez@cnig.es'

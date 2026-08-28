@@ -30,7 +30,7 @@ export function mapPlugins() {
             layerVisibility: true,
             layerOpts: [{
                 id: 'relieve',
-                preview: '/galeriaejemplos/static/img/relieve.png', // ruta relativa, edite por la deseada
+                preview: '/GaleriaEjemplos_API-IDEE/static/img/relieve.png', // ruta relativa, edite por la deseada
                 title: 'Relieve',
                 layers: [
                     tms_relieve,
@@ -41,7 +41,7 @@ export function mapPlugins() {
             {
                 id: 'Callejero',
                 title: 'Callejero',
-                preview: '/galeriaejemplos/static/img/callejero.png', // ruta relativa, edite por la deseada
+                preview: '/GaleriaEjemplos_API-IDEE/static/img/callejero.png', // ruta relativa, edite por la deseada
                 layers: [
                     WMTS_callejero
                 ],
@@ -49,7 +49,7 @@ export function mapPlugins() {
             {
                 id: 'hibrido',
                 title: 'Híbrido',
-                preview: '/galeriaejemplos/static/img/hibrido.png', // ruta relativa, edite por la deseada
+                preview: '/GaleriaEjemplos_API-IDEE/static/img/hibrido.png', // ruta relativa, edite por la deseada
                 layers: [
                     WMTS_PNOA,
                     WMTS_IGNBaseOrto

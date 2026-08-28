@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import Search from './Search';
 
-const API = '/galeriaejemplos/static/svg/API_IDEE.svg';
+const API = '/GaleriaEjemplos_API-IDEE/static/svg/API_IDEE.svg';
 
 import './Header.css';
 
 class Header extends Component {
 
   navigate = () => {
-    window.location.href = '/galeriaejemplos';
+    window.location.href = '/GaleriaEjemplos_API-IDEE';
   }
 
   render() {

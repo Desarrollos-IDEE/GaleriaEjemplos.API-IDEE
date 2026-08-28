@@ -1,4 +1,4 @@
-const API = '/galeriaejemplos/static/svg/API_IDEE_blue.svg';
+const API = '/GaleriaEjemplos_API-IDEE/static/svg/API_IDEE_blue.svg';
 
 export const description = [
     {
