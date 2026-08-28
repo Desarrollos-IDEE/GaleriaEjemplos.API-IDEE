@@ -24,7 +24,7 @@ class Home extends Component {
         const searchLower = (this.state.searchQuery || '').trim().toLowerCase();
 
         const filtered = (metadatos || []).filter(feature => {
-            if (!feature.ejemplo) return false;
+            if (!feature.id) return false;
             if (!searchLower) return true;
             const title = (feature.title || '').toLowerCase();
             const desc = (feature.description || '').toLowerCase();
@@ -48,10 +48,7 @@ class Home extends Component {
                                 key={`ejemplo_${index}`}
                                 title={feature.title}
                                 description={feature.description}
-                                onClick={() => {
-                                    const ejemplo = feature.ejemplo;
-                                    window.open(`/galeriaejemplos/${ejemplo}`, '_blank', 'noopener,noreferrer');
-                                }}
+                                onClick={() => { window.open(`/galeriaejemplos/${feature.id}`, '_blank', 'noopener,noreferrer'); }}
                             />
                         ))}
                     </section>

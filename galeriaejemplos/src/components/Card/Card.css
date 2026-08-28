@@ -1,4 +1,5 @@
 .card-container {
+    box-sizing: border-box;
     background-color: #ffffff;
     border: 1px solid #d1d5db;
     border-top: 4px solid #004080;
@@ -8,6 +9,7 @@
     display: flex;
     flex-direction: column;
     min-width: 0;
+    height: 100%;
 
 }
 
@@ -19,6 +21,7 @@
 }
 
 .card-body {
+    box-sizing: border-box;
     padding: 1.25rem;
     display: flex;
     flex-direction: column;

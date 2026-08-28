@@ -32,58 +32,54 @@ export default function CustomHead() {
 
             {/* CSS Assets */}
             <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_URL}/assets/css/apiidee.ol.min.css`} />
-            <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/layerswitcher/layerswitcher.ol.min.css`} />
             <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/backimglayer/backimglayer.ol.min.css`} />
-            <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/mousesrs/mousesrs.ol.min.css`} />
-            <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/locator/locator.ol.min.css`} />
-            <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/viewmanagement/viewmanagement.ol.min.css`} />
+            <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/comparators/comparators.ol.min.css`} />
             <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/contactlink/contactlink.ol.min.css`} />
-            <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/filteredsearch/filteredsearch.ol.min.css`} />
             <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/help/help.ol.min.css`} />
             <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/incicarto/incicarto.ol.min.css`} />
             <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/infocoordinates/infocoordinates.ol.min.css`} />
             <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/information/information.ol.min.css`} />
-            <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/locatorscn/locatorscn.ol.min.css`} />
-            <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/magnify/magnify.ol.min.css`} />
-            <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/mapheader/mapheader.ol.min.css`} />
-            <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/mapfooter/mapfooter.ol.min.css`} />
+            <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/layerswitcher/layerswitcher.ol.min.css`} />
+            <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/locator/locator.ol.min.css`} />
             <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/measurebar/measurebar.ol.min.css`} />
             <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/modal/modal.ol.min.css`} />
+            <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/mousesrs/mousesrs.ol.min.css`} />
+            <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/overviewmap/overviewmap.ol.min.css`} />
             <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/printviewmanagement/printviewmanagement-1.0.0.ol.min.css`} />
+            <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/queryattributes/queryattributes-1.0.0.ol.min.css`} />
             <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/selectionzoom/selectionzoom.ol.min.css`} />
             <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/sharemap/sharemap.ol.min.css`} />
-            <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/storymap/storymap.ol.min.css`} />
             <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/stylemanager/stylemanager.ol.min.css`} />
+            <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/storymap/storymap.ol.min.css`} />
             <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/timeline/timeline.ol.min.css`} />
             <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/vectorsmanagement/vectorsmanagement.ol.min.css`} />
+            <link rel="stylesheet" href={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/viewmanagement/viewmanagement.ol.min.css`} />
 
             {/* JS Assets */}
             <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_URL}/js/apiidee.ol.min.js`} strategy="beforeInteractive"></Script>
             <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_URL}/js/configuration.js`} strategy="beforeInteractive"></Script>
-            <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/layerswitcher/layerswitcher.ol.min.js`} strategy="beforeInteractive"></Script>
             <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/backimglayer/backimglayer.ol.min.js`} strategy="beforeInteractive"></Script>
-            <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/mousesrs/mousesrs.ol.min.js`} strategy="beforeInteractive"></Script>
-            <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/locator/locator.ol.min.js`} strategy="beforeInteractive"></Script>
-            <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/locatorscn/locatorscn.ol.min.js`} strategy="beforeInteractive"></Script>
-            <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/viewmanagement/viewmanagement.ol.min.js`} strategy="beforeInteractive"></Script>
+            <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/comparators/comparators.ol.min.js`} strategy="beforeInteractive"></Script>
             <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/contactlink/contactlink.ol.min.js`} strategy="beforeInteractive"></Script>
-            <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/filteredsearch/filteredsearch.ol.min.js`} strategy="beforeInteractive"></Script>
             <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/help/help.ol.min.js`} strategy="beforeInteractive"></Script>
             <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/incicarto/incicarto.ol.min.js`} strategy="beforeInteractive"></Script>
             <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/infocoordinates/infocoordinates.ol.min.js`} strategy="beforeInteractive"></Script>
             <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/information/information.ol.min.js`} strategy="beforeInteractive"></Script>
-            <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/magnify/magnify.ol.min.js`} strategy="beforeInteractive"></Script>
-            <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/mapheader/mapheader.ol.min.js`} strategy="beforeInteractive"></Script>
-            <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/mapfooter/mapfooter.ol.min.js`} strategy="beforeInteractive"></Script>
+            <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/layerswitcher/layerswitcher.ol.min.js`} strategy="beforeInteractive"></Script>
+            <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/locator/locator.ol.min.js`} strategy="beforeInteractive"></Script>
             <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/measurebar/measurebar.ol.min.js`} strategy="beforeInteractive"></Script>
             <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/modal/modal.ol.min.js`} strategy="beforeInteractive"></Script>
+            <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/mousesrs/mousesrs.ol.min.js`} strategy="beforeInteractive"></Script>
+            <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/overviewmap/overviewmap.ol.min.js`} strategy="beforeInteractive"></Script>
             <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/printviewmanagement/printviewmanagement-1.0.0.ol.min.js`} strategy="beforeInteractive"></Script>
+            <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/queryattributes/queryattributes-1.0.0.ol.min.js`} strategy="beforeInteractive"></Script>
             <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/selectionzoom/selectionzoom.ol.min.js`} strategy="beforeInteractive"></Script>
             <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/sharemap/sharemap.ol.min.js`} strategy="beforeInteractive"></Script>
-            <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/storymap/storymap.ol.min.js`} strategy="beforeInteractive"></Script>
             <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/stylemanager/stylemanager.ol.min.js`} strategy="beforeInteractive"></Script>
+            <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/storymap/storymap.ol.min.js`} strategy="beforeInteractive"></Script>
             <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/timeline/timeline.ol.min.js`} strategy="beforeInteractive"></Script>
             <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/vectorsmanagement/vectorsmanagement.ol.min.js`} strategy="beforeInteractive"></Script>
+            <Script src={`${process.env.NEXT_PUBLIC_API_IDEE_PLUGINS_URL}/plugins/viewmanagement/viewmanagement.ol.min.js`} strategy="beforeInteractive"></Script>
 
             <Script async src={`https://www.googletagmanager.com/gtag/js?id=G-VT4958DGW9`} strategy="beforeInteractive"></Script>
             <Script id='google_analytics'

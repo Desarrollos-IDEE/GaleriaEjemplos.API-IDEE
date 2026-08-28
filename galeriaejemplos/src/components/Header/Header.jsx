@@ -20,7 +20,7 @@ class Header extends Component {
       <header>
         <div id="cabecera">
           <div className="left">
-            <a href="https://www.ign.es/web/inicio" >
+            <a href="https://www.ign.es/web/inicio">
               <img id="MinisterioImg" src={MinisterioImg} height="100%" />
             </a>
             <img id="ignImg" src={ignImg} height="100%" />

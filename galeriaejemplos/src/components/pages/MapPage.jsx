@@ -39,6 +39,20 @@ export default function MapPage({ config }) {
 
   }, [config]);
 
+  useEffect(() => {
+    const handleIframeMessage = (event) => {
+      if (event.data?.type !== "MAP_ERROR") return;
+
+      setExecutionError(event.data.error || "Error desconocido en el visor");
+    };
+
+    window.addEventListener("message", handleIframeMessage);
+
+    return () => {
+      window.removeEventListener("message", handleIframeMessage);
+    };
+  }, []);
+
 
   const startResize = (event) => {
     event.preventDefault();

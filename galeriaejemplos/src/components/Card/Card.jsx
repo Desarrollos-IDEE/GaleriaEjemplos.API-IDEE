@@ -13,7 +13,7 @@ class SamplesCard extends Component {
                 <div className="card-body">
                     <div id="card-title">{title}</div>
                     <div id="card-description">{description}</div>
-                    <button id="card-button" onClick={onClick}>Ejemplo</button>
+                    <button id="card-button" onClick={onClick}>Ver Ejemplo →</button>
                 </div>
             </div>
         );

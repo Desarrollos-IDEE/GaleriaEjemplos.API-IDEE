@@ -6,25 +6,22 @@ export function mapPlugins() {
     const { tms_relieve, tms_global, tms_ignbaseSimplificado, WMTS_callejero, WMTS_PNOA, WMTS_IGNBaseOrto } = backgroundLayers();
 
     return {
-        Layerswitcher: (customOpts = {}) => new IDEE.plugin.Layerswitcher({
-            order: 2,
-            collapsed: true,
-            position: 'TR',
-            tooltip: 'Capas shakemaps',
-            collapsible: true,
-            addLayers: false,
-            isDraggable: false,
-            modeSelectLayers: 'eyes',  //'eyes', 'radio'
-            isMoveLayers: true,
-            https: true,
-            http: true,
-            showCatalog: false,
-            displayLabel: false,
+        // Top Center
+        Locator: (customOpts = {}) => new IDEE.plugin.Locator({
+            position: 'TC',
+            collapsible: false,
+            collapsed: false,
+            byParcelCadastre: false,
+            byCoordinates: false,
+            byPlaceAddressPostal: {
+                noProcess: 'toponimo, ngbe, expendeduria  ',
+            },
             ...customOpts
         }),
+        
 
+        // Top Right
         BackImgLayer: (customOpts = {}) => new IDEE.plugin.BackImgLayer({
-            order: 1,
             position: 'TR',
             collapsible: true,
             collapsed: true,
@@ -61,37 +58,26 @@ export function mapPlugins() {
             ],
             ...customOpts
         }),
-
-        MouseSRS: (customOpts = {}) => new IDEE.plugin.MouseSRS({
-            srs: 'EPSG:4326',
-            label: 'WGS84',
-            precision: 6,
-            geoDecimalDigits: 4,
-            utmDecimalDigits: 2,
-            ...customOpts
-        }),
-
-        OverviewMap: (customOpts = {}) => new IDEE.plugin.OverviewMap({
-            position: 'BL',
-            collapsible: true,
+        
+        Layerswitcher: (customOpts = {}) => new IDEE.plugin.Layerswitcher({
             collapsed: true,
-            fixed: true,
+            position: 'TR',
+            tooltip: 'Capas shakemaps',
+            collapsible: true,
+            addLayers: false,
+            isDraggable: false,
+            modeSelectLayers: 'eyes',  //'eyes', 'radio'
+            isMoveLayers: true,
+            https: true,
+            http: true,
+            showCatalog: false,
+            displayLabel: false,
             ...customOpts
         }),
 
-        Locator: (customOpts = {}) =>new IDEE.plugin.Locator({
-            position: 'TC',
-            collapsible: false,
-            collapsed: false,
-            byParcelCadastre: false,
-            byCoordinates: false,
-            byPlaceAddressPostal: {
-                noProcess: 'toponimo, ngbe, expendeduria  ',
-            },
-            ...customOpts
-        }),
 
-        Viewmanagement: (customOpts = {}) => new M.plugin.ViewManagement({
+        // Top Left
+        Viewmanagement: (customOpts = {}) => new IDEE.plugin.ViewManagement({
             postition: 'TL',
             collapsible: true,
             collapsed: true,
@@ -107,6 +93,33 @@ export function mapPlugins() {
             isDraggable: false,
             ...customOpts
         }),
+
+
+
+        // Bottom Center
+        MouseSRS: (customOpts = {}) => new IDEE.plugin.MouseSRS({
+            srs: 'EPSG:4326',
+            label: 'WGS84',
+            precision: 6,
+            geoDecimalDigits: 4,
+            utmDecimalDigits: 2,
+            ...customOpts
+        }),
+
+
+        // Botom Left
+        OverviewMap: (customOpts = {}) => new IDEE.plugin.OverviewMap({
+            position: 'TL',
+            collapsible: true,
+            collapsed: true,
+            fixed: true,
+            ...customOpts
+        }), 
+        ShareMap: (customOpts = {}) => new IDEE.plugin.ShareMap({
+            baseUrl: 'https://componentes.idee.es/api-idee/',
+            position: 'BL',
+            ...customOpts
+        })       
 
     }
 }

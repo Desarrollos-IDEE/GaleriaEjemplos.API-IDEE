@@ -123,11 +123,36 @@ export async function IGNLayers() {
             legend: "Red de Mareógrafos",
         }),
         
-        ua: new IDEE.layer.WFS({
-            url: "https://www.ign.es/wfs-inspire/unidades-administrativas?",
-            name: "au:AdministrativeUnit",
-            legend: "Unidad administrativa",
+        provincias: new IDEE.layer.WMS({
+            url: 'https://www.ign.es/wms-inspire/unidades-administrativas?',
+            name: 'AU.AdministrativeBoundary',
+            legend: 'Limite administrativo',
+            tiled: false,
+        }),
+
+        ua: new IDEE.layer.WMS({
+            url: 'https://www.ign.es/wms-inspire/unidades-administrativas?',
+            name: 'AU.AdministrativeUnit',
+            legend: 'Unidad administrativa',
+            tiled: false
+        }),
+
+        landuse: new IDEE.layer.WMTS({
+            url: 'https://wmts-mapa-lidar.idee.es/lidar',
+            name: 'EL.GridCoverageDSM',
+            legend: 'Modelo Digital de Superficies LiDAR',
+            matrixSet: 'GoogleMapsCompatible',
+            visibility: true,
+        }),
+
+        delegaciones: new IDEE.layer.KML({
+            url: 'https://www.ign.es/web/resources/delegaciones/DelegacionesIGN-APICNIG.kml',
+            name:  'delegacionesIGN',
+            extract: false,
+            legend: 'Delegaciones IGN',
+            transparent: true,
         })
+
 
     }
 }

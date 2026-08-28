@@ -1,20 +1,14 @@
+#cabecera,
+header {
+    width: 100%;
+    box-sizing: border-box;
+}
+
 #cabecera {
     display: flex;
     justify-content: space-between;
     height: 50px;
     background-color: #364b5f;
-}
-
-@media (max-width: 450px) {
-    #ignImg {
-        visibility: hidden;
-    }
-}
-
-@media (max-width: 640px) {
-    #ignImg {
-        visibility: hidden;
-    }
 }
 
 @media (max-width: 1000px) {
@@ -23,23 +17,33 @@
     }
 }
 
+@media (max-width: 600px) {
+    .left {
+        display: none;
+    }
+}
+
 .right {
-  display: flex;
-  align-items: center;
-  padding-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 0;
+    padding: 0 12px;
+}
+
+.header-search {
+    width: 100%;
+    min-width: 0;
 }
 
 .header-search input {
-  padding: 6px 10px;
-  font-size: 14px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  outline: none;
-  width: 260px;
-  max-width: 40vw;
-  background: #fff;
-}
-
-@media (max-width: 640px) {
-  .header-search input { width: 160px; }
+    box-sizing: border-box;
+    padding: 6px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    outline: none;
+    width: 100%;
+    max-width: 260px;
+    background: #fff;
 }

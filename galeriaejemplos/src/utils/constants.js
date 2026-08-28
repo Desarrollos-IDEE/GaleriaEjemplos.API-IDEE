@@ -1,8 +1,24 @@
 export const pluginClassNames = {
-    layerswitcher: 'Layerswitcher',
     backimglayer: 'BackImgLayer',
+    comparators: 'Comparators',
+    contactlink: 'ContactLink',
+    help: 'Help',
+    incicarto: 'Incicarto',
+    infocoordinates: 'Infocoordinates',
+    information: 'Information',
+    layerswitcher: 'Layerswitcher',
+    locator: 'Locator',
+    measurebar: 'MeasureBar',
+    modal: 'Modal',
     mousesrs: 'MouseSRS',
     overviewmap: 'OverviewMap',
-    locator: 'Locator',
-    viewmanagement: 'Viewmanagement'
+    printviewmanagement: 'PrintViewManagement',
+    queryattributes: 'QueryAttributes',
+    selectionzoom: 'SelectionZoom',
+    sharemap: 'ShareMap',
+    stylemanager: 'StyleManager',
+    storymap: 'StoryMap',
+    timeline: 'Timeline',
+    vectorsmanagement: 'VectorsManagement',
+    viewmanagement: 'ViewManagement'
 }

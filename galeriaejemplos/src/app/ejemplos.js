@@ -28,138 +28,115 @@ export const metadatos = [
         id: "ejemplo_1",
         title: "Visualizasor Base",
         description: "Ejemplo de un visualizador simple.",
-        ejemplo: "ejemplo_1"
     },
     {
         id: "ejemplo_2",
         title: "Controles básicos y opciones",
-        description: "Añadir y activar controles y opciones de visualización.",
-        ejemplo: "ejemplo_2"
+        description: "Añadir y activar controles y opciones de visualización."
     },
     {
-        id: "ejemplo_2",
+        id: "ejemplo_3",
         title: "Viualizador de ejemplo",
-        description: "Ejemplo de un visualizador estándar",
-        ejemplo: "ejemplo_2"
+        description: "Ejemplo de un visualizador estándar"
+    },
+    {
+        id: "ejemplo_4",
+        title: "Opciones - Etiqueta en mapa",
+        description: "Añadir etiqueta al mapa.",
     },
     {
         id: "ejemplo_2",
         title: "Ejemplo 2",
-        description: "Ejemplo de visor con herramientas de medición.",
-        ejemplo: "ejemplo_2"
+        description: "Ejemplo de visor con herramientas de medición."
     },
     {
         id: "ejemplo_2",
         title: "Ejemplo 2",
-        description: "Ejemplo de visor con herramientas de medición.",
-        ejemplo: "ejemplo_2"
+        description: "Ejemplo de visor con herramientas de medición."
     },
     {
         id: "ejemplo_2",
         title: "Ejemplo 2",
-        description: "Ejemplo de visor con herramientas de medición.",
-        ejemplo: "ejemplo_2"
+        description: "Ejemplo de visor con herramientas de medición."
     },
     {
         id: "ejemplo_2",
         title: "Ejemplo 2",
-        description: "Ejemplo de visor con herramientas de medición.",
-        ejemplo: "ejemplo_2"
+        description: "Ejemplo de visor con herramientas de medición."
     },
     {
         id: "ejemplo_2",
         title: "Ejemplo 2",
-        description: "Ejemplo de visor con herramientas de medición.",
-        ejemplo: "ejemplo_2"
+        description: "Ejemplo de visor con herramientas de medición."
     },
     {
         id: "ejemplo_2",
         title: "Ejemplo 2",
-        description: "Ejemplo de visor con herramientas de medición.",
-        ejemplo: "ejemplo_2"
+        description: "Ejemplo de visor con herramientas de medición."
     },
     {
         id: "ejemplo_2",
         title: "Ejemplo 2",
-        description: "Ejemplo de visor con herramientas de medición.",
-        ejemplo: "ejemplo_2"
+        description: "Ejemplo de visor con herramientas de medición."
     },
     {
         id: "ejemplo_2",
         title: "Ejemplo 2",
-        description: "Ejemplo de visor con herramientas de medición.",
-        ejemplo: "ejemplo_2"
+        description: "Ejemplo de visor con herramientas de medición."
     },
     {
         id: "ejemplo_2",
         title: "Ejemplo 2",
-        description: "Ejemplo de visor con herramientas de medición.",
-        ejemplo: "ejemplo_2"
+        description: "Ejemplo de visor con herramientas de medición."
     },
     {
         id: "ejemplo_2",
         title: "Ejemplo 2",
-        description: "Ejemplo de visor con herramientas de medición.",
-        ejemplo: "ejemplo_2"
+        description: "Ejemplo de visor con herramientas de medición."
     },
     {
         id: "ejemplo_2",
         title: "Ejemplo 2",
-        description: "Ejemplo de visor con herramientas de medición.",
-        ejemplo: "ejemplo_2"
+        description: "Ejemplo de visor con herramientas de medición."
     },
     {
         id: "ejemplo_2",
         title: "Ejemplo 2",
-        description: "Ejemplo de visor con herramientas de medición.",
-        ejemplo: "ejemplo_2"
+        description: "Ejemplo de visor con herramientas de medición."
     },
     {
         id: "ejemplo_2",
         title: "Ejemplo 2",
-        description: "Ejemplo de visor con herramientas de medición.",
-        ejemplo: "ejemplo_2"
+        description: "Ejemplo de visor con herramientas de medición."
     },
     {
         id: "ejemplo_2",
         title: "Ejemplo 2",
-        description: "Ejemplo de visor con herramientas de medicióndddddddddddddddddd dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd.",
-        ejemplo: "ejemplo_2"
+        description: "Ejemplo de visor con herramientas de medición."
     },
     {
         id: "ejemplo_2",
         title: "Ejemplo 2",
-        description: "Ejemplo de visor con herramientas de medición.",
-        ejemplo: "ejemplo_2"
+        description: "Ejemplo de visor con herramientas de medición."
     },
     {
         id: "ejemplo_2",
         title: "Ejemplo 2",
-        description: "Ejemplo de visor con herramientas de medición.",
-        ejemplo: "ejemplo_2"
+        description: "Ejemplo de visor con herramientas de medición."
     },
     {
         id: "ejemplo_2",
         title: "Ejemplo 2",
-        description: "Ejemplo de visor con herramientas de medición.",
-        ejemplo: "ejemplo_2"
+        description: "Ejemplo de visor con herramientas de medición."
     },
     {
         id: "ejemplo_2",
         title: "Ejemplo 2",
-        description: "Ejemplo de visor con herramientas de medición.",
-        ejemplo: "ejemplo_2"
+        description: "Ejemplo de visor con herramientas de medición."
     },
     {
         id: "ejemplo_2",
         title: "Ejemplo 2",
-        description: "Ejemplo de visor con herramientas de medición.",
-        ejemplo: "ejemplo_2"
-    },
-    {
-        id: "ejemplo_2",
-        title: "Ejemplo 2",
-        description: "Ejemplo de visor con herramientas de medición.",
-        ejemplo: "ejemplo_2"
+        description: "Ejemplo de visor con herramientas de medición."
     },
 ];
