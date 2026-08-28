@@ -48,7 +48,10 @@ class Home extends Component {
                                 key={`ejemplo_${index}`}
                                 title={feature.title}
                                 description={feature.description}
-                                onClick={() => { window.open(`/galeriaejemplos/${feature.id}`, '_blank', 'noopener,noreferrer'); }}
+                                onClick={() => {
+                                    const title = encodeURIComponent(feature.title || feature.id || 'Ejemplo');
+                                    window.open(`/galeriaejemplos/${feature.id}?title=${title}`, '_blank', 'noopener,noreferrer');
+                                }}
                             />
                         ))}
                     </section>

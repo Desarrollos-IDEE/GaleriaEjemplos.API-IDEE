@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Search from './Search';
 
-const ignImg = '/galeriaejemplos/static/img/IGN-Header-Tittle.png';
-const MinisterioImg = '/galeriaejemplos/static/img/LogoWEB-IGN-CNIG_h50.png';
+const API = '/galeriaejemplos/static/svg/API_IDEE.svg';
 
 import './Header.css';
 
@@ -14,16 +13,14 @@ class Header extends Component {
 
   render() {
 
-    const { showSearch = true, onSearch } = this.props;
+    const { showSearch = true, onSearch, title } = this.props;
 
     return (<Fragment>
       <header>
         <div id="cabecera">
           <div className="left">
-            <a href="https://www.ign.es/web/inicio">
-              <img id="MinisterioImg" src={MinisterioImg} height="100%" />
-            </a>
-            <img id="ignImg" src={ignImg} height="100%" />
+            <img id="ignImg" src={API} height="100%" />
+            {title && <span className="header-title">{title}</span>}
           </div>
           {showSearch && (
             <div className="right">

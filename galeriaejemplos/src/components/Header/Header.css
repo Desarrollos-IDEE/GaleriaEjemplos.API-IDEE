@@ -7,20 +7,32 @@ header {
 #cabecera {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     height: 50px;
-    background-color: #364b5f;
+    background-color: #006fb1;
 }
 
-@media (max-width: 1000px) {
-    #ignImg {
-        visibility: hidden;
-    }
+.left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 100%;
+    padding: 2px 12px;
 }
 
-@media (max-width: 600px) {
-    .left {
-        display: none;
-    }
+#ignImg {
+    display: block;
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+.header-title {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    white-space: nowrap;
+    width: fit-content;
 }
 
 .right {

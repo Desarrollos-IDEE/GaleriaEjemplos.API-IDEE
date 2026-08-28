@@ -1,3 +1,5 @@
+const API = '/galeriaejemplos/static/svg/API_IDEE_blue.svg';
+
 export const description = [
     {
         title1: {
@@ -11,13 +13,13 @@ export const description = [
         },
     }, {
         subtitle: {
-            es: "API-IDEE",
-            en: "API-IDEE"
+            es: `<img src=${API} height="150px"/>`,
+            en: `<img src=${API} height="150px"/>`
         },
     }, {
         description: {
-            es: "Accede a múltiples ejemplos de visualizadores cartográficos que hacen uso de la API-IDEE ofrecidos por el <span style=\"color: #feb610; font-weight: 600;\">Centro Nacional de Información Geográfica (CNIG)</span>.",
-            en: "Access multiple examples of map viewers that use the API-IDEE offered by the <span style=\"color: #feb610; font-weight: 600;\">National Center for Geographic Information (CNIG)</span>."
+            es: "Accede a múltiples ejemplos de visualizadores cartográficos que hacen uso de la <span style=\"color: #feb610; font-weight: 600;\">API-IDEE</span>.",
+            en: "Access multiple examples of map viewers that use the <span style=\"color: #feb610; font-weight: 600;\">API-IDEE</span>."
         }
     }
 
@@ -26,7 +28,7 @@ export const description = [
 export const metadatos = [
     {
         id: "ejemplo_1",
-        title: "Visualizasor Base",
+        title: "Visualizador Base",
         description: "Ejemplo de un visualizador simple.",
     },
     {

@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import LoadingIcon from '@/components/Helpers/LoadingIcon';
 import MapPage from '@/components/pages/MapPage';
 import { getConfig } from './config';
@@ -8,6 +9,8 @@ export default function Ejemplo1() {
     const [blocking, setBlocking] = useState(true);
     const [hasMounted, setHasMounted] = useState(false);
     const [config, setConfig] = useState(null);
+    const searchParams = useSearchParams();
+    const title = searchParams.get('title');
 
     useEffect(() => {
         setHasMounted(true);
@@ -34,7 +37,7 @@ export default function Ejemplo1() {
                     <LoadingIcon width={256} height={256} />
                 </div>
                 :
-                <MapPage config={config}/>
+                <MapPage title={title} config={config}/>
             }
         </>
     );

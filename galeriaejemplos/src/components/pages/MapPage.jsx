@@ -14,7 +14,7 @@ import { generateCSS } from "@/utils/cssGenerator";
 import "./MapPage.css";
 
 
-export default function MapPage({ config }) {
+export default function MapPage({ title, config }) {
 
   const [htmlCode, setHtmlCode] = useState("");
   const [cssCode, setCssCode] = useState("");
@@ -102,7 +102,7 @@ export default function MapPage({ config }) {
 
   return (
     <div className="page-root">
-      <Header showSearch={false} />
+      <Header showSearch={false} title={title}/>
       <div className={`page-content ${isResizing ? "is-resizing" : ""}`}>
         <section className="panel-left" style={{ width: `${leftWidth}%` }} >
           <Code htmlCode={htmlCode} cssCode={cssCode} jsCode={jsCode} onChangeHTML={setHtmlCode} onChangeCSS={setCssCode} onChangeJS={setJsCode} onExecute={handleExecute} executionError={executionError} /></section>
